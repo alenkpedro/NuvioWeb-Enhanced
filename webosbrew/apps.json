@@ -1,0 +1,32 @@
+{
+  "paging": {
+    "page": 1,
+    "count": 1,
+    "maxPage": 1,
+    "itemsTotal": 1
+  },
+  "packages": [
+    {
+      "id": "space.nuvio.webos",
+      "title": "Nuvio TV Enhanced",
+      "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
+      "manifest": {
+        "id": "space.nuvio.webos",
+        "version": "0.3.35",
+        "type": "web",
+        "title": "Nuvio TV Enhanced",
+        "appDescription": "Enhanced LG webOS build based on NuvioWeb with TV-focused optimisations inspired by ysosrs123/NuvioTV-Fork.",
+        "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
+        "sourceUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced",
+        "rootRequired": false,
+        "ipkUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced/releases/download/webos-latest/NuvioWeb-Enhanced-webOS-0.3.35-9dbda5953f8e.ipk",
+        "ipkHash": {
+          "sha256": "274b0c8e02284ac843a0f5ef60cdbe378649a652b6598b12f9de425fe7430b95"
+        },
+        "ipkSize": 3964052
+      },
+      "pool": "main",
+      "shortDescription": "Enhanced Nuvio build for LG webOS."
+    }
+  ]
+}

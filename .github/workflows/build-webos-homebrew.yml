@@ -1,8 +1,10 @@
 name: Build webOS Homebrew package
 
 on:
-  pull_request:
-    types: [ready_for_review]
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'webosbrew/apps.json'
   workflow_dispatch:
     inputs:
       source_ref:
@@ -13,96 +15,110 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: webos-homebrew-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'agent/webos-enhanced-phase-1'
+  build-release:
     runs-on: ubuntu-latest
     env:
-      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || github.event.pull_request.head.ref }}
+      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || 'main' }}
+      RELEASE_TAG: webos-latest
+
     steps:
-      - name: Check out Enhanced source
+      - name: Checkout Enhanced source
         uses: actions/checkout@v4
         with:
           ref: ${{ env.SOURCE_REF }}
           fetch-depth: 0
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build webOS IPK
+      - name: Build IPK
         run: npm run package:webos
 
-      - name: Prepare Homebrew package metadata
+      - name: Resolve immutable package name
         id: pkg
         shell: bash
         run: |
-          VERSION=$(node -p "require('./package.json').version")
-          IPK=$(find . -maxdepth 1 -type f -name 'space.nuvio.webos_*_all.ipk' | head -n 1)
-          test -n "$IPK"
-          mkdir -p /tmp/nuvio-homebrew/webosbrew/packages
-          TARGET="NuvioWeb-Enhanced-webOS-${VERSION}.ipk"
-          cp "$IPK" "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET"
-          SHA256=$(sha256sum "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET" | awk '{print $1}')
-          SIZE=$(wc -c < "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET" | tr -d ' ')
+          VERSION="$(node -p "require('./appinfo.json').version")"
+          SOURCE="$(find . -maxdepth 1 -type f -name 'space.nuvio.webos_*_all.ipk' | head -n 1)"
+          test -n "$SOURCE"
+          SHORT_SHA="$(git rev-parse --short=12 HEAD)"
+          TARGET="NuvioWeb-Enhanced-webOS-${VERSION}-${SHORT_SHA}.ipk"
+          mv "$SOURCE" "$TARGET"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
-          echo "sha256=$SHA256" >> "$GITHUB_OUTPUT"
-          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+          echo "ipk=$TARGET" >> "$GITHUB_OUTPUT"
+          echo "filename=$TARGET" >> "$GITHUB_OUTPUT"
 
-      - name: Check out main for publishing
+      - name: Publish immutable prerelease asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IPK: ${{ steps.pkg.outputs.ipk }}
+          VERSION: ${{ steps.pkg.outputs.version }}
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            if ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq "$IPK"; then
+              gh release upload "$RELEASE_TAG" "$IPK" --repo "$GITHUB_REPOSITORY"
+            fi
+            gh release edit "$RELEASE_TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Nuvio TV Enhanced webOS ${VERSION}" \
+              --notes "Automatic LG webOS Enhanced development build." \
+              --prerelease
+          else
+            gh release create "$RELEASE_TAG" "$IPK" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$(git rev-parse HEAD)" \
+              --title "Nuvio TV Enhanced webOS ${VERSION}" \
+              --notes "Automatic LG webOS Enhanced development build." \
+              --prerelease
+          fi
+
+      - name: Checkout main for Homebrew metadata
         uses: actions/checkout@v4
         with:
           ref: main
           path: publish
           fetch-depth: 0
 
-      - name: Publish IPK and Homebrew metadata
-        shell: bash
+      - name: Generate Homebrew repository manifest
         env:
-          VERSION: ${{ steps.pkg.outputs.version }}
-          TARGET: ${{ steps.pkg.outputs.target }}
-          SHA256: ${{ steps.pkg.outputs.sha256 }}
-          SIZE: ${{ steps.pkg.outputs.size }}
+          RELEASE_TAG: webos-latest
+        shell: bash
         run: |
-          mkdir -p publish/webosbrew/packages
-          cp "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET" "publish/webosbrew/packages/$TARGET"
-          cat > publish/webosbrew/apps.json <<EOF
-          {
-            "paging": {"page": 1, "count": 1, "maxPage": 1, "itemsTotal": 1},
-            "packages": [
-              {
-                "id": "space.nuvio.webos",
-                "title": "Nuvio TV Enhanced",
-                "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
-                "manifest": {
-                  "id": "space.nuvio.webos",
-                  "version": "$VERSION",
-                  "type": "web",
-                  "title": "Nuvio TV Enhanced",
-                  "appDescription": "Enhanced LG webOS build based on NuvioWeb with TV-focused optimisations inspired by ysosrs123/NuvioTV-Fork.",
-                  "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
-                  "sourceUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced",
-                  "rootRequired": false,
-                  "ipkUrl": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/webosbrew/packages/$TARGET",
-                  "ipkHash": {"sha256": "$SHA256"},
-                  "ipkSize": $SIZE
-                },
-                "pool": "main",
-                "shortDescription": "Enhanced Nuvio build for LG webOS."
-              }
-            ]
-          }
-          EOF
+          node publish/scripts/generate-webosbrew.mjs "${{ steps.pkg.outputs.ipk }}"
+          mkdir -p publish/webosbrew
+          cp webosbrew/apps.json publish/webosbrew/apps.json
+
+      - name: Commit Homebrew manifest
+        shell: bash
+        run: |
           cd publish
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add webosbrew/apps.json
-          git add -f "webosbrew/packages/$TARGET"
-          git commit -m "build: publish webOS Enhanced ${VERSION}"
+          if git diff --cached --quiet; then
+            echo "Homebrew manifest unchanged"
+            exit 0
+          fi
+          git commit -m "chore: update webOS Homebrew manifest [skip ci]"
+          git pull --rebase origin main
           git push origin main
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NuvioWeb-Enhanced-webOS-${{ steps.pkg.outputs.version }}-${{ github.run_id }}
+          path: ${{ steps.pkg.outputs.ipk }}
+          if-no-files-found: error

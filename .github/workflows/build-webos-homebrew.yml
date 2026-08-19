@@ -1,8 +1,8 @@
 name: Build webOS Homebrew package
 
 on:
-  issues:
-    types: [opened]
+  pull_request:
+    types: [ready_for_review]
   workflow_dispatch:
     inputs:
       source_ref:
@@ -12,14 +12,13 @@ on:
 
 permissions:
   contents: write
-  issues: write
 
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || github.event.issue.title == '[build-ipk]'
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'agent/webos-enhanced-phase-1'
     runs-on: ubuntu-latest
     env:
-      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || 'agent/webos-enhanced-phase-1' }}
+      SOURCE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || github.event.pull_request.head.ref }}
     steps:
       - name: Check out Enhanced source
         uses: actions/checkout@v4
@@ -45,10 +44,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           IPK=$(find . -maxdepth 1 -type f -name 'space.nuvio.webos_*_all.ipk' | head -n 1)
-          if [ -z "$IPK" ]; then
-            echo 'Expected webOS IPK was not created' >&2
-            exit 1
-          fi
+          test -n "$IPK"
           mkdir -p /tmp/nuvio-homebrew/webosbrew/packages
           TARGET="NuvioWeb-Enhanced-webOS-${VERSION}.ipk"
           cp "$IPK" "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET"
@@ -59,14 +55,14 @@ jobs:
           echo "sha256=$SHA256" >> "$GITHUB_OUTPUT"
           echo "size=$SIZE" >> "$GITHUB_OUTPUT"
 
-      - name: Check out main for repository metadata
+      - name: Check out main for publishing
         uses: actions/checkout@v4
         with:
           ref: main
           path: publish
           fetch-depth: 0
 
-      - name: Publish IPK and apps.json
+      - name: Publish IPK and Homebrew metadata
         shell: bash
         env:
           VERSION: ${{ steps.pkg.outputs.version }}
@@ -78,12 +74,7 @@ jobs:
           cp "/tmp/nuvio-homebrew/webosbrew/packages/$TARGET" "publish/webosbrew/packages/$TARGET"
           cat > publish/webosbrew/apps.json <<EOF
           {
-            "paging": {
-              "page": 1,
-              "count": 1,
-              "maxPage": 1,
-              "itemsTotal": 1
-            },
+            "paging": {"page": 1, "count": 1, "maxPage": 1, "itemsTotal": 1},
             "packages": [
               {
                 "id": "space.nuvio.webos",
@@ -99,9 +90,7 @@ jobs:
                   "sourceUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced",
                   "rootRequired": false,
                   "ipkUrl": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/webosbrew/packages/$TARGET",
-                  "ipkHash": {
-                    "sha256": "$SHA256"
-                  },
+                  "ipkHash": {"sha256": "$SHA256"},
                   "ipkSize": $SIZE
                 },
                 "pool": "main",
@@ -110,16 +99,9 @@ jobs:
             ]
           }
           EOF
-
           cd publish
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add webosbrew/apps.json "webosbrew/packages/$TARGET"
           git commit -m "build: publish webOS Enhanced ${VERSION}"
           git push origin main
-
-      - name: Close build trigger issue
-        if: github.event_name == 'issues'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh issue close "${{ github.event.issue.number }}" --comment "webOS Homebrew package build completed."

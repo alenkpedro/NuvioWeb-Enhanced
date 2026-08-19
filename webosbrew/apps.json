@@ -7,11 +7,11 @@
   },
   "packages": [
     {
-      "id": "space.nuvio.webos",
+      "id": "space.nuvio.enhanced.webos",
       "title": "Nuvio TV Enhanced",
       "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
       "manifest": {
-        "id": "space.nuvio.webos",
+        "id": "space.nuvio.enhanced.webos",
         "version": "0.3.35",
         "type": "web",
         "title": "Nuvio TV Enhanced",
@@ -19,11 +19,11 @@
         "iconUri": "https://raw.githubusercontent.com/alenkpedro/NuvioWeb-Enhanced/main/assets/images/icon.png",
         "sourceUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced",
         "rootRequired": false,
-        "ipkUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced/releases/download/webos-latest/NuvioWeb-Enhanced-webOS-0.3.35-9dbda5953f8e.ipk",
+        "ipkUrl": "https://github.com/alenkpedro/NuvioWeb-Enhanced/releases/download/webos-latest/NuvioWeb-Enhanced-webOS-0.3.35-07097ca0c7ea.ipk",
         "ipkHash": {
-          "sha256": "274b0c8e02284ac843a0f5ef60cdbe378649a652b6598b12f9de425fe7430b95"
+          "sha256": "b12ed1fd0924e78b55d2040dfff990c3339d9cfe1fb86843c296e284582914c6"
         },
-        "ipkSize": 3964052
+        "ipkSize": 3964716
       },
       "pool": "main",
       "shortDescription": "Enhanced Nuvio build for LG webOS."

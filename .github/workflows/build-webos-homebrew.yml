@@ -10,7 +10,7 @@ on:
       source_ref:
         description: Branch or ref to package
         required: false
-        default: agent/webos-enhanced-phase-1
+        default: main
 
 permissions:
   contents: write
@@ -40,10 +40,25 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
+      - name: Write Nuvio runtime properties
+        env:
+          NUVIO_LOCAL_PROPERTIES: ${{ secrets.NUVIO_LOCAL_PROPERTIES }}
+          WEBOS_LOCAL_PROPERTIES: ${{ secrets.WEBOS_LOCAL_PROPERTIES }}
+        shell: bash
+        run: |
+          LOCAL_PROPERTIES="${NUVIO_LOCAL_PROPERTIES:-$WEBOS_LOCAL_PROPERTIES}"
+          if [ -z "${LOCAL_PROPERTIES//[[:space:]]/}" ]; then
+            echo "::error::NUVIO_LOCAL_PROPERTIES is required. Use the same Nuvio runtime/backend configuration as the official build."
+            exit 1
+          fi
+          printf '%s\n' "$LOCAL_PROPERTIES" > local.properties
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build IPK
+        env:
+          NUVIO_REQUIRE_LOCAL_PROPERTIES: "1"
         run: npm run package:webos
 
       - name: Resolve immutable package name
@@ -51,7 +66,7 @@ jobs:
         shell: bash
         run: |
           VERSION="$(node -p "require('./appinfo.json').version")"
-          SOURCE="$(find . -maxdepth 1 -type f -name 'space.nuvio.webos_*_all.ipk' | head -n 1)"
+          SOURCE="$(find . -maxdepth 1 -type f -name 'space.nuvio.enhanced.webos_*_all.ipk' | head -n 1)"
           test -n "$SOURCE"
           SHORT_SHA="$(git rev-parse --short=12 HEAD)"
           TARGET="NuvioWeb-Enhanced-webOS-${VERSION}-${SHORT_SHA}.ipk"

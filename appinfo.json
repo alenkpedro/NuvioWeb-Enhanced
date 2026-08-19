@@ -1,12 +1,12 @@
 {
-  "id": "space.nuvio.webos",
+  "id": "space.nuvio.enhanced.webos",
   "version": "0.3.35",
   "vendor": "Nuvio Media",
   "type": "web",
   "main": "index.html",
-  "title": "Nuvio TV",
-  "description": "Locally packaged LG webOS build for Nuvio TV.",
-  "appDescription": "Locally packaged LG webOS build for Nuvio TV.",
+  "title": "Nuvio TV Enhanced",
+  "description": "Enhanced LG webOS build based on Nuvio TV.",
+  "appDescription": "Enhanced LG webOS build based on Nuvio TV.",
   "keywords": ["streaming", "video", "media", "tv"],
   "category": "entertainment",
   "icon": "icon.png",
@@ -17,6 +17,6 @@
   "resolution": "1920x1080",
   "transparent": false,
   "requiredVersion": "5.0.0",
-  "services": ["space.nuvio.webos.service"],
+  "services": ["space.nuvio.enhanced.webos.service"],
   "requiredPermissions": ["internet", "media.operation", "media.query"]
 }

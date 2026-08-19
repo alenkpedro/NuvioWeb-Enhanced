@@ -41,6 +41,8 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Import public runtime config from official Nuvio webOS build
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
@@ -53,12 +55,24 @@ jobs:
             -o "$OFFICIAL_MANIFEST"
 
           OFFICIAL_IPK_URL="$(node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));const u=d?.packages?.[0]?.manifest?.ipkUrl||'';if(!u)process.exit(2);process.stdout.write(u)" "$OFFICIAL_MANIFEST")"
-          test -n "$OFFICIAL_IPK_URL"
+          OFFICIAL_TAG="$(node -e "const u=new URL(process.argv[1]);const m=u.pathname.match(/\/releases\/download\/([^/]+)\//);if(!m)process.exit(2);process.stdout.write(decodeURIComponent(m[1]))" "$OFFICIAL_IPK_URL")"
+          OFFICIAL_NAME="$(node -e "const u=new URL(process.argv[1]);process.stdout.write(decodeURIComponent(u.pathname.split('/').pop()||''))" "$OFFICIAL_IPK_URL")"
+
+          test -n "$OFFICIAL_TAG"
+          test -n "$OFFICIAL_NAME"
+          echo "Official release: $OFFICIAL_TAG"
+          echo "Official asset: $OFFICIAL_NAME"
+
+          ASSET_ID="$(gh api "repos/NuvioMedia/NuvioWeb/releases/tags/$OFFICIAL_TAG" --jq ".assets[] | select(.name == \"$OFFICIAL_NAME\") | .id")"
+          test -n "$ASSET_ID"
 
           OFFICIAL_IPK=/tmp/nuvio-official/NuvioTV-official.ipk
-          echo "Downloading official package: $OFFICIAL_IPK_URL"
-          curl -fL --retry 3 --retry-delay 2 "$OFFICIAL_IPK_URL" -o "$OFFICIAL_IPK"
+          gh api \
+            -H 'Accept: application/octet-stream' \
+            "repos/NuvioMedia/NuvioWeb/releases/assets/$ASSET_ID" \
+            > "$OFFICIAL_IPK"
           test -s "$OFFICIAL_IPK"
+          echo "Downloaded official IPK: $(wc -c < "$OFFICIAL_IPK" | tr -d ' ') bytes"
 
           cd /tmp/nuvio-official-extract
           ar x "$OFFICIAL_IPK"
@@ -68,6 +82,7 @@ jobs:
 
           ENV_FILE="$(find root -type f -name 'nuvio.env.js' | head -n 1)"
           test -n "$ENV_FILE"
+          echo "Found official runtime env: $ENV_FILE"
 
           node "$GITHUB_WORKSPACE/scripts/extract-public-runtime-env.mjs" \
             "$PWD/$ENV_FILE" \

@@ -40,18 +40,38 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      - name: Write Nuvio runtime properties
+      - name: Import public runtime config from official Nuvio webOS build
         env:
-          NUVIO_LOCAL_PROPERTIES: ${{ secrets.NUVIO_LOCAL_PROPERTIES }}
-          WEBOS_LOCAL_PROPERTIES: ${{ secrets.WEBOS_LOCAL_PROPERTIES }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          LOCAL_PROPERTIES="${NUVIO_LOCAL_PROPERTIES:-$WEBOS_LOCAL_PROPERTIES}"
-          if [ -z "${LOCAL_PROPERTIES//[[:space:]]/}" ]; then
-            echo "::error::NUVIO_LOCAL_PROPERTIES is required. Use the same Nuvio runtime/backend configuration as the official build."
-            exit 1
-          fi
-          printf '%s\n' "$LOCAL_PROPERTIES" > local.properties
+          set -euo pipefail
+          rm -rf /tmp/nuvio-official /tmp/nuvio-official-extract
+          mkdir -p /tmp/nuvio-official /tmp/nuvio-official-extract/root
+
+          gh release download \
+            --repo NuvioMedia/NuvioWeb \
+            --pattern 'NuvioTV-webOS-*.ipk' \
+            --dir /tmp/nuvio-official
+
+          OFFICIAL_IPK="$(find /tmp/nuvio-official -maxdepth 1 -type f -name '*.ipk' | head -n 1)"
+          test -n "$OFFICIAL_IPK"
+
+          cd /tmp/nuvio-official-extract
+          ar x "$OFFICIAL_IPK"
+          DATA_ARCHIVE="$(find . -maxdepth 1 -type f -name 'data.tar*' | head -n 1)"
+          test -n "$DATA_ARCHIVE"
+          tar -xf "$DATA_ARCHIVE" -C root
+
+          ENV_FILE="$(find root -type f -name 'nuvio.env.js' | head -n 1)"
+          test -n "$ENV_FILE"
+
+          node "$GITHUB_WORKSPACE/scripts/extract-public-runtime-env.mjs" \
+            "$PWD/$ENV_FILE" \
+            "$GITHUB_WORKSPACE/local.properties"
+
+          test -s "$GITHUB_WORKSPACE/local.properties"
+          echo "Official Nuvio client runtime configuration imported."
 
       - name: Install dependencies
         run: npm ci
@@ -89,14 +109,14 @@ jobs:
             gh release edit "$RELEASE_TAG" \
               --repo "$GITHUB_REPOSITORY" \
               --title "Nuvio TV Enhanced webOS ${VERSION}" \
-              --notes "Automatic LG webOS Enhanced development build." \
+              --notes "Automatic LG webOS Enhanced development build using Nuvio's public client runtime configuration." \
               --prerelease
           else
             gh release create "$RELEASE_TAG" "$IPK" \
               --repo "$GITHUB_REPOSITORY" \
               --target "$(git rev-parse HEAD)" \
               --title "Nuvio TV Enhanced webOS ${VERSION}" \
-              --notes "Automatic LG webOS Enhanced development build." \
+              --notes "Automatic LG webOS Enhanced development build using Nuvio's public client runtime configuration." \
               --prerelease
           fi
 

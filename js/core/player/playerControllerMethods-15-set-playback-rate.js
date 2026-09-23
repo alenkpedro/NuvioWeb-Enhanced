@@ -180,6 +180,7 @@ export function createPlayerControllerMethods15() {
         this.selectedWebOsSubtitleTrackIndex = targetIndex;
         this.webOsSubtitleSelectionExplicit = true;
       }
+      this.webOsHtmlTextTrackIndex = -1;
       this.selectedWebOsEmbeddedSubtitleTrackIndex = -1;
 
       const mediaId = this.syncNativeMediaId();
@@ -207,9 +208,16 @@ export function createPlayerControllerMethods15() {
               type: "text",
               mediaId,
               index: targetIndex
-            }).catch(() => {
-              // Ignore Luna subtitle track selection failures and keep native toggles.
-            });
+            })
+              .then(() => {
+                if (this.webOsHtmlTextTrackIndex === targetIndex) {
+                  return this.setWebOsNativeTextTrackVisibility(false, targetIndex);
+                }
+                return null;
+              })
+              .catch(() => {
+                // Ignore Luna subtitle track selection failures and keep native toggles.
+              });
           }, 350);
         }
       }
@@ -280,7 +288,8 @@ export function createPlayerControllerMethods15() {
           mediaId,
           enable: Boolean(enabled)
         })
-          .then(() => {
+          .then((result) => {
+            if (result?.returnValue === false || result?.errorCode) return false;
             if (
               Boolean(enabled) &&
               mediaId === this.nativeMediaId &&
@@ -301,6 +310,38 @@ export function createPlayerControllerMethods15() {
       return this.waitForNativeMediaId()
         .then(applyVisibility)
         .catch(() => false);
+    },
+    setWebOsNativeTextTrackVisibility(enabled, selectedTrackIndex = this.selectedWebOsSubtitleTrackIndex) {
+      if (!Platform.isWebOS() || !this.video || !this.isUsingNativePlayback()) {
+        return Promise.resolve(false);
+      }
+      const expectedIndex = Number(selectedTrackIndex);
+      if (
+        !Number.isInteger(expectedIndex) ||
+        expectedIndex < 0 ||
+        Number(this.selectedWebOsSubtitleTrackIndex) !== expectedIndex ||
+        Number(this.selectedWebOsEmbeddedSubtitleTrackIndex) >= 0
+      ) {
+        return Promise.resolve(false);
+      }
+      const applyVisibility = (mediaId) => {
+        if (!mediaId || Number(this.selectedWebOsSubtitleTrackIndex) !== expectedIndex) return false;
+        return this.requestWebOsMediaCommand("setSubtitleEnable", {
+          mediaId,
+          enable: Boolean(enabled)
+        })
+          .then((result) => {
+            if (result?.returnValue === false || result?.errorCode) return false;
+            if (mediaId !== this.nativeMediaId || Number(this.selectedWebOsSubtitleTrackIndex) !== expectedIndex) {
+              return false;
+            }
+            this.webOsHtmlTextTrackIndex = enabled ? -1 : expectedIndex;
+            return true;
+          })
+          .catch(() => false);
+      };
+      const mediaId = this.syncNativeMediaId();
+      return (mediaId ? Promise.resolve(mediaId) : this.waitForNativeMediaId()).then(applyVisibility).catch(() => false);
     }
   };
 }

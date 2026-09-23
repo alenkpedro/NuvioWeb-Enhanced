@@ -9,6 +9,7 @@ import { AuthManager } from "./core/auth/authManager.js";
 import { AuthState } from "./core/auth/authState.js";
 import { DeviceSessionRegistration } from "./core/auth/deviceSessionRegistration.js";
 import { ProfileManager } from "./core/profile/profileManager.js";
+import { shouldPromptForProfile } from "./core/profile/profileEntryPolicy.js";
 import { MemberAccessRepository } from "./data/remote/supabase/memberAccessRepository.js";
 import { ProfileSyncService } from "./core/profile/profileSyncService.js";
 import { StartupSyncService } from "./core/profile/startupSyncService.js";
@@ -222,22 +223,16 @@ async function shouldShowProfileSelection() {
     pinStates?.[String(activeProfileId)] || pinStates?.[Number(activeProfileId)]
   );
 
-  if (hasSelectedProfileThisSession) {
-    return { show: false, pinStates };
-  }
-
-  // Remember last profile: when enabled and the last used profile has no PIN,
-  // skip the picker and go straight in, matching the Android TV app. A profile
-  // with a PIN always shows the picker so the PIN can be entered.
-  if (
-    ProfileManager.isRememberLastProfileEnabled() &&
-    ProfileManager.hasEverSelectedProfile() &&
-    !activeProfileHasPin
-  ) {
-    return { show: false, pinStates };
-  }
-
-  return { show: profiles.length > 1 || activeProfileHasPin, pinStates };
+  return {
+    show: shouldPromptForProfile({
+      selectedThisLaunch: hasSelectedProfileThisSession,
+      rememberLastProfile: ProfileManager.isRememberLastProfileEnabled(),
+      hasEverSelectedProfile: ProfileManager.hasEverSelectedProfile(),
+      activeProfileHasPin,
+      profileCount: profiles.length
+    }),
+    pinStates
+  };
 }
 
 async function enterWithLastProfile({ restoreWebOsRoute = false } = {}) {
@@ -343,7 +338,7 @@ function setupWebOsAppLifecycle() {
           }
         }
         if (recoverOnCall) {
-          void recover(`${systemName}.${callbackName}`);
+          void recover();
         }
       };
     } catch (error) {
@@ -354,9 +349,19 @@ function setupWebOsAppLifecycle() {
   // webOS keeps the app resident when it is backgrounded. Re-opening can fire
   // a launch event on the existing JS context instead of reloading the page.
   let recovering = false;
-  const recover = async () => {
-    if (recovering || !appShellRendered) {
+  let relaunchPending = false;
+  let lastRelaunchAt = 0;
+  const recover = async ({ relaunch = false } = {}) => {
+    if (!appShellRendered) {
       return;
+    }
+    if (recovering) {
+      if (relaunch) relaunchPending = true;
+      return;
+    }
+    if (relaunch) {
+      if (Date.now() - lastRelaunchAt < 1000) return;
+      lastRelaunchAt = Date.now();
     }
     void DeviceSessionRegistration.requestForegroundRegistration();
     ProviderCredentialSyncService.requestForegroundPull();
@@ -370,8 +375,26 @@ function setupWebOsAppLifecycle() {
       if (document.body) {
         document.body.style.removeProperty("display");
       }
-      const shouldReturnHome = !Router.isWebOsResumeRouteRestorable(current);
-      if (shouldReturnHome) {
+      if (relaunch) {
+        LocalStore.remove(GUEST_QR_BYPASS_KEY);
+        hasSelectedProfileThisSession = false;
+        if (AuthManager.getAuthState() === AuthState.SIGNED_OUT) {
+          await Router.navigate(
+            "authQrSignIn",
+            { onboardingMode: true },
+            {
+              replaceHistory: true,
+              skipStackPush: true
+            }
+          );
+        } else if (AuthManager.getAuthState() === AuthState.AUTHENTICATED) {
+          await routeAfterAuthentication();
+        }
+      } else if (
+        AuthManager.getAuthState() === AuthState.AUTHENTICATED &&
+        current !== "profileSelection" &&
+        !Router.isWebOsResumeRouteRestorable(current)
+      ) {
         await Router.navigate(
           "home",
           {},
@@ -380,7 +403,10 @@ function setupWebOsAppLifecycle() {
             skipStackPush: true
           }
         );
-      } else if (typeof Router.persistWebOsResumeRoute === "function") {
+      } else if (
+        AuthManager.getAuthState() === AuthState.AUTHENTICATED &&
+        typeof Router.persistWebOsResumeRoute === "function"
+      ) {
         Router.persistWebOsResumeRoute(current, Router.currentParams || {});
       }
       // With handlesRelaunch=true, webOS expects the app to explicitly request
@@ -390,13 +416,17 @@ function setupWebOsAppLifecycle() {
       console.warn("webOS relaunch recovery failed", error);
     } finally {
       recovering = false;
+      if (relaunchPending) {
+        relaunchPending = false;
+        void recover({ relaunch: true });
+      }
     }
   };
 
   document.addEventListener(
     "webOSRelaunch",
     () => {
-      void recover();
+      void recover({ relaunch: true });
     },
     true
   );
@@ -405,7 +435,7 @@ function setupWebOsAppLifecycle() {
   document.addEventListener(
     "webOSLaunch",
     () => {
-      void recover();
+      void recover({ relaunch: true });
     },
     true
   );
@@ -525,6 +555,8 @@ function setupPluginServiceLifecycle() {
 }
 
 async function bootstrapApp() {
+  // Guest access is a choice for this launch, not a permanent authentication bypass.
+  LocalStore.remove(GUEST_QR_BYPASS_KEY);
   markBootStage("Rendering application shell");
   renderAppShell();
   appShellRendered = true;
@@ -612,10 +644,7 @@ async function bootstrapApp() {
         }
         return;
       }
-      const hasSeenQr = LocalStore.get("hasSeenAuthQrOnFirstLaunch");
-      Router.navigate("authQrSignIn", {
-        onboardingMode: !hasSeenQr
-      });
+      Router.navigate("authQrSignIn", { onboardingMode: true });
     }
 
     if (state === AuthState.AUTHENTICATED) {

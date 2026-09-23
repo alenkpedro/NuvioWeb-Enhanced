@@ -161,6 +161,7 @@ export function createPlayerControllerMethods02() {
       this.cancelWebOsAudioTrackSelection();
       this.selectedWebOsAudioTrackIndex = -1;
       this.selectedWebOsSubtitleTrackIndex = -1;
+      this.webOsHtmlTextTrackIndex = -1;
       this.selectedWebOsEmbeddedAudioTrackIndex = -1;
       this.selectedWebOsEmbeddedSubtitleTrackIndex = -1;
       this.webOsAudioSelectionExplicit = false;
@@ -237,7 +238,12 @@ export function createPlayerControllerMethods02() {
       if (hasSubtitleSelection) {
         textTracks.forEach((track, trackIndex) => {
           try {
-            track.mode = subtitleIndex >= 0 && trackIndex === subtitleIndex ? "showing" : "disabled";
+            track.mode =
+              subtitleIndex >= 0 && trackIndex === subtitleIndex
+                ? this.webOsHtmlTextTrackIndex === subtitleIndex
+                  ? "hidden"
+                  : "showing"
+                : "disabled";
           } catch (_) {
             // Best effort.
           }
@@ -262,7 +268,7 @@ export function createPlayerControllerMethods02() {
           commands.push(
             this.requestWebOsMediaCommand("setSubtitleEnable", {
               mediaId,
-              enable: subtitleIndex >= 0
+              enable: subtitleIndex >= 0 && this.webOsHtmlTextTrackIndex !== subtitleIndex
             })
           );
           if (subtitleIndex >= 0) {
@@ -279,9 +285,16 @@ export function createPlayerControllerMethods02() {
                 type: "text",
                 mediaId,
                 index: subtitleIndex
-              }).catch(() => {
-                // Ignore Luna subtitle track selection failures and keep native toggles.
-              });
+              })
+                .then(() => {
+                  if (this.webOsHtmlTextTrackIndex === subtitleIndex) {
+                    return this.setWebOsNativeTextTrackVisibility(false, subtitleIndex);
+                  }
+                  return null;
+                })
+                .catch(() => {
+                  // Ignore Luna subtitle track selection failures and keep native toggles.
+                });
             }, 350);
           }
         }

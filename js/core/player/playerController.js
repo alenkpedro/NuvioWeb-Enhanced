@@ -327,6 +327,7 @@ export const PlayerController = {
   nativeMediaIdLookupToken: 0,
   selectedWebOsAudioTrackIndex: -1,
   selectedWebOsSubtitleTrackIndex: -1,
+  webOsHtmlTextTrackIndex: -1,
   selectedWebOsEmbeddedAudioTrackIndex: -1,
   selectedWebOsEmbeddedSubtitleTrackIndex: -1,
   webOsAudioSelectionExplicit: false,

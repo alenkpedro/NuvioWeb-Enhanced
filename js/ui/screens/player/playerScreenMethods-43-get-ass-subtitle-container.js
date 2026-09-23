@@ -139,6 +139,7 @@ export function createPlayerScreenMethods43() {
       this.htmlSubtitleSelectedId = null;
       this.webOsEmbeddedHtmlSubtitleTrack = null;
       this.webOsEmbeddedHtmlSubtitleCueCount = 0;
+      this.webOsEmbeddedHtmlActiveCueSignature = "";
       this.webOsEmbeddedHtmlSubtitleActivationKey = "";
       const node = this.uiRefs?.htmlSubtitles || document.getElementById("playerHtmlSubtitles");
       if (node) {

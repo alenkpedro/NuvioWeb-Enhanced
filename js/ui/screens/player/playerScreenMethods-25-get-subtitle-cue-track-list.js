@@ -34,8 +34,21 @@ export function createPlayerScreenMethods25() {
       }
     },
     getSelectedWebOsEmbeddedTextTrack() {
-      if (!Environment.isWebOS() || this.selectedEmbeddedSubtitleTrackIndex < 0) {
+      if (!Environment.isWebOS()) {
         return null;
+      }
+      if (this.selectedEmbeddedSubtitleTrackIndex < 0) {
+        const selectedIndex = Number(this.selectedSubtitleTrackIndex);
+        if (
+          !Number.isInteger(selectedIndex) ||
+          selectedIndex < 0 ||
+          selectedIndex >= this.resolveBuiltInSubtitleBoundary(this.getTextTracks()) ||
+          this.selectedAddonSubtitleId ||
+          this.selectedManifestSubtitleTrackId
+        ) {
+          return null;
+        }
+        return this.getSubtitleCueTrackList()[selectedIndex] || null;
       }
       const embeddedTrack = this.getEmbeddedSubtitleTrackByEmbeddedIndex(this.selectedEmbeddedSubtitleTrackIndex);
       if (!embeddedTrack || embeddedTrack.bitmapSubtitle) {
@@ -47,18 +60,43 @@ export function createPlayerScreenMethods25() {
       }
       return this.getSubtitleCueTrackList()[nativeTrackIndex] || null;
     },
+    getWebOsHtmlSubtitleSelection() {
+      const embeddedIndex = Number(this.selectedEmbeddedSubtitleTrackIndex);
+      if (Number.isInteger(embeddedIndex) && embeddedIndex >= 0) {
+        return {
+          index: embeddedIndex,
+          overlayId: `webos-embedded-${embeddedIndex}`,
+          setNativeVisibility: PlayerController.setWebOsEmbeddedSubtitleNativeVisibility?.bind(PlayerController)
+        };
+      }
+      const nativeIndex = Number(this.selectedSubtitleTrackIndex);
+      if (!Number.isInteger(nativeIndex) || nativeIndex < 0 || !this.getSelectedWebOsEmbeddedTextTrack()) {
+        return null;
+      }
+      return {
+        index: nativeIndex,
+        overlayId: `webos-native-text-${nativeIndex}`,
+        setNativeVisibility: PlayerController.setWebOsNativeTextTrackVisibility?.bind(PlayerController)
+      };
+    },
     buildWebOsEmbeddedHtmlSubtitleCues(track) {
-      return this.getSubtitleCueArray(track?.cues)
+      const knownCues = this.getSubtitleCueArray(track?.cues);
+      const activeCues = this.getSubtitleCueArray(track?.activeCues);
+      return [...new Set([...knownCues, ...activeCues])]
         .map((cue) => buildHtmlSubtitleCue(cue, this.getSubtitleCueSnapshot(cue), this.parseSubtitleCueText(cue?.text)))
         .filter(Boolean);
     },
-    activateWebOsEmbeddedHtmlSubtitleOverlay(track, cues, selectedIndex, overlayId) {
+    getWebOsEmbeddedActiveCueSignature(track) {
+      return this.getSubtitleCueArray(track?.activeCues)
+        .map((cue) => `${cue.startTime}:${cue.endTime}:${cue.text}`)
+        .join("|");
+    },
+    activateWebOsEmbeddedHtmlSubtitleOverlay(track, cues, overlayId) {
       if (
         this.webOsEmbeddedTextSubtitleUsingAss ||
         this.webOsEmbeddedTextSubtitleUsingHtml ||
         !track ||
-        !cues.length ||
-        this.selectedEmbeddedSubtitleTrackIndex !== selectedIndex ||
+        this.getWebOsHtmlSubtitleSelection()?.overlayId !== overlayId ||
         this.getSelectedWebOsEmbeddedTextTrack() !== track
       ) {
         return false;
@@ -75,10 +113,12 @@ export function createPlayerScreenMethods25() {
         }
       });
       this.webOsEmbeddedHtmlSubtitleTrack = track;
-      this.webOsEmbeddedHtmlSubtitleCueCount = cues.length;
+      this.webOsEmbeddedHtmlSubtitleCueCount = this.getSubtitleCueArray(track.cues).length;
+      this.webOsEmbeddedHtmlActiveCueSignature = this.getWebOsEmbeddedActiveCueSignature(track);
       this.htmlSubtitleCues = cues;
       this.htmlSubtitleSelectedId = overlayId;
-      this.renderHtmlSubtitleOverlayAtCurrentTime();
+      if (cues.length) this.renderHtmlSubtitleOverlayAtCurrentTime();
+      else this.renderHtmlSubtitleOverlayCue([]);
       this.scheduleHtmlSubtitleOverlayRender();
       return true;
     },
@@ -88,7 +128,6 @@ export function createPlayerScreenMethods25() {
         this.webOsEmbeddedTextSubtitleUsingAss ||
         this.webOsEmbeddedTextSubtitleUsingHtml ||
         !track ||
-        this.selectedEmbeddedSubtitleTrackIndex < 0 ||
         track !== this.getSelectedWebOsEmbeddedTextTrack()
       ) {
         return false;
@@ -99,21 +138,19 @@ export function createPlayerScreenMethods25() {
         return false;
       }
 
-      const selectedIndex = Number(this.selectedEmbeddedSubtitleTrackIndex);
-      const overlayId = `webos-embedded-${selectedIndex}`;
+      const selection = this.getWebOsHtmlSubtitleSelection();
+      if (!selection) return false;
+      const { index: selectedIndex, overlayId, setNativeVisibility } = selection;
       if (this.htmlSubtitleSelectedId === overlayId) {
-        void PlayerController.setWebOsEmbeddedSubtitleNativeVisibility?.(false, selectedIndex);
-        return this.activateWebOsEmbeddedHtmlSubtitleOverlay(track, cues, selectedIndex, overlayId);
+        void setNativeVisibility?.(false, selectedIndex);
+        return this.activateWebOsEmbeddedHtmlSubtitleOverlay(track, cues, overlayId);
       }
-      if (
-        this.webOsEmbeddedHtmlSubtitleActivationKey === overlayId ||
-        typeof PlayerController.setWebOsEmbeddedSubtitleNativeVisibility !== "function"
-      ) {
+      if (this.webOsEmbeddedHtmlSubtitleActivationKey === overlayId || typeof setNativeVisibility !== "function") {
         return false;
       }
 
       this.webOsEmbeddedHtmlSubtitleActivationKey = overlayId;
-      Promise.resolve(PlayerController.setWebOsEmbeddedSubtitleNativeVisibility(false, selectedIndex))
+      Promise.resolve(setNativeVisibility(false, selectedIndex))
         .then((nativeRendererHidden) => {
           if (this.webOsEmbeddedHtmlSubtitleActivationKey !== overlayId) {
             return;
@@ -123,7 +160,7 @@ export function createPlayerScreenMethods25() {
             return;
           }
           const currentCues = this.buildWebOsEmbeddedHtmlSubtitleCues(track);
-          this.activateWebOsEmbeddedHtmlSubtitleOverlay(track, currentCues, selectedIndex, overlayId);
+          this.activateWebOsEmbeddedHtmlSubtitleOverlay(track, currentCues, overlayId);
         })
         .catch(() => {
           if (this.webOsEmbeddedHtmlSubtitleActivationKey === overlayId) {
@@ -134,11 +171,14 @@ export function createPlayerScreenMethods25() {
     },
     refreshWebOsEmbeddedHtmlSubtitleOverlayIfNeeded() {
       const track = this.webOsEmbeddedHtmlSubtitleTrack;
-      if (!track || !this.htmlSubtitleSelectedId?.startsWith?.("webos-embedded-")) {
+      if (!track || !/^webos-(embedded|native-text)-/.test(this.htmlSubtitleSelectedId || "")) {
         return false;
       }
       const cueCount = this.getSubtitleCueArray(track.cues).length;
-      if (cueCount !== this.webOsEmbeddedHtmlSubtitleCueCount) {
+      if (
+        cueCount !== this.webOsEmbeddedHtmlSubtitleCueCount ||
+        this.getWebOsEmbeddedActiveCueSignature(track) !== this.webOsEmbeddedHtmlActiveCueSignature
+      ) {
         return this.syncWebOsEmbeddedHtmlSubtitleOverlay(track);
       }
       return false;

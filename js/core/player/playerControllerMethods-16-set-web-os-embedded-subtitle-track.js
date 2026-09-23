@@ -58,6 +58,7 @@ export function createPlayerControllerMethods16() {
       };
 
       this.selectedWebOsSubtitleTrackIndex = targetIndex;
+      this.webOsHtmlTextTrackIndex = -1;
       this.webOsSubtitleSelectionExplicit = true;
       this.selectedWebOsEmbeddedSubtitleTrackIndex = targetIndex < 0 ? -1 : storedSelectedIndex;
 

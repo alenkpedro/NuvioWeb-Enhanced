@@ -75,6 +75,7 @@ export function initializePlayerMountState(params, initialStreamUrl) {
   this.htmlSubtitleSelectedId = null;
   this.webOsEmbeddedHtmlSubtitleTrack = null;
   this.webOsEmbeddedHtmlSubtitleCueCount = 0;
+  this.webOsEmbeddedHtmlActiveCueSignature = "";
   this.webOsEmbeddedHtmlSubtitleActivationKey = "";
   this.assSubtitleRenderer = null;
   this.bitmapSubtitleDecoder = null;

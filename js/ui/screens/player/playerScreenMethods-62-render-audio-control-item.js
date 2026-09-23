@@ -2,8 +2,17 @@
 import * as internals from "./playerScreenContext.js";
 
 export function createPlayerScreenMethods62() {
-  const { PlayerController, streamRepository, orderStreamsByAddonOrder, DebridStreamPresentation, isSelectKeyCode, t, clamp, escapeHtml } =
-    internals;
+  const {
+    PlayerController,
+    Environment,
+    streamRepository,
+    orderStreamsByAddonOrder,
+    DebridStreamPresentation,
+    isSelectKeyCode,
+    t,
+    clamp,
+    escapeHtml
+  } = internals;
 
   return {
     renderAudioControlItem(control, index) {
@@ -43,13 +52,62 @@ export function createPlayerScreenMethods62() {
       if (!dialog || !this.audioDialogVisible) {
         return;
       }
-      const target = dialog.querySelector(".player-audio-track-list .player-dialog-item.focused");
+      const target = dialog.querySelector(
+        ".player-audio-track-list .player-dialog-item.focused, .player-audio-controls-list .player-audio-control-card.focused"
+      );
       target?.scrollIntoView?.({ block: "nearest", inline: "nearest" });
     },
     handleAudioDialogKey(event) {
       const keyCode = Number(event?.keyCode || 0);
       const entries = this.getAudioEntries();
       const isNavigationKey = keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40 || isSelectKeyCode(keyCode);
+
+      if (Environment.isWebOS()) {
+        if (this.audioFocusedColumn === "header") {
+          if (isSelectKeyCode(keyCode)) {
+            this.audioSettingsPage = !this.audioSettingsPage;
+            this.audioFocusedColumn = this.audioSettingsPage ? "controls" : entries.length ? "tracks" : "header";
+            this.audioMixFocusIndex = 0;
+            this.renderAudioDialog();
+          } else if (keyCode === 40) {
+            this.audioFocusedColumn = this.audioSettingsPage ? "controls" : entries.length ? "tracks" : "header";
+            this.renderAudioDialog();
+          }
+          return isNavigationKey;
+        }
+        if (this.audioSettingsPage) {
+          if (keyCode === 38) {
+            if (this.audioMixFocusIndex === 0) {
+              this.audioFocusedColumn = "header";
+            } else {
+              this.audioMixFocusIndex -= 1;
+            }
+            this.renderAudioDialog();
+          } else if (keyCode === 40) {
+            this.audioMixFocusIndex = clamp(this.audioMixFocusIndex + 1, 0, 1);
+            this.renderAudioDialog();
+          } else if ((keyCode === 37 || keyCode === 39) && this.audioMixFocusIndex === 0) {
+            this.activateAudioControl(keyCode === 37 ? -1 : 1);
+          } else if (isSelectKeyCode(keyCode)) {
+            this.activateAudioControl(this.audioMixFocusIndex === 0 ? 1 : 0);
+          }
+          return isNavigationKey;
+        }
+        if (keyCode === 38) {
+          if (this.audioDialogIndex === 0) {
+            this.audioFocusedColumn = "header";
+          } else {
+            this.audioDialogIndex -= 1;
+          }
+          this.renderAudioDialog();
+        } else if (keyCode === 40) {
+          this.audioDialogIndex = clamp(this.audioDialogIndex + 1, 0, Math.max(0, entries.length - 1));
+          this.renderAudioDialog();
+        } else if (isSelectKeyCode(keyCode) && entries.length) {
+          this.applyAudioTrack(this.audioDialogIndex, { rememberSelection: true });
+        }
+        return isNavigationKey;
+      }
 
       if (keyCode === 37) {
         if (this.audioFocusedColumn === "controls") {
@@ -82,7 +140,12 @@ export function createPlayerScreenMethods62() {
         if (this.audioFocusedColumn === "tracks") {
           this.audioDialogIndex = clamp(this.audioDialogIndex - 1, 0, entries.length - 1);
         } else {
-          this.audioMixFocusIndex = clamp(this.audioMixFocusIndex - 1, 0, 1);
+          if (Environment.isWebOS() && this.audioMixFocusIndex === 0 && entries.length) {
+            this.audioFocusedColumn = "tracks";
+            this.audioDialogIndex = entries.length - 1;
+          } else {
+            this.audioMixFocusIndex = clamp(this.audioMixFocusIndex - 1, 0, 1);
+          }
         }
         this.renderAudioDialog();
         return true;
@@ -90,7 +153,12 @@ export function createPlayerScreenMethods62() {
 
       if (keyCode === 40) {
         if (this.audioFocusedColumn === "tracks") {
-          this.audioDialogIndex = clamp(this.audioDialogIndex + 1, 0, entries.length - 1);
+          if (Environment.isWebOS() && this.audioDialogIndex >= entries.length - 1) {
+            this.audioFocusedColumn = "controls";
+            this.audioMixFocusIndex = 0;
+          } else {
+            this.audioDialogIndex = clamp(this.audioDialogIndex + 1, 0, entries.length - 1);
+          }
         } else {
           this.audioMixFocusIndex = clamp(this.audioMixFocusIndex + 1, 0, 1);
         }

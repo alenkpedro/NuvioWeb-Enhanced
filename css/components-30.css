@@ -1,8 +1,7 @@
-/* Match Android TV's default caption presentation on LG webOS: regular
-   system typography, transparent background, and a crisp outline. */
+/* Keep transparent backgrounds on LG webOS; the subtitle shadow is shared with other renderers. */
 
 .player-platform-webos #videoPlayer::cue {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Netflix Sans", Arial, sans-serif !important;
   background-color: transparent !important;
 }
 
@@ -11,7 +10,7 @@
 }
 
 .player-platform-webos .player-html-subtitles {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Netflix Sans", Arial, sans-serif;
   line-height: 1.2;
 }
 
@@ -257,6 +256,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.player-loading-identity-anchor,
+.player-loading-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
 }
 
 .player-loading-identity {

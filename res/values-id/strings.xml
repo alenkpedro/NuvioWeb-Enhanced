@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="tv_channel_continue_watching">Lanjutkan Menonton</string>
     <string name="type_movie">Film</string>
     <string name="type_movies">Film</string>
@@ -325,22 +325,22 @@
     <string name="about_licenses_attributions">Lisensi &amp; Atribusi</string>
     <string name="about_licenses_attributions_subtitle">Sumber data, pengakuan, dan lisensi Android</string>
     <string name="licenses_attributions_title">Lisensi &amp; Atribusi</string>
-    <string name="licenses_attributions_subtitle">Penyedia data, kredit layanan, dan lisensi pemutaran Android yang digunakan oleh Nuvio TV.</string>
+    <string name="licenses_attributions_subtitle">Penyedia data, kredit layanan, dan lisensi pemutaran Android yang digunakan oleh Nuvio Enhanced.</string>
     <string name="licenses_attributions_section_app">LISENSI APLIKASI</string>
     <string name="licenses_attributions_section_data">DATA &amp; LAYANAN</string>
     <string name="licenses_attributions_section_playback">LISENSI PEMUTARAN ANDROID</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">Kode sumber dan ketentuan lisensi tersedia di repositori proyek. Dilisensikan di bawah GNU General Public License v3.0.</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">Nuvio menggunakan API TMDB untuk metadata film dan TV, poster dan latar belakang, trailer, pemeran, detail produksi, koleksi, dan rekomendasi. Produk ini menggunakan API TMDB namun tidak didukung atau disertifikasi oleh TMDB.</string>
+    <string name="licenses_attributions_tmdb_body">Nuvio Enhanced menggunakan API TMDB untuk metadata film dan TV, poster dan latar belakang, trailer, pemeran, detail produksi, koleksi, dan rekomendasi. Produk ini menggunakan API TMDB namun tidak didukung atau disertifikasi oleh TMDB.</string>
     <string name="licenses_attributions_trakt_title">Trakt</string>
-    <string name="licenses_attributions_trakt_body">Nuvio terhubung ke Trakt untuk autentikasi akun, riwayat tonton, sinkronisasi progres, data pustaka, rating, daftar, dan komentar. Nuvio tidak berafiliasi dengan atau didukung oleh Trakt.</string>
+    <string name="licenses_attributions_trakt_body">Nuvio Enhanced terhubung ke Trakt untuk autentikasi akun, riwayat tonton, sinkronisasi progres, data pustaka, rating, daftar, dan komentar. Nuvio Enhanced tidak berafiliasi dengan atau didukung oleh Trakt.</string>
     <string name="licenses_attributions_mdblist_title">MDBList</string>
-    <string name="licenses_attributions_mdblist_body">Nuvio menggunakan MDBList untuk rating dan data penyedia skor eksternal. Nuvio tidak berafiliasi dengan atau didukung oleh MDBList.</string>
+    <string name="licenses_attributions_mdblist_body">Nuvio Enhanced menggunakan MDBList untuk rating dan data penyedia skor eksternal. Nuvio Enhanced tidak berafiliasi dengan atau didukung oleh MDBList.</string>
     <string name="licenses_attributions_introdb_title">IntroDB</string>
-    <string name="licenses_attributions_introdb_body">Nuvio menggunakan API IntroDB untuk cap waktu intro, rekap, kredit, dan pratinjau dari komunitas yang digunakan oleh kontrol lewati. Nuvio tidak berafiliasi dengan atau didukung oleh IntroDB.</string>
+    <string name="licenses_attributions_introdb_body">Nuvio Enhanced menggunakan API IntroDB untuk cap waktu intro, rekap, kredit, dan pratinjau dari komunitas yang digunakan oleh kontrol lewati. Nuvio Enhanced tidak berafiliasi dengan atau didukung oleh IntroDB.</string>
     <string name="licenses_attributions_imdb_title">Dataset Non-Komersial IMDb</string>
-    <string name="licenses_attributions_imdb_body">Nuvio menggunakan Dataset Non-Komersial IMDb, termasuk title.ratings.tsv.gz, untuk rating dan jumlah suara IMDb. Informasi atas izin IMDb (https://www.imdb.com). Digunakan dengan izin. Data IMDb untuk penggunaan pribadi dan non-komersial sesuai ketentuan IMDb.</string>
+    <string name="licenses_attributions_imdb_body">Nuvio Enhanced menggunakan Dataset Non-Komersial IMDb, termasuk title.ratings.tsv.gz, untuk rating dan jumlah suara IMDb. Informasi atas izin IMDb (https://www.imdb.com). Digunakan dengan izin. Data IMDb untuk penggunaan pribadi dan non-komersial sesuai ketentuan IMDb.</string>
     <string name="licenses_attributions_exoplayer_title">AndroidX Media3 ExoPlayer 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">Digunakan sebagai mesin pemutaran Android. Dilisensikan di bawah Apache License, Versi 2.0.</string>
     <string name="licenses_attributions_libmpv_title">libmpv / libmpv-android</string>
@@ -366,7 +366,7 @@
     <string name="settings_advanced_subtitle">Performa, navigasi, cache, dan diagnostik</string>
     <string name="experience_mode_essential">Esensial</string>
     <string name="experience_mode_advanced">Lanjutan</string>
-    <string name="experience_mode_choose_title">Pilih pengalaman Nuvio Anda</string>
+    <string name="experience_mode_choose_title">Pilih pengalaman Nuvio Enhanced Anda</string>
     <string name="experience_mode_choose_subtitle">Mulai sederhana atau buka semua kustomisasi. Anda bisa beralih kapan saja.</string>
     <string name="experience_mode_essential_card_subtitle">Pengaturan terfokus, add-on, dasar pemutaran, Trakt, dan pengaturan akun.</string>
     <string name="experience_mode_advanced_card_subtitle">Pengaturan lengkap, kontrol tata letak, urutan katalog, koleksi, plug-in, dan diagnostik.</string>
@@ -569,8 +569,8 @@
     <string name="playback_player_ask_desc">Pilih pemutar setiap kali</string>
     <string name="playback_player_auto">Otomatis (Terbaik untuk Konten)</string>
     <string name="playback_player_auto_desc">ExoPlayer untuk Film &amp; Serial TV · MPV untuk Anime</string>
-    <string name="playback_engine_exoplayer_desc">Kompatibilitas terbaik dengan fitur Nuvio saat ini.</string>
-    <string name="playback_engine_mvplayer_desc">Menggunakan libmpv dengan kontrol OSD Nuvio. Eksperimental.</string>
+    <string name="playback_engine_exoplayer_desc">Kompatibilitas terbaik dengan fitur Nuvio Enhanced saat ini.</string>
+    <string name="playback_engine_mvplayer_desc">Menggunakan libmpv dengan kontrol OSD Nuvio Enhanced. Eksperimental.</string>
     <string name="audio_trailer_section">Trailer</string>
     <string name="audio_autoplay_trailers">Putar Otomatis Trailer</string>
     <string name="audio_autoplay_trailers_sub">Putar trailer secara otomatis di layar detail setelah periode tidak aktif</string>
@@ -884,7 +884,7 @@
     <string name="debrid_disconnect">Terputus</string>
     <string name="debrid_device_auth_connected">%1$s telah terhubung di perangkat ini.</string>
     <string name="debrid_device_auth_starting">Memulai sign-in dengan aman...</string>
-    <string name="debrid_device_auth_instructions">Scan QR dan masukkan kode ini untuk mengizinkan Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Scan QR dan masukkan kode ini untuk mengizinkan Nuvio Enhanced.</string>
     <string name="debrid_device_auth_code_copied">Kode tersalin.</string>
     <string name="debrid_device_auth_waiting">Menunggu persetujuan...</string>
     <string name="debrid_device_auth_failed">Tidak dapat memulai sign-in.</string>
@@ -1038,9 +1038,9 @@
     <string name="trakt_library_source_dialog_title">Sumber Pustaka</string>
     <string name="trakt_library_source_dialog_subtitle">Pilih di mana menyimpan dan mengelola item pustaka Anda</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Pustaka Nuvio</string>
+    <string name="trakt_library_source_nuvio">Pustaka Nuvio Enhanced</string>
     <string name="trakt_library_source_trakt_selected">Pustaka Trakt dipilih</string>
-    <string name="trakt_library_source_nuvio_selected">Pustaka Nuvio dipilih</string>
+    <string name="trakt_library_source_nuvio_selected">Pustaka Nuvio Enhanced dipilih</string>
     <string name="trakt_setting_on">Aktif</string>
     <string name="trakt_setting_off">Nonaktif</string>
     <string name="trakt_watch_progress_trakt_selected">Sumber progres tonton diatur ke Trakt</string>
@@ -1072,7 +1072,7 @@
     <string name="trakt_stat_watched_hours">Jam Ditonton</string>
     <string name="trakt_disconnect">Putuskan</string>
     <string name="trakt_disconnect_title">Putuskan Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Ini akan memutuskan akun Trakt Anda dari Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Ini akan memutuskan akun Trakt Anda dari Nuvio Enhanced.</string>
     <string name="trakt_login">Masuk</string>
     <string name="trakt_retry">Coba Lagi</string>
     <string name="trakt_back">Kembali</string>
@@ -1243,7 +1243,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">Streaming P2P</string>
-    <string name="p2p_consent_body">Stream ini menggunakan teknologi peer-to-peer (P2P). Dengan mengaktifkan P2P, Anda mengakui dan menyetujui bahwa:\n\n\u2022 Alamat IP Anda akan terlihat oleh peer lain di jaringan\n\u2022 Anda sepenuhnya bertanggung jawab atas konten yang Anda akses\n\u2022 Anda mengonfirmasi bahwa Anda memiliki hak hukum untuk streaming konten ini di yurisdiksi Anda\n\u2022 Nuvio tidak menyelenggarakan, mendistribusikan, atau mengontrol konten P2P apa pun\n\u2022 Nuvio tidak bertanggung jawab atas konsekuensi hukum apa pun yang timbul dari penggunaan streaming P2P Anda\n\nAnda menggunakan fitur ini sepenuhnya atas risiko Anda sendiri. P2P dapat dinonaktifkan kapan saja di Pengaturan.</string>
+    <string name="p2p_consent_body">Stream ini menggunakan teknologi peer-to-peer (P2P). Dengan mengaktifkan P2P, Anda mengakui dan menyetujui bahwa:\n\n\u2022 Alamat IP Anda akan terlihat oleh peer lain di jaringan\n\u2022 Anda sepenuhnya bertanggung jawab atas konten yang Anda akses\n\u2022 Anda mengonfirmasi bahwa Anda memiliki hak hukum untuk streaming konten ini di yurisdiksi Anda\n\u2022 Nuvio Enhanced tidak menyelenggarakan, mendistribusikan, atau mengontrol konten P2P apa pun\n\u2022 Nuvio Enhanced tidak bertanggung jawab atas konsekuensi hukum apa pun yang timbul dari penggunaan streaming P2P Anda\n\nAnda menggunakan fitur ini sepenuhnya atas risiko Anda sendiri. P2P dapat dinonaktifkan kapan saja di Pengaturan.</string>
     <string name="p2p_consent_enable">Aktifkan P2P</string>
     <string name="p2p_consent_cancel">Batal</string>
     <string name="settings_p2p_title">Streaming P2P</string>
@@ -1634,11 +1634,11 @@
     <string name="catalog_see_all_from">dari %1$s</string>
     <string name="catalog_see_all_empty_title">Tidak ada item tersedia</string>
     <string name="catalog_see_all_empty_subtitle">Coba katalog lain atau periksa kembali nanti</string>
-    <string name="layout_selection_welcome">Selamat datang di Nuvio</string>
+    <string name="layout_selection_welcome">Selamat datang di Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Pilih tata letak layar beranda Anda</string>
     <string name="layout_selection_continue">Lanjutkan</string>
     <string name="update_title">Pembaruan Aplikasi</string>
-    <string name="update_installer_required">Gunakan Nuvio TV Installer untuk memperbarui aplikasi di TV Anda.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Yang baru</string>
     <string name="update_release_notes_unavailable">Deskripsi rilis tidak tersedia.</string>
     <string name="update_downloading">Mengunduh pembaruan</string>
@@ -1799,7 +1799,7 @@
     <string name="cd_preview">Pratinjau</string>
     <string name="cd_test">Tes</string>
     <string name="cd_unlink">Putuskan Tautan</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Logo Trakt</string>
     <string name="cd_trakt_qr">QR aktivasi Trakt</string>
     <string name="cd_imdb">IMDb</string>
@@ -1810,7 +1810,7 @@
     <string name="cd_expand">Luaskan %1$s</string>
     <string name="cd_collapse">Ciutkan %1$s</string>
     <string name="cd_qr_login">Kode login QR</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Berhasil masuk</string>
     <string name="debug_generate_description">Item debug yang dibuat %1$s #%2$d</string>
     <string name="debug_generate_result_failed">Gagal: %1$s</string>
@@ -1947,7 +1947,7 @@
     <string name="collections_editor_tmdb_list_helper">Contoh: https://www.themoviedb.org/list/8504994 atau 8504994.</string>
     <string name="collections_editor_tmdb_person_id">ID Orang</string>
     <string name="collections_editor_tmdb_person_helper">Contoh: https://www.themoviedb.org/person/31-tom-hanks atau 31.</string>
-    <string name="collections_editor_tmdb_title_helper">Ditampilkan sebagai nama baris/tab. Jika kosong, Nuvio akan membuatnya dari sumber.</string>
+    <string name="collections_editor_tmdb_title_helper">Ditampilkan sebagai nama baris/tab. Jika kosong, Nuvio Enhanced akan membuatnya dari sumber.</string>
     <string name="collections_editor_tmdb_quick_genres">Pintasan Genre</string>
     <string name="collections_editor_tmdb_quick_languages">Pintasan Bahasa</string>
     <string name="collections_editor_tmdb_quick_countries">Pintasan Negara</string>
@@ -2112,7 +2112,7 @@
     <string name="autoplay_regex_preset_english">Inggris</string>
     <string name="autoplay_regex_preset_no_cam_ts">Tanpa CAM/TS</string>
     <string name="autoplay_regex_preset_no_remux_hdr">Tanpa REMUX/HDR</string>
-    <string name="playback_player_internal_desc">Gunakan pemutar bawaan NuvioTV</string>
+    <string name="playback_player_internal_desc">Gunakan pemutar bawaan Nuvio Enhanced</string>
     <string name="player_torrent_peer_info">%1$d seed · %2$d peer</string>
     <string name="player_torrent_buffered_status">%1$s dibuffer · %2$s · %3$s</string>
     <string name="player_torrent_status">%1$s · %2$s</string>
@@ -2263,7 +2263,7 @@
     <string name="settings_stream_addon_logo_title">Logo addon</string>
     <string name="settings_stream_addon_logo_description">Tampilkan logo dan nama addon di samping sumber streaming.</string>
     <string name="unsupported_device_title">TV tidak didukung</string>
-    <string name="unsupported_device_message">TV ini tidak memenuhi persyaratan minimum untuk versi Nuvio TV ini.</string>
+    <string name="unsupported_device_message">TV ini tidak memenuhi persyaratan minimum untuk versi Nuvio Enhanced ini.</string>
     <string name="unsupported_device_current_platform">Platform saat ini</string>
     <string name="unsupported_device_current_firmware">Firmware saat ini</string>
     <string name="unsupported_device_required_platform">Platform yang diperlukan</string>
@@ -2466,6 +2466,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Anda tetap dapat mencoba memulai Nuvio TV, tetapi aplikasi mungkin tidak berfungsi dengan baik di TV ini. Konfigurasi ini tidak didukung secara resmi.</string>
+    <string name="unsupported_device_warning">Anda tetap dapat mencoba memulai Nuvio Enhanced, tetapi aplikasi mungkin tidak berfungsi dengan baik di TV ini. Konfigurasi ini tidak didukung secara resmi.</string>
     <string name="unsupported_device_try_anyway">Coba tetap mulai</string>
 </resources>

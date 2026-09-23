@@ -127,6 +127,9 @@ export function createPlayerScreenMethods30() {
       overlay?.classList.add("playback-ready");
       this.loadingVisible = false;
       this.updateLoadingVisibility();
+      if (Environment.isWebOS()) {
+        this.setControlsVisible(true, { focus: false });
+      }
       PlayerController.setStartupPresentationAudioMuted?.(false);
       setTimeout(() => overlay?.classList.remove("playback-ready"), 250);
       this.updateUiTick();

@@ -37,6 +37,7 @@ export function createStreamScreenMethods03() {
       this.loading = true;
       this.streamSearchCompleted = false;
       this.streams = [];
+      this.focusedStreamPreparationKeys = new Set();
       this.sourceChips = [];
       this.addonLogoLookup = {};
       this.addonFilter = "all";
@@ -63,10 +64,16 @@ export function createStreamScreenMethods03() {
         !navigationContext?.isBackNavigation &&
         this.params?.continueWatchingBackHome &&
         !this.params?.manualSelection &&
+        String(playerSettings.streamAutoPlayMode || "MANUAL").toUpperCase() !== "MANUAL" &&
         reusableStream?.streamId &&
         (String(this.params?.resumeStreamIdentity || "").trim() || String(this.params?.preferredStreamId || "").trim())
       );
       this.autoPlayAttempted = returningFromPlayer;
+      this.autoSourceSearchUiActive = Boolean(
+        !returningFromPlayer &&
+        !this.params?.manualSelection &&
+        String(playerSettings.streamAutoPlayMode || "MANUAL").toUpperCase() === "BEST_STREAM"
+      );
       this.cancelAutoPlayCountdown();
       this.cancelAutoPlaySelectionWait();
       const autoPlayWaitSeconds = Math.max(0, Math.trunc(Number(playerSettings.streamAutoPlayTimeoutSeconds || 0)));

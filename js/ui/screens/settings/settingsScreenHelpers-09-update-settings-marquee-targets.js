@@ -191,19 +191,24 @@ export function scrollSettingsRailItem(node, options = {}) {
     return;
   }
 
-  const clientHeight = rail.clientHeight || 0;
-  const maxScroll = Math.max(0, rail.scrollHeight - clientHeight);
-  if (!clientHeight || maxScroll <= 0) {
+  const horizontal = rail.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon";
+  const scrollProperty = horizontal ? "scrollLeft" : "scrollTop";
+  const clientSize = horizontal ? rail.clientWidth : rail.clientHeight;
+  const maxScroll = Math.max(0, (horizontal ? rail.scrollWidth : rail.scrollHeight) - clientSize);
+  if (!clientSize || maxScroll <= 0) {
     return;
   }
 
   const railRect = rail.getBoundingClientRect();
   const itemRect = node.getBoundingClientRect();
-  const itemCenterInViewport = itemRect.top - railRect.top + (itemRect.height || node.offsetHeight || 0) / 2;
-  const targetCenter = clientHeight * SETTINGS_RAIL_SCROLL_TARGET_RATIO;
-  const nextScrollTop = clamp(rail.scrollTop + itemCenterInViewport - targetCenter, 0, maxScroll);
+  const itemStart = horizontal ? itemRect.left - railRect.left : itemRect.top - railRect.top;
+  const itemSize = horizontal ? itemRect.width || node.offsetWidth || 0 : itemRect.height || node.offsetHeight || 0;
+  const itemCenterInViewport = itemStart + itemSize / 2;
+  const targetCenter = clientSize * SETTINGS_RAIL_SCROLL_TARGET_RATIO;
+  const currentPosition = Number(rail[scrollProperty]) || 0;
+  const nextPosition = clamp(currentPosition + itemCenterInViewport - targetCenter, 0, maxScroll);
 
-  if (Math.abs(rail.scrollTop - nextScrollTop) < 1) {
+  if (Math.abs(currentPosition - nextPosition) < 1) {
     return;
   }
   if (options?.immediate) {
@@ -211,14 +216,14 @@ export function scrollSettingsRailItem(node, options = {}) {
       cancelAnimationFrame(rail.settingsScrollAnimationFrame);
       rail.settingsScrollAnimationFrame = null;
     }
-    rail.scrollTop = nextScrollTop;
+    rail[scrollProperty] = nextPosition;
     updateSettingsRailIndicators(rail);
     return;
   }
-  animateSettingsRailScroll(rail, nextScrollTop);
+  animateSettingsRailScroll(rail, nextPosition, horizontal);
 }
 
-export function animateSettingsRailScroll(rail, nextScrollTop) {
+export function animateSettingsRailScroll(rail, nextPosition, horizontal = false) {
   if (!rail) {
     return;
   }
@@ -228,14 +233,15 @@ export function animateSettingsRailScroll(rail, nextScrollTop) {
     rail.settingsScrollAnimationFrame = null;
   }
 
-  const startTop = Number(rail.scrollTop || 0);
-  if (Math.abs(nextScrollTop - startTop) < 1 || typeof requestAnimationFrame !== "function") {
-    rail.scrollTop = nextScrollTop;
+  const scrollProperty = horizontal ? "scrollLeft" : "scrollTop";
+  const startPosition = Number(rail[scrollProperty]) || 0;
+  if (Math.abs(nextPosition - startPosition) < 1 || typeof requestAnimationFrame !== "function") {
+    rail[scrollProperty] = nextPosition;
     updateSettingsRailIndicators(rail);
     return;
   }
 
-  let position = startTop;
+  let position = startPosition;
   let velocity = 0;
   let lastTime = performance.now();
   const damping = 2 * SETTINGS_RAIL_SCROLL_DAMPING_RATIO * Math.sqrt(SETTINGS_RAIL_SCROLL_STIFFNESS);
@@ -243,17 +249,17 @@ export function animateSettingsRailScroll(rail, nextScrollTop) {
     const deltaSeconds = Math.min(0.034, Math.max(0.001, (now - lastTime) / 1000));
     lastTime = now;
 
-    const displacement = position - nextScrollTop;
+    const displacement = position - nextPosition;
     const acceleration = -SETTINGS_RAIL_SCROLL_STIFFNESS * displacement - damping * velocity;
     velocity += acceleration * deltaSeconds;
     position += velocity * deltaSeconds;
-    rail.scrollTop = position;
+    rail[scrollProperty] = position;
     updateSettingsRailIndicators(rail);
 
-    if (Math.abs(position - nextScrollTop) > 0.5 || Math.abs(velocity) > 0.5) {
+    if (Math.abs(position - nextPosition) > 0.5 || Math.abs(velocity) > 0.5) {
       rail.settingsScrollAnimationFrame = requestAnimationFrame(step);
     } else {
-      rail.scrollTop = nextScrollTop;
+      rail[scrollProperty] = nextPosition;
       rail.settingsScrollAnimationFrame = null;
       updateSettingsRailIndicators(rail);
     }
@@ -272,10 +278,11 @@ export function updateSettingsRailIndicators(rail) {
     return;
   }
 
-  const maxScroll = Math.max(0, rail.scrollHeight - rail.clientHeight);
-  const scrollTop = Number(rail.scrollTop || 0);
-  frame.classList.toggle("can-scroll-backward", scrollTop > 1);
-  frame.classList.toggle("can-scroll-forward", maxScroll > 1 && scrollTop < maxScroll - 1);
+  const horizontal = rail.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon";
+  const maxScroll = Math.max(0, horizontal ? rail.scrollWidth - rail.clientWidth : rail.scrollHeight - rail.clientHeight);
+  const position = Number(horizontal ? rail.scrollLeft : rail.scrollTop) || 0;
+  frame.classList.toggle("can-scroll-backward", position > 1);
+  frame.classList.toggle("can-scroll-forward", maxScroll > 1 && position < maxScroll - 1);
 }
 
 export function updateSettingsRailIndicatorsSoon(rail) {

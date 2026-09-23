@@ -388,6 +388,7 @@ export const LANGUAGE_NAME_ALIASES = {
 };
 
 export const SUBTITLE_LANGUAGE_OFF_KEY = "__off__";
+export const SUBTITLE_LANGUAGE_EMBEDDED_KEY = "__embedded__";
 
 export const SUBTITLE_LANGUAGE_UNKNOWN_KEY = "__unknown__";
 

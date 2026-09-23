@@ -536,7 +536,7 @@
     <string name="trakt_stat_watched_hours">Tittade timmar</string>
     <string name="trakt_disconnect">Koppla från</string>
     <string name="trakt_disconnect_title">Koppla från Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Detta kopplar från ditt Trakt-konto från Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Detta kopplar från ditt Trakt-konto från Nuvio Enhanced.</string>
     <string name="trakt_login">Logga in</string>
     <string name="trakt_retry">Försök igen</string>
     <string name="trakt_back">Tillbaka</string>
@@ -899,11 +899,11 @@
     <string name="catalog_see_all_from">från %1$s</string>
     <string name="catalog_see_all_empty_title">Inga objekt tillgängliga</string>
     <string name="catalog_see_all_empty_subtitle">Prova en annan katalog eller kom tillbaka senare</string>
-    <string name="layout_selection_welcome">Välkommen till Nuvio</string>
+    <string name="layout_selection_welcome">Välkommen till Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Välj din hemskärmslayout</string>
     <string name="layout_selection_continue">Fortsätt</string>
     <string name="update_title">Appuppdatering</string>
-    <string name="update_installer_required">Använd Nuvio TV Installer för att uppdatera appen på TV:n.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Nyheter</string>
     <string name="update_release_notes_unavailable">Ingen versionsbeskrivning är tillgänglig.</string>
     <string name="update_downloading">Laddar ner uppdatering</string>
@@ -1083,7 +1083,7 @@
     <string name="update_up_to_date">Systemet är uppdaterat. Senaste ändringarna:</string>
     <string name="playback_player_auto">Automatiskt (Bäst för innehåll)</string>
     <string name="playback_player_auto_desc">ExoPlayer för filmer och serier · MPV för anime</string>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="web_manage_addons_title">Hantera tillägg</string>
     <string name="web_manage_addons_subtitle">Hantera tillägg, kataloger och samlingar</string>
     <string name="web_add_addon_url">Lägg till tillägg via URL</string>
@@ -1163,7 +1163,7 @@
     <string name="playback_afr_capability_disable_button">Inaktivera AFR</string>
     <string name="playback_afr_capability_disable_resolution_button">Inaktivera upplösningsmatchning</string>
     <string name="playback_afr_capability_disable_both_button">Inaktivera båda</string>
-    <string name="playback_engine_exoplayer_desc">Bästa kompatibilitet med nuvarande Nuvio-funktioner.</string>
+    <string name="playback_engine_exoplayer_desc">Bästa kompatibilitet med nuvarande Nuvio Enhanced-funktioner.</string>
     <string name="playback_engine_mvplayer_desc">Använder libmpv med Nuvios OSD-kontroller. Experimentellt.</string>
     <string name="audio_lang_original">Originalspråk</string>
     <string name="audio_lang_original_hint">Kräver att TMDB-berikning är aktiverad</string>
@@ -1196,14 +1196,14 @@
     <string name="trakt_library_source_dialog_title">Bibliotekskälla</string>
     <string name="trakt_library_source_dialog_subtitle">Välj var du vill spara och hantera dina biblioteksobjekt</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Nuvio-bibliotek</string>
+    <string name="trakt_library_source_nuvio">Nuvio Enhanced-bibliotek</string>
     <string name="trakt_library_source_trakt_selected">Trakt-bibliotek valt</string>
-    <string name="trakt_library_source_nuvio_selected">Nuvio-bibliotek valt</string>
+    <string name="trakt_library_source_nuvio_selected">Nuvio Enhanced-bibliotek valt</string>
     <string name="profile_edit_header">Redigera profil</string>
     <string name="addon_manage_collections_from_phone_subtitle">Skanna en QR-kod för att hantera samlingar från din telefon</string>
     <string name="addon_qr_collections_scan_instruction">Skanna med din telefon för att hantera samlingar</string>
     <string name="p2p_consent_title">P2P-streaming</string>
-    <string name="p2p_consent_body">Denna ström använder peer-to-peer (P2P)-teknik. Genom att aktivera P2P bekräftar och godkänner du att:\n\n• Din IP-adress kommer att vara synlig för andra peers i nätverket\n• Du är ensam ansvarig för det innehåll du ser\n• Du bekräftar att du har laglig rätt att se detta innehåll i din jurisdiktion\n• Nuvio är inte värd för, distribuerar eller kontrollerar något P2P-innehåll\n• Nuvio bär inget ansvar för rättsliga konsekvenser som uppstår vid din användning av P2P-streaming\n\nDu använder denna funktion helt på egen risk. P2P kan inaktiveras när som helst i Inställningar.</string>
+    <string name="p2p_consent_body">Denna ström använder peer-to-peer (P2P)-teknik. Genom att aktivera P2P bekräftar och godkänner du att:\n\n• Din IP-adress kommer att vara synlig för andra peers i nätverket\n• Du är ensam ansvarig för det innehåll du ser\n• Du bekräftar att du har laglig rätt att se detta innehåll i din jurisdiktion\n• Nuvio Enhanced är inte värd för, distribuerar eller kontrollerar något P2P-innehåll\n• Nuvio Enhanced bär inget ansvar för rättsliga konsekvenser som uppstår vid din användning av P2P-streaming\n\nDu använder denna funktion helt på egen risk. P2P kan inaktiveras när som helst i Inställningar.</string>
     <string name="p2p_consent_enable">Aktivera P2P</string>
     <string name="p2p_consent_cancel">Avbryt</string>
     <string name="settings_p2p_title">P2P-streaming</string>
@@ -1318,7 +1318,7 @@
     <string name="cd_preview">Förhandsvisning</string>
     <string name="cd_test">Testa</string>
     <string name="cd_unlink">Avlänka</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Trakt-logotyp</string>
     <string name="cd_trakt_qr">Trakt-aktiverings-QR</string>
     <string name="cd_imdb">IMDb</string>
@@ -1329,7 +1329,7 @@
     <string name="cd_expand">Expandera %1$s</string>
     <string name="cd_collapse">Fäll ihop %1$s</string>
     <string name="cd_qr_login">QR-inloggningskod</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Inloggad</string>
     <string name="debug_generate_description">Debug-genererat %1$s objekt #%2$d</string>
     <string name="debug_generate_result_failed">Misslyckades: %1$s</string>
@@ -1430,7 +1430,7 @@
     <string name="autoplay_reuse_binge_group">Återanvänd binge-grupp</string>
     <string name="autoplay_reuse_binge_group_sub">Kom ihåg och återanvänd den senaste binge-gruppen mellan sessioner (Fortsätt titta, Detaljer osv.).</string>
     <string name="unsupported_device_title">TV:n stöds inte</string>
-    <string name="unsupported_device_message">Den här TV:n uppfyller inte minimikraven för den här versionen av Nuvio TV.</string>
+    <string name="unsupported_device_message">Den här TV:n uppfyller inte minimikraven för den här versionen av Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Nuvarande plattform</string>
     <string name="unsupported_device_current_firmware">Nuvarande firmware</string>
     <string name="unsupported_device_required_platform">Plattform som krävs</string>
@@ -1460,7 +1460,7 @@
     <string name="debrid_device_auth_expired">Koden har gått ut. Försök igen.</string>
     <string name="debrid_device_auth_failed">Det gick inte att starta inloggningen.</string>
     <string name="debrid_device_auth_connected">%1$s är anslutet på den här enheten.</string>
-    <string name="debrid_device_auth_instructions">Skanna QR-koden och ange den här koden för att godkänna Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Skanna QR-koden och ange den här koden för att godkänna Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Den här inloggningsmetoden är inte konfigurerad i den här versionen.</string>
     <string name="debrid_disconnect">Koppla från</string>
     <string name="debrid_connected">Ansluten</string>
@@ -1803,6 +1803,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Du kan ändå försöka starta Nuvio TV, men appen kanske inte fungerar korrekt på den här TV:n. Den här konfigurationen stöds inte officiellt.</string>
+    <string name="unsupported_device_warning">Du kan ändå försöka starta Nuvio Enhanced, men appen kanske inte fungerar korrekt på den här TV:n. Den här konfigurationen stöds inte officiellt.</string>
     <string name="unsupported_device_try_anyway">Försök ändå</string>
 </resources>

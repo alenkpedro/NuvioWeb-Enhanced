@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="tv_channel_continue_watching">Vazhdo shikimin</string>
     <string name="type_movie">Film</string>
     <string name="type_movies">Filma</string>
@@ -355,28 +355,28 @@
     <string name="about_licenses_attributions">Licencat dhe atributet</string>
     <string name="about_licenses_attributions_subtitle">Burimet e të dhënave, falënderimet dhe licencat Android</string>
     <string name="licenses_attributions_title">Licencat dhe atributet</string>
-    <string name="licenses_attributions_subtitle">Ofruesit e të dhënave, kreditet e shërbimeve dhe licencat e riprodhimit Android të përdorura nga Nuvio TV.</string>
+    <string name="licenses_attributions_subtitle">Ofruesit e të dhënave, kreditet e shërbimeve dhe licencat e riprodhimit Android të përdorura nga Nuvio Enhanced.</string>
     <string name="licenses_attributions_section_app">LICENCA E APLIKACIONIT</string>
     <string name="licenses_attributions_section_data">TË DHËNAT DHE SHËRBIMET</string>
     <string name="licenses_attributions_section_playback">LICENCAT E RIPRODHIMIT ANDROID</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">Kodi burimor dhe kushtet e licencës janë të disponueshme në depon e projektit. Licencuar sipas GNU General Public License v3.0.</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">Nuvio përdor API-në TMDB për metadata të filmave dhe serialeve, grafika, trailera, aktorë, detaje produksioni, koleksione dhe rekomandime. Ky produkt përdor API-në TMDB, por nuk mbështetet ose certifikohet nga TMDB.</string>
+    <string name="licenses_attributions_tmdb_body">Nuvio Enhanced përdor API-në TMDB për metadata të filmave dhe serialeve, grafika, trailera, aktorë, detaje produksioni, koleksione dhe rekomandime. Ky produkt përdor API-në TMDB, por nuk mbështetet ose certifikohet nga TMDB.</string>
     <string name="licenses_attributions_trakt_title">Trakt</string>
-    <string name="licenses_attributions_trakt_body">Nuvio lidhet me Trakt për autentifikimin e llogarisë, historikun e shikimit, sinkronizimin e progresit, të dhënat e bibliotekës, vlerësimet, listat dhe komentet. Nuvio nuk është i lidhur me dhe as i mbështetur nga Trakt.</string>
+    <string name="licenses_attributions_trakt_body">Nuvio Enhanced lidhet me Trakt për autentifikimin e llogarisë, historikun e shikimit, sinkronizimin e progresit, të dhënat e bibliotekës, vlerësimet, listat dhe komentet. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga Trakt.</string>
     <string name="licenses_attributions_simkl_title">Simkl</string>
-    <string name="licenses_attributions_simkl_body">Nuvio lidhet me Simkl për autentifikimin e llogarisë, listat e shikimit, historikun e shikimit, progresin e riprodhimit dhe scrobbling. Të dhënat e gjurmimit për filma, seriale dhe anime ofrohen nga Simkl. Nuvio nuk është i lidhur me dhe as i mbështetur nga Simkl.</string>
+    <string name="licenses_attributions_simkl_body">Nuvio Enhanced lidhet me Simkl për autentifikimin e llogarisë, listat e shikimit, historikun e shikimit, progresin e riprodhimit dhe scrobbling. Të dhënat e gjurmimit për filma, seriale dhe anime ofrohen nga Simkl. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga Simkl.</string>
     <string name="licenses_attributions_premiumize_title">Premiumize</string>
-    <string name="licenses_attributions_premiumize_body">Nuvio lidhet me Premiumize për autentifikimin e llogarisë, qasjen në bibliotekën cloud, kontrollet e cache-it dhe veçoritë e riprodhimit nga cloud. Nuvio nuk është i lidhur me dhe as i mbështetur nga Premiumize.</string>
+    <string name="licenses_attributions_premiumize_body">Nuvio Enhanced lidhet me Premiumize për autentifikimin e llogarisë, qasjen në bibliotekën cloud, kontrollet e cache-it dhe veçoritë e riprodhimit nga cloud. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga Premiumize.</string>
     <string name="licenses_attributions_torbox_title">TorBox</string>
-    <string name="licenses_attributions_torbox_body">Nuvio lidhet me TorBox për autentifikimin e llogarisë, qasjen në bibliotekën cloud, kontrollet e cache-it dhe veçoritë e riprodhimit nga cloud. Nuvio nuk është i lidhur me dhe as i mbështetur nga TorBox.</string>
+    <string name="licenses_attributions_torbox_body">Nuvio Enhanced lidhet me TorBox për autentifikimin e llogarisë, qasjen në bibliotekën cloud, kontrollet e cache-it dhe veçoritë e riprodhimit nga cloud. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga TorBox.</string>
     <string name="licenses_attributions_mdblist_title">MDBList</string>
-    <string name="licenses_attributions_mdblist_body">Nuvio përdor MDBList për vlerësime dhe të dhëna nga ofrues të jashtëm të pikëve. Nuvio nuk është i lidhur me dhe as i mbështetur nga MDBList.</string>
+    <string name="licenses_attributions_mdblist_body">Nuvio Enhanced përdor MDBList për vlerësime dhe të dhëna nga ofrues të jashtëm të pikëve. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga MDBList.</string>
     <string name="licenses_attributions_introdb_title">IntroDB</string>
-    <string name="licenses_attributions_introdb_body">Nuvio përdor API-në IntroDB për kohëshënuesit e hyrjes, përmbledhjes, krediteve dhe pamjes paraprake të ofruara nga komuniteti, të cilët përdoren nga kontrollet e kapërcimit. Nuvio nuk është i lidhur me dhe as i mbështetur nga IntroDB.</string>
+    <string name="licenses_attributions_introdb_body">Nuvio Enhanced përdor API-në IntroDB për kohëshënuesit e hyrjes, përmbledhjes, krediteve dhe pamjes paraprake të ofruara nga komuniteti, të cilët përdoren nga kontrollet e kapërcimit. Nuvio Enhanced nuk është i lidhur me dhe as i mbështetur nga IntroDB.</string>
     <string name="licenses_attributions_imdb_title">IMDb Non-Commercial Datasets</string>
-    <string name="licenses_attributions_imdb_body">Nuvio përdor IMDb Non-Commercial Datasets, përfshirë title.ratings.tsv.gz, për vlerësimet IMDb dhe numrin e votave. Informacioni ofrohet me mirësjellje nga IMDb (https://www.imdb.com). Përdoret me leje. Të dhënat e IMDb janë për përdorim personal dhe jokomercial sipas kushteve të IMDb.</string>
+    <string name="licenses_attributions_imdb_body">Nuvio Enhanced përdor IMDb Non-Commercial Datasets, përfshirë title.ratings.tsv.gz, për vlerësimet IMDb dhe numrin e votave. Informacioni ofrohet me mirësjellje nga IMDb (https://www.imdb.com). Përdoret me leje. Të dhënat e IMDb janë për përdorim personal dhe jokomercial sipas kushteve të IMDb.</string>
     <string name="licenses_attributions_exoplayer_title">AndroidX Media3 ExoPlayer 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">Përdoret si motor riprodhimi në Android. Licencuar sipas Apache License, Version 2.0.</string>
     <string name="licenses_attributions_libmpv_title">libmpv / libmpv-android</string>
@@ -406,7 +406,7 @@
     <string name="tracking_accounts_title">Llogaritë</string>
     <string name="tracking_accounts_subtitle">Lidh dhe menaxho shërbimet e gjurmimit</string>
     <string name="tracking_sources_title">Burimet</string>
-    <string name="tracking_sources_subtitle">Zgjidh nga ku Nuvio lexon bibliotekën dhe progresin e shikimit. Scrobbling i riprodhimit mbetet aktiv për çdo shërbim të lidhur.</string>
+    <string name="tracking_sources_subtitle">Zgjidh nga ku Nuvio Enhanced lexon bibliotekën dhe progresin e shikimit. Scrobbling i riprodhimit mbetet aktiv për çdo shërbim të lidhur.</string>
     <string name="tracking_trakt_features_title">Veçoritë e Trakt</string>
     <string name="tracking_trakt_features_subtitle">Historiku, vlerësimet dhe rekomandimet specifike të Trakt</string>
     <string name="tracking_simkl_features_title">Veçoritë e Simkl</string>
@@ -422,8 +422,8 @@
     <string name="tracking_status_connecting">Duke u lidhur</string>
     <string name="tracking_finish_connection">Përfundo miratimin e lidhjes</string>
     <string name="tracking_connecting_provider">Duke nisur lidhjen me %1$s…</string>
-    <string name="tracking_watch_progress_dialog_subtitle">Zgjidh shërbimin nga i cili Nuvio lexon për vazhdim dhe Vazhdo shikimin. Scrobbling mbetet aktiv për çdo shërbim të lidhur.</string>
-    <string name="tracking_library_source_dialog_subtitle">Zgjidh shërbimin nga i cili Nuvio lexon Bibliotekën. Scrobbling i riprodhimit mbetet aktiv për çdo shërbim të lidhur.</string>
+    <string name="tracking_watch_progress_dialog_subtitle">Zgjidh shërbimin nga i cili Nuvio Enhanced lexon për vazhdim dhe Vazhdo shikimin. Scrobbling mbetet aktiv për çdo shërbim të lidhur.</string>
+    <string name="tracking_library_source_dialog_subtitle">Zgjidh shërbimin nga i cili Nuvio Enhanced lexon Bibliotekën. Scrobbling i riprodhimit mbetet aktiv për çdo shërbim të lidhur.</string>
     <string name="tracking_trakt_progress_required">E disponueshme kur Trakt është burimi i progresit të shikimit</string>
     <string name="trakt_name">Trakt</string>
     <string name="simkl_name">Simkl</string>
@@ -434,7 +434,7 @@
     <string name="settings_advanced_subtitle">Performanca, navigimi, cache-i dhe diagnostikimi</string>
     <string name="experience_mode_essential">Bazë</string>
     <string name="experience_mode_advanced">Të avancuara</string>
-    <string name="experience_mode_choose_title">Zgjidh përvojën tënde në Nuvio</string>
+    <string name="experience_mode_choose_title">Zgjidh përvojën tënde në Nuvio Enhanced</string>
     <string name="experience_mode_choose_subtitle">Fillo thjesht ose zhblloko çdo personalizim. Mund ta ndryshosh në çdo kohë.</string>
     <string name="experience_mode_essential_card_subtitle">Konfigurim i fokusuar, shtesa, bazat e riprodhimit, Trakt dhe cilësimet e llogarisë.</string>
     <string name="experience_mode_advanced_card_subtitle">Cilësime të plota, kontrolle të paraqitjes, renditje katalogësh, koleksione, shtojca dhe diagnostikim.</string>
@@ -678,8 +678,8 @@
     <string name="playback_player_ask_desc">Zgjidh luajtësin çdo herë</string>
     <string name="playback_player_auto">Automatik (më i miri për përmbajtjen)</string>
     <string name="playback_player_auto_desc">ExoPlayer për filma dhe seriale · MPV për anime</string>
-    <string name="playback_engine_exoplayer_desc">Përputhshmëria më e mirë me veçoritë aktuale të Nuvio.</string>
-    <string name="playback_engine_mvplayer_desc">Përdor libmpv me kontrollet OSD të Nuvio. Eksperimentale.</string>
+    <string name="playback_engine_exoplayer_desc">Përputhshmëria më e mirë me veçoritë aktuale të Nuvio Enhanced.</string>
+    <string name="playback_engine_mvplayer_desc">Përdor libmpv me kontrollet OSD të Nuvio Enhanced. Eksperimentale.</string>
     <string name="video_section">Video</string>
     <string name="audio_trailer_section">Traileri</string>
     <string name="audio_autoplay_trailers">Luaj automatikisht trailerat</string>
@@ -1073,7 +1073,7 @@
     <string name="debrid_disconnect">Shkëput</string>
     <string name="debrid_device_auth_connected">%1$s është i lidhur në këtë pajisje.</string>
     <string name="debrid_device_auth_starting">Duke nisur hyrjen e sigurt...</string>
-    <string name="debrid_device_auth_instructions">Skano QR-në dhe shkruaj këtë kod për të miratuar Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Skano QR-në dhe shkruaj këtë kod për të miratuar Nuvio Enhanced.</string>
     <string name="debrid_device_auth_code_copied">Kodi u kopjua.</string>
     <string name="debrid_device_auth_waiting">Në pritje të miratimit...</string>
     <string name="debrid_device_auth_failed">Nuk mund të nisej hyrja.</string>
@@ -1267,9 +1267,9 @@
     <string name="trakt_library_source_dialog_title">Burimi i bibliotekës</string>
     <string name="trakt_library_source_dialog_subtitle">Zgjidh ku të ruhen dhe menaxhohen artikujt e bibliotekës</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Biblioteka Nuvio</string>
+    <string name="trakt_library_source_nuvio">Biblioteka Nuvio Enhanced</string>
     <string name="trakt_library_source_trakt_selected">Biblioteka Trakt u zgjodh</string>
-    <string name="trakt_library_source_nuvio_selected">Biblioteka Nuvio u zgjodh</string>
+    <string name="trakt_library_source_nuvio_selected">Biblioteka Nuvio Enhanced u zgjodh</string>
     <string name="trakt_setting_on">Aktiv</string>
     <string name="trakt_setting_off">Joaktiv</string>
     <string name="trakt_watch_progress_trakt_selected">Burimi i progresit të shikimit u caktua në Trakt</string>
@@ -1301,7 +1301,7 @@
     <string name="trakt_stat_watched_hours">Orë të shikuara</string>
     <string name="trakt_disconnect">Shkëput</string>
     <string name="trakt_disconnect_title">Të shkëputet Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Kjo do ta shkëpusë llogarinë tënde Trakt nga Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Kjo do ta shkëpusë llogarinë tënde Trakt nga Nuvio Enhanced.</string>
     <string name="trakt_login">Hyr</string>
     <string name="trakt_retry">Provo përsëri</string>
     <string name="trakt_back">Kthehu</string>
@@ -1502,7 +1502,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">Transmetim P2P</string>
-    <string name="p2p_consent_body">Ky transmetim përdor teknologjinë peer-to-peer (P2P). Duke aktivizuar P2P, pranon dhe konfirmon se:\n\n\u2022 Adresa jote IP do të jetë e dukshme për pjesëmarrësit e tjerë në rrjet\n\u2022 Je vetëm ti përgjegjës për përmbajtjen që qasesh\n\u2022 Konfirmon se ke të drejtën ligjore për ta transmetuar këtë përmbajtje në juridiksionin tënd\n\u2022 Nuvio nuk hoston, shpërndan apo kontrollon asnjë përmbajtje P2P\n\u2022 Nuvio nuk mban përgjegjësi për pasoja ligjore që mund të lindin nga përdorimi yt i transmetimit P2P\n\nKëtë veçori e përdor tërësisht me rrezikun tënd. P2P mund të çaktivizohet në çdo kohë te Cilësimet.</string>
+    <string name="p2p_consent_body">Ky transmetim përdor teknologjinë peer-to-peer (P2P). Duke aktivizuar P2P, pranon dhe konfirmon se:\n\n\u2022 Adresa jote IP do të jetë e dukshme për pjesëmarrësit e tjerë në rrjet\n\u2022 Je vetëm ti përgjegjës për përmbajtjen që qasesh\n\u2022 Konfirmon se ke të drejtën ligjore për ta transmetuar këtë përmbajtje në juridiksionin tënd\n\u2022 Nuvio Enhanced nuk hoston, shpërndan apo kontrollon asnjë përmbajtje P2P\n\u2022 Nuvio Enhanced nuk mban përgjegjësi për pasoja ligjore që mund të lindin nga përdorimi yt i transmetimit P2P\n\nKëtë veçori e përdor tërësisht me rrezikun tënd. P2P mund të çaktivizohet në çdo kohë te Cilësimet.</string>
     <string name="p2p_consent_enable">Aktivizo P2P</string>
     <string name="p2p_consent_cancel">Anulo</string>
     <string name="settings_p2p_title">Transmetim P2P</string>
@@ -2014,7 +2014,7 @@
     <string name="catalog_see_all_from">nga %1$s</string>
     <string name="catalog_see_all_empty_title">Nuk ka artikuj të disponueshëm</string>
     <string name="catalog_see_all_empty_subtitle">Provo një katalog tjetër ose kontrollo përsëri më vonë</string>
-    <string name="layout_selection_welcome">Mirë se vini në Nuvio</string>
+    <string name="layout_selection_welcome">Mirë se vini në Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Zgjidh paraqitjen e ekranit kryesor</string>
     <string name="layout_selection_continue">Vazhdo</string>
     <string name="update_title">Përditësimi i aplikacionit</string>
@@ -2171,7 +2171,7 @@
     <string name="cd_preview">Pamje paraprake</string>
     <string name="cd_test">Testo</string>
     <string name="cd_unlink">Shkëput</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Logoja e Trakt</string>
     <string name="cd_trakt_qr">QR-ja e aktivizimit Trakt</string>
     <string name="cd_imdb">IMDb</string>
@@ -2183,7 +2183,7 @@
     <string name="cd_expand">Zgjero %1$s</string>
     <string name="cd_collapse">Palos %1$s</string>
     <string name="cd_qr_login">Kodi i hyrjes QR</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">U kyçët me sukses</string>
     <string name="debug_generate_description">Artikulli %1$s #%2$d i gjeneruar për debug</string>
     <string name="debug_generate_result_failed">Dështoi: %1$s</string>
@@ -2322,7 +2322,7 @@
     <string name="collections_editor_tmdb_list_helper">Shembull: https://www.themoviedb.org/list/8504994 ose 8504994.</string>
     <string name="collections_editor_tmdb_person_id">ID-ja e personit</string>
     <string name="collections_editor_tmdb_person_helper">Shembull: https://www.themoviedb.org/person/31-tom-hanks ose 31.</string>
-    <string name="collections_editor_tmdb_title_helper">Shfaqet si emri i rreshtit/skedës. Nëse lihet bosh, Nuvio krijon një nga burimi.</string>
+    <string name="collections_editor_tmdb_title_helper">Shfaqet si emri i rreshtit/skedës. Nëse lihet bosh, Nuvio Enhanced krijon një nga burimi.</string>
     <string name="collections_editor_tmdb_quick_genres">Zhanre të shpejta</string>
     <string name="collections_editor_tmdb_quick_languages">Gjuhë të shpejta</string>
     <string name="collections_editor_tmdb_quick_countries">Shtete të shpejta</string>
@@ -2501,7 +2501,7 @@
     <string name="autoplay_regex_preset_no_cam_ts">Pa CAM/TS</string>
     <string name="autoplay_regex_preset_no_remux_hdr">Pa REMUX/HDR</string>
     <!-- Playback settings sections -->
-    <string name="playback_player_internal_desc">Përdor luajtësin e integruar të NuvioTV</string>
+    <string name="playback_player_internal_desc">Përdor luajtësin e integruar të Nuvio Enhanced</string>
     <!-- Player runtime: torrent overlay + tracks -->
     <string name="player_torrent_peer_info">%1$d seed · %2$d peer</string>
     <string name="player_torrent_buffered_status">%1$s në buffer · %2$s · %3$s</string>
@@ -2597,9 +2597,9 @@
     <string name="simkl_visit">Vizito Simkl</string>
     <string name="simkl_sync_info_action">Si funksionon sinkronizimi</string>
     <string name="simkl_sync_info_title">Si funksionon sinkronizimi me Simkl</string>
-    <string name="simkl_sync_info_description">Nuvio kontrollon automatikisht Simkl jo më shpesh se një herë në %1$d minuta. Ndryshimet e bëra përmes një aplikacioni tjetër ose faqes së Simkl mund të duan deri aq kohë për t’u shfaqur.</string>
+    <string name="simkl_sync_info_description">Nuvio Enhanced kontrollon automatikisht Simkl jo më shpesh se një herë në %1$d minuta. Ndryshimet e bëra përmes një aplikacioni tjetër ose faqes së Simkl mund të duan deri aq kohë për t’u shfaqur.</string>
     <string name="simkl_sync_info_activity">Çdo rifreskim kontrollon fillimisht nëse Simkl raporton ndryshime dhe shkarkon vetëm përditësimet. Kjo ndjek rregullat e API-së së Simkl, zvogëlon përdorimin e panevojshëm të të dhënave dhe ndihmon në ruajtjen e stabilitetit të shërbimit.</string>
-    <string name="simkl_sync_info_manual">Ndryshimet e bëra në Nuvio dërgohen te Simkl menjëherë. Përdor Sinkronizo tani sa herë që dëshiron që Nuvio të kontrollojë më shpejt për ndryshime në distancë.</string>
+    <string name="simkl_sync_info_manual">Ndryshimet e bëra në Nuvio Enhanced dërgohen te Simkl menjëherë. Përdor Sinkronizo tani sa herë që dëshiron që Nuvio Enhanced të kontrollojë më shpejt për ndryshime në distancë.</string>
     <string name="simkl_sync_info_library_statuses">Serialet e vendosura në listat Në pritje ose Braktisur të Simkl fshihen nga Vazhdo shikimin. Ato mbeten të fshehura për sa kohë që qëndrojnë në njërën prej këtyre listave.</string>
     <string name="simkl_sync_info_docs">Lexo udhëzuesin e sinkronizimit Simkl</string>
     <string name="error_open_browser_failed">Hapja e shfletuesit dështoi</string>
@@ -2985,11 +2985,11 @@
     <string name="custom_server_capability_tv_login">TV/QR login</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
     <string name="unsupported_device_title">Televizori nuk mbështetet</string>
-    <string name="unsupported_device_message">Ky televizor nuk i plotëson kërkesat minimale për këtë version të Nuvio TV.</string>
+    <string name="unsupported_device_message">Ky televizor nuk i plotëson kërkesat minimale për këtë version të Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Platforma aktuale</string>
     <string name="unsupported_device_current_firmware">Firmware aktual</string>
     <string name="unsupported_device_required_platform">Platforma e kërkuar</string>
-    <string name="unsupported_device_warning">Mund të provoni ta nisni përsëri Nuvio TV, por aplikacioni mund të mos funksionojë siç duhet në këtë televizor. Ky konfigurim nuk mbështetet zyrtarisht.</string>
+    <string name="unsupported_device_warning">Mund të provoni ta nisni përsëri Nuvio Enhanced, por aplikacioni mund të mos funksionojë siç duhet në këtë televizor. Ky konfigurim nuk mbështetet zyrtarisht.</string>
     <string name="unsupported_device_close">Mbyll</string>
     <string name="unsupported_device_try_anyway">Provo gjithsesi</string>
     <string name="unsupported_device_unavailable">E padisponueshme</string>

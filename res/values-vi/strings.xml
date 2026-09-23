@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Phim</string>
     <string name="type_series">Chương trình TV</string>
     <string name="type_unknown">Không xác định</string>
@@ -448,7 +448,7 @@
     <string name="trakt_stat_watched_hours">Giờ đã xem</string>
     <string name="trakt_disconnect">Ngắt kết nối</string>
     <string name="trakt_disconnect_title">Ngắt kết nối Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Thao tác này sẽ ngắt kết nối tài khoản Trakt khỏi Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Thao tác này sẽ ngắt kết nối tài khoản Trakt khỏi Nuvio Enhanced.</string>
     <string name="trakt_login">Đăng nhập</string>
     <string name="trakt_retry">Thử lại</string>
     <string name="trakt_back">Quay lại</string>
@@ -742,11 +742,11 @@
     <string name="catalog_see_all_from">từ %1$s</string>
     <string name="catalog_see_all_empty_title">Không có mục nào</string>
     <string name="catalog_see_all_empty_subtitle">Thử danh mục khác hoặc quay lại sau</string>
-    <string name="layout_selection_welcome">Chào mừng đến Nuvio</string>
+    <string name="layout_selection_welcome">Chào mừng đến Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Chọn bố cục màn hình chính</string>
     <string name="layout_selection_continue">Tiếp tục</string>
     <string name="update_title">Cập nhật ứng dụng</string>
-    <string name="update_installer_required">Dùng Nuvio TV Installer để cập nhật ứng dụng trên TV.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Có gì mới</string>
     <string name="update_release_notes_unavailable">Không có mô tả bản phát hành.</string>
     <string name="update_downloading">Đang tải bản cập nhật</string>
@@ -950,7 +950,7 @@
     <string name="autoplay_timeout_instant">Ngay lập tức</string>
     <string name="autoplay_timeout_unlimited">Không giới hạn</string>
     <string name="unsupported_device_title">TV không được hỗ trợ</string>
-    <string name="unsupported_device_message">TV này không đáp ứng yêu cầu tối thiểu cho phiên bản Nuvio TV này.</string>
+    <string name="unsupported_device_message">TV này không đáp ứng yêu cầu tối thiểu cho phiên bản Nuvio Enhanced này.</string>
     <string name="unsupported_device_current_platform">Nền tảng hiện tại</string>
     <string name="unsupported_device_current_firmware">Phần mềm hệ thống hiện tại</string>
     <string name="unsupported_device_required_platform">Nền tảng yêu cầu</string>
@@ -980,7 +980,7 @@
     <string name="debrid_device_auth_expired">Mã này đã hết hạn. Hãy thử lại.</string>
     <string name="debrid_device_auth_failed">Không thể bắt đầu đăng nhập.</string>
     <string name="debrid_device_auth_connected">%1$s đã được kết nối trên thiết bị này.</string>
-    <string name="debrid_device_auth_instructions">Quét mã QR và nhập mã này để phê duyệt Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Quét mã QR và nhập mã này để phê duyệt Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Phương thức đăng nhập này chưa được cấu hình trong bản dựng này.</string>
     <string name="debrid_disconnect">Ngắt kết nối</string>
     <string name="debrid_connected">Đã kết nối</string>
@@ -1361,6 +1361,6 @@
     <string name="auth_qr_terms_prefix">Bằng việc đăng ký / đăng nhập, tôi đồng ý với</string>
     <string name="auth_qr_terms_link">Điều khoản sử dụng</string>
     <string name="auth_qr_manual_instruction">Hoặc truy cập %1$s và nhập</string>
-    <string name="unsupported_device_warning">Bạn vẫn có thể thử khởi động Nuvio TV, nhưng ứng dụng có thể không hoạt động bình thường trên TV này. Cấu hình này không được hỗ trợ chính thức.</string>
+    <string name="unsupported_device_warning">Bạn vẫn có thể thử khởi động Nuvio Enhanced, nhưng ứng dụng có thể không hoạt động bình thường trên TV này. Cấu hình này không được hỗ trợ chính thức.</string>
     <string name="unsupported_device_try_anyway">Vẫn khởi động</string>
 </resources>

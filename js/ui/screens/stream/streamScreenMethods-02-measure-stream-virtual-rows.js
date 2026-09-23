@@ -6,6 +6,7 @@ export function createStreamScreenMethods02() {
     Router,
     addonRepository,
     PlayerSettingsStore,
+    I18n,
     DirectDebridStreamPreparer,
     directDebridPreparationKey,
     StreamBadgeSettingsStore,
@@ -21,6 +22,59 @@ export function createStreamScreenMethods02() {
   } = internals;
 
   return {
+    preconnectFocusedStream(url) {
+      const value = String(url || "").trim();
+      if (!/^https?:\/\//i.test(value)) return;
+      let origin = "";
+      try {
+        origin = new URL(value).origin;
+      } catch (_) {
+        return;
+      }
+      if (this.focusedStreamPreconnect?.href === `${origin}/`) return;
+      this.focusedStreamPreconnect?.remove?.();
+      const link = document.createElement("link");
+      link.rel = "preconnect";
+      link.href = origin;
+      document.head?.appendChild(link);
+      this.focusedStreamPreconnect = link;
+    },
+    scheduleFocusedStreamPreparation(target) {
+      if (this.focusedStreamPreparationTimer) clearTimeout(this.focusedStreamPreparationTimer);
+      this.focusedStreamPreparationTimer = null;
+      const rowNode = target?.closest?.("[data-stream-row]");
+      if (!rowNode) return;
+      const rowIndex = Number(rowNode.dataset.streamRow);
+      const stream = this.getFilteredStreams()[rowIndex];
+      if (!stream) return;
+      const token = this.loadToken;
+      this.focusedStreamPreparationTimer = setTimeout(() => {
+        this.focusedStreamPreparationTimer = null;
+        if (!this.container || Router.getCurrent() !== "stream" || token !== this.loadToken) return;
+        if (Number(this.focusState?.row) !== rowIndex || this.focusState?.zone !== "card") return;
+        this.preconnectFocusedStream(stream.url || stream.externalUrl);
+        const key = directDebridPreparationKey(stream);
+        if (this.focusedStreamPreparationKeys?.has(key)) return;
+        this.focusedStreamPreparationKeys?.add(key);
+        void DirectDebridStreamPreparer.prepareSelected(stream, {
+          season: this.params?.season == null ? null : Number(this.params.season),
+          episode: this.params?.episode == null ? null : Number(this.params.episode)
+        })
+          .then((prepared) => {
+            if (!prepared?.url || !this.container || Router.getCurrent() !== "stream" || token !== this.loadToken) return;
+            this.streams = this.streams.map((entry) =>
+              directDebridPreparationKey(entry) === key
+                ? { ...entry, ...prepared, addonName: entry.addonName, addonLogo: entry.addonLogo, badges: entry.badges }
+                : entry
+            );
+            this.preconnectFocusedStream(prepared.url);
+            this.requestRender({ delayMs: 0 });
+          })
+          .catch(() => {
+            this.focusedStreamPreparationKeys?.delete(key);
+          });
+      }, 400);
+    },
     measureStreamVirtualRows() {
       if (!this.streamVirtualized || !this.container) {
         return;
@@ -201,6 +255,8 @@ export function createStreamScreenMethods02() {
           season,
           episode,
           playerSettings,
+          systemLanguage: I18n.getLocale(),
+          contentLanguage: this.params?.contentLanguage || this.params?.originalLanguage || this.params?.original_language,
           installedAddonNames,
           onPrepared: (original, prepared) => {
             if (!this.container || Router.getCurrent() !== "stream" || token !== this.loadToken) {

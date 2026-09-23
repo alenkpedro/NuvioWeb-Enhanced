@@ -14,12 +14,12 @@
   var DEFAULT_COMPATIBILITY_MESSAGES = {
     unsupported_device_title: "TV not supported",
     unsupported_device_message:
-      "This TV does not meet the minimum requirements for this version of Nuvio TV.",
+      "This TV does not meet the minimum requirements for this version of Nuvio Enhanced.",
     unsupported_device_current_platform: "Current platform",
     unsupported_device_current_firmware: "Current firmware",
     unsupported_device_required_platform: "Required platform",
     unsupported_device_warning:
-      "You can try to start Nuvio TV anyway, but the app may not work correctly on this TV. This configuration is not officially supported.",
+      "You can try to start Nuvio Enhanced anyway, but the app may not work correctly on this TV. This configuration is not officially supported.",
     unsupported_device_close: "Close",
     unsupported_device_try_anyway: "Try anyway",
     unsupported_device_unavailable: "Unavailable"
@@ -702,7 +702,7 @@
 
     var title = document.createElement("div");
     title.style.cssText = "font-size:44px;line-height:1.15;font-weight:700;margin-bottom:22px;";
-    title.textContent = "Nuvio TV could not start";
+    title.textContent = "Nuvio Enhanced could not start";
 
     var description = document.createElement("div");
     description.style.cssText =

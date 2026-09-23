@@ -21,8 +21,13 @@ import {
 } from "./sidebarNavigationHelpers-02-get-sidebar-avatar-catalog.js";
 import { focusWithoutAutoScroll } from "./sidebarNavigationHelpers-04-set-modern-sidebar-expanded.js";
 import { scheduleRootSidebarTextFit, syncSidebarStateClasses } from "./sidebarNavigationHelpers-01-root-sidebar-items.js";
+import { Environment } from "../../platform/environment.js";
+import { renderWebOsTopNavigation } from "./webOsTopNavigation.js";
 
 export function renderRootSidebar({ selectedRoute = "home", profile = null, layout = {}, expanded = false, pillIconOnly = false } = {}) {
+  if (Environment.isWebOS() && layout?.webOsNavigationMode !== "sidebar") {
+    return renderWebOsTopNavigation({ selectedRoute, profile, layout });
+  }
   if (layout?.modernSidebar) {
     return renderModernSidebar({
       selectedRoute,
@@ -52,6 +57,11 @@ export function bindRootSidebarEvents(container, { currentRoute = "", onExpandSi
     }
     nodes.forEach((node) => node.classList.remove("focused"));
     target.classList.add("focused");
+    const screen = Router.getCurrentScreen();
+    if (screen) {
+      screen.sidebarFocusIndex = nextIndex;
+      if ("focusZone" in screen) screen.focusZone = "sidebar";
+    }
     focusWithoutAutoScroll(target);
     return true;
   };
@@ -70,6 +80,21 @@ export function bindRootSidebarEvents(container, { currentRoute = "", onExpandSi
 
     node.onkeydown = (event) => {
       const keyCode = Number(event?.keyCode || 0);
+      if (node.closest(".nuvio-top-navigation")) {
+        if (keyCode === 37 || keyCode === 39) {
+          event?.preventDefault?.();
+          event?.stopPropagation?.();
+          moveSidebarFocus(node, keyCode === 37 ? -1 : 1);
+          return;
+        }
+        if (keyCode === 40 && typeof onSelectedAction === "function") {
+          event?.preventDefault?.();
+          event?.stopPropagation?.();
+          onSelectedAction(node);
+          return;
+        }
+        return;
+      }
       if (keyCode === 38) {
         event?.preventDefault?.();
         event?.stopPropagation?.();
@@ -94,6 +119,22 @@ export function bindRootSidebarEvents(container, { currentRoute = "", onExpandSi
       }
     };
   });
+
+  const topNavigation = container?.querySelector(".nuvio-top-navigation");
+  if (topNavigation) {
+    topNavigation.addEventListener("pointerenter", () => topNavigation.classList.add("is-expanded"));
+    topNavigation.addEventListener("pointerleave", () => {
+      if (!topNavigation.contains(document.activeElement)) topNavigation.classList.remove("is-expanded");
+    });
+    topNavigation.addEventListener("focusin", () => topNavigation.classList.add("is-expanded"));
+    topNavigation.addEventListener("focusout", () => {
+      requestAnimationFrame(() => {
+        if (!topNavigation.matches(":hover") && !topNavigation.contains(document.activeElement)) {
+          topNavigation.classList.remove("is-expanded");
+        }
+      });
+    });
+  }
 
   scheduleRootSidebarTextFit(container);
   syncSidebarStateClasses(container);
@@ -146,7 +187,9 @@ export function setLegacySidebarExpanded(container, expanded) {
 }
 
 export function getLegacySidebarNodes(container) {
-  return Array.from(container?.querySelectorAll(".home-sidebar .focusable") || []).filter((node) => !node.closest(".modern-sidebar-panel"));
+  return Array.from(container?.querySelectorAll(".home-sidebar .focusable") || []).filter(
+    (node) => !node.closest(".modern-sidebar-panel:not(.nuvio-top-navigation)")
+  );
 }
 
 export function getLegacySidebarSelectedNode(container) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="tv_channel_continue_watching">Pokračovat ve sledování</string>
     <string name="type_movie">Film</string>
     <string name="type_movies">Filmy</string>
@@ -317,22 +317,22 @@
     <string name="about_licenses_attributions">Licence a atribuce</string>
     <string name="about_licenses_attributions_subtitle">Zdroje dat, poděkování a licence Android</string>
     <string name="licenses_attributions_title">Licence a atribuce</string>
-    <string name="licenses_attributions_subtitle">Poskytovatelé dat, servisní kredity a licence pro přehrávání Android používané Nuvio TV.</string>
+    <string name="licenses_attributions_subtitle">Poskytovatelé dat, servisní kredity a licence pro přehrávání Android používané Nuvio Enhanced.</string>
     <string name="licenses_attributions_section_app">LICENCE APLIKACE</string>
     <string name="licenses_attributions_section_data">DATA A SLUŽBY</string>
     <string name="licenses_attributions_section_playback">LICENCE PRO PŘEHRÁVÁNÍ ANDROID</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">Zdrojový kód a licenční podmínky jsou dostupné v repozitáři projektu. Licencováno pod GNU General Public License v3.0.</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">Nuvio používá API TMDB pro metadata filmů a seriálů, artwork, trailery, obsazení, produkční detaily, kolekce a doporučení. Tento produkt používá API TMDB, ale není schválen ani certifikován TMDB.</string>
+    <string name="licenses_attributions_tmdb_body">Nuvio Enhanced používá API TMDB pro metadata filmů a seriálů, artwork, trailery, obsazení, produkční detaily, kolekce a doporučení. Tento produkt používá API TMDB, ale není schválen ani certifikován TMDB.</string>
     <string name="licenses_attributions_trakt_title">Trakt</string>
-    <string name="licenses_attributions_trakt_body">Nuvio se připojuje k Trakt pro autentizaci účtu, historii sledování, synchronizaci postupu, data knihovny, hodnocení, seznamy a komentáře. Nuvio není spojen ani schválen Trakt.</string>
+    <string name="licenses_attributions_trakt_body">Nuvio Enhanced se připojuje k Trakt pro autentizaci účtu, historii sledování, synchronizaci postupu, data knihovny, hodnocení, seznamy a komentáře. Nuvio Enhanced není spojen ani schválen Trakt.</string>
     <string name="licenses_attributions_mdblist_title">MDBList</string>
-    <string name="licenses_attributions_mdblist_body">Nuvio používá MDBList pro hodnocení a data externích poskytovatelů skóre. Nuvio není spojen ani schválen MDBList.</string>
+    <string name="licenses_attributions_mdblist_body">Nuvio Enhanced používá MDBList pro hodnocení a data externích poskytovatelů skóre. Nuvio Enhanced není spojen ani schválen MDBList.</string>
     <string name="licenses_attributions_introdb_title">IntroDB</string>
-    <string name="licenses_attributions_introdb_body">Nuvio používá API IntroDB pro komunitně poskytované časové značky intra, rekapitulace, titulků a náhledů používané ovládacími prvky přeskočení. Nuvio není spojen ani schválen IntroDB.</string>
+    <string name="licenses_attributions_introdb_body">Nuvio Enhanced používá API IntroDB pro komunitně poskytované časové značky intra, rekapitulace, titulků a náhledů používané ovládacími prvky přeskočení. Nuvio Enhanced není spojen ani schválen IntroDB.</string>
     <string name="licenses_attributions_imdb_title">IMDb nekomerční datové sady</string>
-    <string name="licenses_attributions_imdb_body">Nuvio používá IMDb nekomerční datové sady, včetně title.ratings.tsv.gz, pro hodnocení IMDb a počty hlasů. Informace s laskavým svolením IMDb (https://www.imdb.com). Použito se svolením. Data IMDb jsou pro osobní a nekomerční použití podle podmínek IMDb.</string>
+    <string name="licenses_attributions_imdb_body">Nuvio Enhanced používá IMDb nekomerční datové sady, včetně title.ratings.tsv.gz, pro hodnocení IMDb a počty hlasů. Informace s laskavým svolením IMDb (https://www.imdb.com). Použito se svolením. Data IMDb jsou pro osobní a nekomerční použití podle podmínek IMDb.</string>
     <string name="licenses_attributions_exoplayer_title">AndroidX Media3 ExoPlayer 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">Používá se jako přehrávací engine Android. Licencováno pod Apache License, Version 2.0.</string>
     <string name="licenses_attributions_libmpv_title">libmpv / libmpv-android</string>
@@ -528,8 +528,8 @@
     <string name="playback_player_ask_desc">Vybrat přehrávač pokaždé</string>
     <string name="playback_player_auto">Auto (Nejlepší pro obsah)</string>
     <string name="playback_player_auto_desc">ExoPlayer pro filmy a seriály · MPV pro anime</string>
-    <string name="playback_engine_exoplayer_desc">Nejlepší kompatibilita s aktuálními funkcemi Nuvio.</string>
-    <string name="playback_engine_mvplayer_desc">Používá libmpv s OSD ovládacími prvky Nuvio. Experimentální.</string>
+    <string name="playback_engine_exoplayer_desc">Nejlepší kompatibilita s aktuálními funkcemi Nuvio Enhanced.</string>
+    <string name="playback_engine_mvplayer_desc">Používá libmpv s OSD ovládacími prvky Nuvio Enhanced. Experimentální.</string>
     <string name="audio_lang_original">Původní jazyk</string>
     <string name="audio_lang_original_hint">Vyžaduje povolené obohacení TMDB</string>
     <string name="audio_remember_delay_per_device">Pamatovat si zpoždění zvuku podle zařízení</string>
@@ -843,9 +843,9 @@
     <string name="trakt_library_source_dialog_title">Zdroj knihovny</string>
     <string name="trakt_library_source_dialog_subtitle">Vyberte, kam ukládat a spravovat položky knihovny</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Nuvio knihovna</string>
+    <string name="trakt_library_source_nuvio">Nuvio Enhanced knihovna</string>
     <string name="trakt_library_source_trakt_selected">Vybrána knihovna Trakt</string>
-    <string name="trakt_library_source_nuvio_selected">Vybrána knihovna Nuvio</string>
+    <string name="trakt_library_source_nuvio_selected">Vybrána knihovna Nuvio Enhanced</string>
     <string name="trakt_setting_on">Zapnuto</string>
     <string name="trakt_setting_off">Vypnuto</string>
     <string name="trakt_watch_progress_trakt_selected">Zdroj postupu sledování nastaven na Trakt</string>
@@ -871,7 +871,7 @@
     <string name="trakt_stat_watched_hours">Zhlédnuté hodiny</string>
     <string name="trakt_disconnect">Odpojit</string>
     <string name="trakt_disconnect_title">Odpojit Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Toto odpojí váš účet Trakt od Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Toto odpojí váš účet Trakt od Nuvio Enhanced.</string>
     <string name="trakt_login">Přihlásit</string>
     <string name="trakt_retry">Opakovat</string>
     <string name="trakt_back">Zpět</string>
@@ -1030,7 +1030,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">P2P streamování</string>
-    <string name="p2p_consent_body">Tento stream používá technologii peer-to-peer (P2P). Povolením P2P berete na vědomí a souhlasíte, že:\n\n\u2022 Vaše IP adresa bude viditelná pro ostatní peer v síti\n\u2022 Jste výhradně odpovědní za obsah, ke kterému přistupujete\n\u2022 Potvrzujete, že máte zákonné právo streamovat tento obsah ve vaší jurisdikci\n\u2022 Nuvio nehostuje, nedistribuuje ani nekontroluje žádný P2P obsah\n\u2022 Nuvio nenese žádnou odpovědnost za jakékoli právní důsledky vyplývající z vašeho použití P2P streamování\n\nTuto funkci používáte výhradně na vlastní riziko. P2P lze kdykoli zakázat v Nastavení.</string>
+    <string name="p2p_consent_body">Tento stream používá technologii peer-to-peer (P2P). Povolením P2P berete na vědomí a souhlasíte, že:\n\n\u2022 Vaše IP adresa bude viditelná pro ostatní peer v síti\n\u2022 Jste výhradně odpovědní za obsah, ke kterému přistupujete\n\u2022 Potvrzujete, že máte zákonné právo streamovat tento obsah ve vaší jurisdikci\n\u2022 Nuvio Enhanced nehostuje, nedistribuuje ani nekontroluje žádný P2P obsah\n\u2022 Nuvio Enhanced nenese žádnou odpovědnost za jakékoli právní důsledky vyplývající z vašeho použití P2P streamování\n\nTuto funkci používáte výhradně na vlastní riziko. P2P lze kdykoli zakázat v Nastavení.</string>
     <string name="p2p_consent_enable">Povolit P2P</string>
     <string name="p2p_consent_cancel">Zrušit</string>
     <string name="settings_p2p_title">P2P streamování</string>
@@ -1369,11 +1369,11 @@
     <string name="catalog_see_all_from">od %1$s</string>
     <string name="catalog_see_all_empty_title">Žádné položky nejsou k dispozici</string>
     <string name="catalog_see_all_empty_subtitle">Zkuste jiný katalog nebo to zkontrolujte později</string>
-    <string name="layout_selection_welcome">Vítejte v Nuvio</string>
+    <string name="layout_selection_welcome">Vítejte v Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Vyberte rozvržení domovské obrazovky</string>
     <string name="layout_selection_continue">Pokračovat</string>
     <string name="update_title">Aktualizace aplikace</string>
-    <string name="update_installer_required">K aktualizaci aplikace v televizoru použijte Nuvio TV Installer.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Co je nového</string>
     <string name="update_release_notes_unavailable">Popis vydání není k dispozici.</string>
     <string name="update_downloading">Stahování aktualizace</string>
@@ -1534,7 +1534,7 @@
     <string name="cd_preview">Náhled</string>
     <string name="cd_test">Test</string>
     <string name="cd_unlink">Odpojit</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Logo Trakt</string>
     <string name="cd_trakt_qr">QR kód aktivace Trakt</string>
     <string name="cd_imdb">IMDb</string>
@@ -1545,7 +1545,7 @@
     <string name="cd_expand">Rozbalit %1$s</string>
     <string name="cd_collapse">Sbalit %1$s</string>
     <string name="cd_qr_login">QR přihlašovací kód</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Úspěšně přihlášeno</string>
     <string name="debug_generate_description">Laděním generovaná %1$s položka #%2$d</string>
     <string name="debug_generate_result_failed">Selhalo: %1$s</string>
@@ -1679,7 +1679,7 @@
     <string name="collections_editor_tmdb_list_helper">Příklad: https://www.themoviedb.org/list/8504994 nebo 8504994.</string>
     <string name="collections_editor_tmdb_person_id">ID osoby</string>
     <string name="collections_editor_tmdb_person_helper">Příklad: https://www.themoviedb.org/person/31-tom-hanks nebo 31.</string>
-    <string name="collections_editor_tmdb_title_helper">Zobrazuje se jako název řádku/karty. Pokud je prázdné, Nuvio jej vytvoří ze zdroje.</string>
+    <string name="collections_editor_tmdb_title_helper">Zobrazuje se jako název řádku/karty. Pokud je prázdné, Nuvio Enhanced jej vytvoří ze zdroje.</string>
     <string name="collections_editor_tmdb_quick_genres">Rychlé žánry</string>
     <string name="collections_editor_tmdb_quick_languages">Rychlé jazyky</string>
     <string name="collections_editor_tmdb_quick_countries">Rychlé země</string>
@@ -1818,7 +1818,7 @@
     <string name="autoplay_reuse_binge_group">Znovu použít skupinu pro binge</string>
     <string name="autoplay_reuse_binge_group_sub">Zapamatovat a znovu použít poslední skupinu mezi relacemi (Pokračovat ve sledování, Podrobnosti atd.).</string>
     <string name="unsupported_device_title">Televizor není podporován</string>
-    <string name="unsupported_device_message">Tento televizor nesplňuje minimální požadavky pro tuto verzi Nuvio TV.</string>
+    <string name="unsupported_device_message">Tento televizor nesplňuje minimální požadavky pro tuto verzi Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Aktuální platforma</string>
     <string name="unsupported_device_current_firmware">Aktuální firmware</string>
     <string name="unsupported_device_required_platform">Požadovaná platforma</string>
@@ -1865,7 +1865,7 @@
     <string name="settings_content_discovery_addons_subtitle">Spravovat doplňky, pořadí katalogů a kolekce</string>
     <string name="settings_content_discovery_plugins_subtitle">Spravovat repozitáře a poskytovatele streamů</string>
     <string name="experience_mode_advanced">Pokročilý</string>
-    <string name="experience_mode_choose_title">Vyberte si režim Nuvio</string>
+    <string name="experience_mode_choose_title">Vyberte si režim Nuvio Enhanced</string>
     <string name="experience_mode_choose_subtitle">Začněte jednoduše nebo si odemkněte veškeré přizpůsobení. Kdykoli můžete přepnout.</string>
     <string name="experience_mode_essential_card_subtitle">Základní nastavení, doplňky, základy přehrávání, Trakt a účet.</string>
     <string name="experience_mode_advanced_card_subtitle">Plné nastavení, ovládání rozvržení, pořadí katalogů, kolekce, pluginy a diagnostika.</string>
@@ -1940,7 +1940,7 @@
     <string name="debrid_disconnect">Odpojit</string>
     <string name="debrid_device_auth_connected">%1$s je na tomto zařízení připojeno.</string>
     <string name="debrid_device_auth_starting">Spouštění bezpečného přihlášení...</string>
-    <string name="debrid_device_auth_instructions">Naskenujte QR kód a pro schválení Nuvio zadejte tento kód.</string>
+    <string name="debrid_device_auth_instructions">Naskenujte QR kód a pro schválení Nuvio Enhanced zadejte tento kód.</string>
     <string name="debrid_device_auth_code_copied">Kód zkopírován.</string>
     <string name="debrid_device_auth_waiting">Čekání na schválení...</string>
     <string name="debrid_device_auth_failed">Nepodařilo se spustit přihlášení.</string>
@@ -2064,7 +2064,7 @@
     <string name="debrid_missing_api_key">Přidejte API klíč Debrid v Nastavení.</string>
     <string name="debrid_not_cached">V této službě není uloženo v cache.</string>
     <string name="debrid_resolution_failed">Tento stream Debrid se nepodařilo získat.</string>
-    <string name="playback_player_internal_desc">Použít vestavěný přehrávač NuvioTV</string>
+    <string name="playback_player_internal_desc">Použít vestavěný přehrávač Nuvio Enhanced</string>
     <string name="trakt_error_auth_required">Je vyžadována autentizace Trakt</string>
     <string name="trakt_library_error_request_failed">Požadavek na Trakt selhal</string>
     <string name="trakt_library_error_create_list_failed">Vytvoření seznamu selhalo</string>
@@ -2197,9 +2197,9 @@
     <string name="playback_net_chunk_size_sub">Velikost každého staženého bloku na spojení. Větší bloky snižují režii, ale využívají více paměti.</string>
     <string name="playback_estimated_memory_usage">Odhadované využití paměti: %1$d / %2$d MB</string>
     <string name="licenses_attributions_premiumize_title">Premiumize</string>
-    <string name="licenses_attributions_premiumize_body">Nuvio se připojuje k Premiumize kvůli ověření účtu, přístupu ke cloudové knihovně, kontrole cache a funkcím cloudového přehrávání. Nuvio není s Premiumize spjaté ani jím podporované.</string>
+    <string name="licenses_attributions_premiumize_body">Nuvio Enhanced se připojuje k Premiumize kvůli ověření účtu, přístupu ke cloudové knihovně, kontrole cache a funkcím cloudového přehrávání. Nuvio Enhanced není s Premiumize spjaté ani jím podporované.</string>
     <string name="licenses_attributions_torbox_title">TorBox</string>
-    <string name="licenses_attributions_torbox_body">Nuvio se připojuje k TorBox kvůli ověření účtu, přístupu ke cloudové knihovně, kontrole cache a funkcím cloudového přehrávání. Nuvio není s TorBox spjaté ani jím podporované.</string>
+    <string name="licenses_attributions_torbox_body">Nuvio Enhanced se připojuje k TorBox kvůli ověření účtu, přístupu ke cloudové knihovně, kontrole cache a funkcím cloudového přehrávání. Nuvio Enhanced není s TorBox spjaté ani jím podporované.</string>
     <string name="essential_addon_continue_for_now">Zatím pokračovat bez doplňku</string>
     <string name="essential_playback_basics">Základy přehrávání</string>
     <string name="essential_subtitles_and_audio">Titulky a zvuk</string>
@@ -2385,6 +2385,6 @@
     <string name="auth_qr_terms_prefix">Registrací / přihlášením souhlasím s</string>
     <string name="auth_qr_terms_link">Podmínkami</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Nuvio TV můžete přesto zkusit spustit, ale aplikace nemusí na tomto televizoru fungovat správně. Tato konfigurace není oficiálně podporována.</string>
+    <string name="unsupported_device_warning">Nuvio Enhanced můžete přesto zkusit spustit, ale aplikace nemusí na tomto televizoru fungovat správně. Tato konfigurace není oficiálně podporována.</string>
     <string name="unsupported_device_try_anyway">Přesto spustit</string>
 </resources>

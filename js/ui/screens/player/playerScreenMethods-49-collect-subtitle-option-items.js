@@ -4,7 +4,9 @@ import * as internals from "./playerScreenContext.js";
 export function createPlayerScreenMethods49() {
   const {
     I18n,
+    Environment,
     SUBTITLE_LANGUAGE_OFF_KEY,
+    SUBTITLE_LANGUAGE_EMBEDDED_KEY,
     SUBTITLE_LANGUAGE_UNKNOWN_KEY,
     t,
     subtitleLabel,
@@ -144,6 +146,9 @@ export function createPlayerScreenMethods49() {
     },
     getSelectedSubtitleLanguageKey() {
       const selected = this.collectSubtitleOptionItems().find((entry) => entry.selected);
+      if (Environment.isWebOS() && selected?.sourceType === "internal") {
+        return SUBTITLE_LANGUAGE_EMBEDDED_KEY;
+      }
       return selected?.languageKey || SUBTITLE_LANGUAGE_OFF_KEY;
     },
     getSubtitleLanguageRailItems() {
@@ -154,8 +159,9 @@ export function createPlayerScreenMethods49() {
       const options = this.collectSubtitleOptionItems();
       const selectedLanguageKey = this.getSelectedSubtitleLanguageKey();
       const groups = new Map();
+      const webOsEmbeddedOptions = Environment.isWebOS() ? options.filter((option) => option.sourceType === "internal") : [];
       options.forEach((option) => {
-        if (option.languageKey === SUBTITLE_LANGUAGE_OFF_KEY) {
+        if (option.languageKey === SUBTITLE_LANGUAGE_OFF_KEY || (Environment.isWebOS() && option.sourceType === "internal")) {
           return;
         }
         if (!groups.has(option.languageKey)) {
@@ -178,6 +184,15 @@ export function createPlayerScreenMethods49() {
         selected: selectedLanguageKey === SUBTITLE_LANGUAGE_OFF_KEY,
         count: 0
       });
+      if (webOsEmbeddedOptions.length) {
+        groups.set(SUBTITLE_LANGUAGE_EMBEDDED_KEY, {
+          key: SUBTITLE_LANGUAGE_EMBEDDED_KEY,
+          label: t("subtitle_tab_builtin", {}, "Embedded"),
+          selected: selectedLanguageKey === SUBTITLE_LANGUAGE_EMBEDDED_KEY,
+          count: webOsEmbeddedOptions.length,
+          hasInternalTracks: true
+        });
+      }
       const preferredTargets = this.getStartupPreferredSubtitleLanguageTargets();
       const preferredRankCache = new Map();
       const getPreferredRank = (entry) => {
@@ -207,6 +222,7 @@ export function createPlayerScreenMethods49() {
           (entry) =>
             !showOnlyPreferredLanguages ||
             entry.key === SUBTITLE_LANGUAGE_OFF_KEY ||
+            entry.key === SUBTITLE_LANGUAGE_EMBEDDED_KEY ||
             entry.key === selectedLanguageKey ||
             (entry.key === SUBTITLE_LANGUAGE_UNKNOWN_KEY && entry.hasInternalTracks) ||
             matchesPreferredLanguage(entry.key)
@@ -215,6 +231,8 @@ export function createPlayerScreenMethods49() {
           if (left.key === right.key) return 0;
           if (left.key === SUBTITLE_LANGUAGE_OFF_KEY) return -1;
           if (right.key === SUBTITLE_LANGUAGE_OFF_KEY) return 1;
+          if (left.key === SUBTITLE_LANGUAGE_EMBEDDED_KEY) return -1;
+          if (right.key === SUBTITLE_LANGUAGE_EMBEDDED_KEY) return 1;
           // Sink the "Unknown" group below the real languages instead of letting
           // its label sort it into the middle of the alphabetical list.
           const leftUnknown = left.key === SUBTITLE_LANGUAGE_UNKNOWN_KEY;
@@ -261,16 +279,17 @@ export function createPlayerScreenMethods49() {
         return false;
       }
       const languages = this.getSubtitleLanguageRailItems();
-      const languageIndex = languages.findIndex((item) => item.key === option.languageKey);
+      const railKey = Environment.isWebOS() && option.sourceType === "internal" ? SUBTITLE_LANGUAGE_EMBEDDED_KEY : option.languageKey;
+      const languageIndex = languages.findIndex((item) => item.key === railKey);
       if (languageIndex >= 0) {
         this.subtitleLanguageRailIndex = languageIndex;
-        this.subtitleFocusedLanguageKey = option.languageKey;
+        this.subtitleFocusedLanguageKey = railKey;
       }
 
-      const options = this.getSubtitleOptionsForLanguage(option.languageKey);
+      const options = this.getSubtitleOptionsForLanguage(railKey);
       const optionIndex = options.findIndex((item) => item.id === option.id);
       this.subtitleOptionRailIndex = Math.max(0, optionIndex >= 0 ? optionIndex : 0);
-      this.rememberSubtitleOptionFocus(option.languageKey, options, this.subtitleOptionRailIndex);
+      this.rememberSubtitleOptionFocus(railKey, options, this.subtitleOptionRailIndex);
       if (focusOptions) {
         this.subtitleFocusedRail = "options";
       }

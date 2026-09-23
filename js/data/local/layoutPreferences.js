@@ -40,6 +40,7 @@ const DEFAULTS = {
   collapseSidebar: false,
   modernSidebar: false,
   modernSidebarBlur: false,
+  webOsNavigationMode: "top",
   hideUnreleasedContent: false,
   showFullReleaseDate: true,
   useEpisodeThumbnailsInCw: true,
@@ -153,6 +154,7 @@ function normalizeLayoutPreferences(value = {}) {
     homeImdbRatingsVisibility: normalizeHomeImdbRatingsVisibility(merged.homeImdbRatingsVisibility),
     collapseSidebar: modernSidebar ? false : Boolean(merged.collapseSidebar),
     modernSidebar,
+    webOsNavigationMode: merged.webOsNavigationMode === "sidebar" ? "sidebar" : "top",
     modernSidebarBlur: modernSidebar
       ? Boolean(merged.modernSidebarBlur)
       : Boolean(merged.modernSidebarBlur)

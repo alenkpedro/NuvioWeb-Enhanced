@@ -243,7 +243,10 @@ export function createDiscoverScreenMethods06() {
       if (focusedFilterKind) {
         if (isLeftKey(event)) {
           if (currentAction === "discoverFilterType") {
-            await this.openSidebar();
+            event?.preventDefault?.();
+            if (!this.container?.querySelector(".nuvio-top-navigation")) {
+              await this.openSidebar();
+            }
             return;
           }
           this.moveFilterFocus(-1);
@@ -262,7 +265,9 @@ export function createDiscoverScreenMethods06() {
       if (currentAction === "openDetail") {
         if (isLeftKey(event) && Number(current.dataset.navCol || 0) === 0) {
           event?.preventDefault?.();
-          await this.openSidebar();
+          if (!this.container?.querySelector(".nuvio-top-navigation")) {
+            await this.openSidebar();
+          }
           return;
         }
         if (isUpKey(event) && Number(current.dataset.navRow || 0) === 0) {

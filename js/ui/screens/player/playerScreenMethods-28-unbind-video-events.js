@@ -2,7 +2,7 @@
 import * as internals from "./playerScreenContext.js";
 
 export function createPlayerScreenMethods28() {
-  const { t, clamp, escapeHtml } = internals;
+  const { Environment, t, clamp, escapeHtml } = internals;
 
   return {
     unbindVideoEvents() {
@@ -14,15 +14,26 @@ export function createPlayerScreenMethods28() {
     getControlDefinitions() {
       const uiState = this.getPlayerUiState();
       const nextEpisode = this.resolveNextEpisodeInfo();
+      const isWebOS = Environment.isWebOS();
+      const hasEpisodes = Array.isArray(uiState.episodesAll) && uiState.episodesAll.length > 0;
       const base = [
         {
           action: "playPause",
-          label: this.paused ? ">" : "II",
+          label: this.paused ? t("player_control_play", {}, "Play") : t("cd_pause", {}, "Pause"),
           icon: this.paused ? "assets/icons/ic_player_play.svg" : "assets/icons/ic_player_pause.svg",
-          title: "Play/Pause",
+          title: this.paused ? t("player_control_play", {}, "Play") : t("cd_pause", {}, "Pause"),
           primary: true
         }
       ];
+
+      if (isWebOS) {
+        base.push({
+          action: "restart",
+          label: t("player_restart", {}, "Restart"),
+          icon: "assets/icons/ic_player_restart.svg",
+          title: t("player_restart", {}, "Restart")
+        });
+      }
 
       if (nextEpisode?.hasAired && !this.nextEpisodeLaunching) {
         base.push({
@@ -30,6 +41,15 @@ export function createPlayerScreenMethods28() {
           icon: "assets/icons/ic_player_skip_next.svg",
           useMask: true,
           title: t("next_episode_label", {}, "Next episode")
+        });
+      }
+
+      if (isWebOS && hasEpisodes) {
+        base.push({
+          action: "episodes",
+          label: t("episodes_panel_title", {}, "Episodes"),
+          icon: "assets/icons/ic_player_episodes.svg",
+          title: t("episodes_panel_title", {}, "Episodes")
         });
       }
 
@@ -55,7 +75,7 @@ export function createPlayerScreenMethods28() {
         title: t("sources_title", {}, "Sources")
       });
 
-      if (Array.isArray(uiState.episodesAll) && uiState.episodesAll.length) {
+      if (!isWebOS && hasEpisodes) {
         base.push({
           action: "episodes",
           icon: "assets/icons/ic_player_episodes.svg",
@@ -91,8 +111,16 @@ export function createPlayerScreenMethods28() {
           icon: "assets/icons/ic_player_aspect_ratio.svg",
           title: t("player_more_aspect_ratio", {}, "Aspect Ratio")
         },
+        {
+          action: "stats",
+          label: "i",
+          title: t("player_stats_title", {}, "Playback stats")
+        },
         { action: "backFromMore", label: "<", title: t("player_go_back", {}, "Back") }
       ];
+    },
+    getQuickControlStartIndex(controls = this.getControlDefinitions()) {
+      return controls.findIndex((control) => !["playPause", "restart", "playNextEpisode", "episodes"].includes(control.action));
     },
     getControlRenderSignature(controls = this.getControlDefinitions()) {
       return JSON.stringify(
@@ -129,12 +157,11 @@ export function createPlayerScreenMethods28() {
       }
       this.controlFocusIndex = clamp(this.controlFocusIndex, 0, Math.max(0, controls.length - 1));
 
-      wrap.innerHTML = controls
-        .map(
-          (control) => `
-          <button class="player-control-btn focusable${control.primary ? " is-primary" : ""}"
+      const renderButton = (control) =>
+        `
+          <button class="player-control-btn focusable${control.primary ? " is-primary" : ""}${control.action === "restart" ? " is-restart" : ""}${control.action === "episodes" && Environment.isWebOS() ? " is-episodes" : ""}"
                   data-action="${control.action}"
-                  title="${escapeHtml(control.title || "")}">
+                  title="${escapeHtml(control.title || "")}" aria-label="${escapeHtml(control.title || control.label || "")}">
             ${
               control.icon
                 ? control.primary || control.useMask
@@ -142,10 +169,22 @@ export function createPlayerScreenMethods28() {
                   : `<img class="player-control-icon" src="${control.icon}" alt="" aria-hidden="true" />`
                 : `<span class="player-control-label">${escapeHtml(control.label || "")}</span>`
             }
+            ${control.primary || control.action === "restart" || (control.action === "episodes" && Environment.isWebOS()) ? `<span class="player-control-pill-label">${escapeHtml(control.label || "")}</span>` : ""}
           </button>
-        `
-        )
-        .join("");
+        `;
+      if (Environment.isWebOS()) {
+        const quickStart = this.getQuickControlStartIndex(controls);
+        wrap.innerHTML = `
+          <div class="player-control-playback-actions">
+            ${controls.slice(0, quickStart).map(renderButton).join("")}
+          </div>
+          <div class="player-control-quick-actions">
+            ${controls.slice(quickStart).map(renderButton).join("")}
+          </div>
+        `;
+      } else {
+        wrap.innerHTML = controls.map(renderButton).join("");
+      }
       this.renderedControlSignature = controlRenderSignature;
 
       const buttons = Array.from(wrap.querySelectorAll(".player-control-btn"));

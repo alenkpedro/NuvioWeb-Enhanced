@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="tv_channel_continue_watching">Nadaljuj z ogledom</string>
     <string name="type_movie">Film</string>
     <string name="type_movies">Filmi</string>
@@ -317,22 +317,22 @@
     <string name="about_licenses_attributions">Licence in avtorstvo</string>
     <string name="about_licenses_attributions_subtitle">Viri podatkov, zahvale in licence za Android</string>
     <string name="licenses_attributions_title">Licence in avtorstvo</string>
-    <string name="licenses_attributions_subtitle">Ponudniki podatkov, zasluge za storitve in licence za predvajanje v sistemu Android, ki jih uporablja Nuvio TV.</string>
+    <string name="licenses_attributions_subtitle">Ponudniki podatkov, zasluge za storitve in licence za predvajanje v sistemu Android, ki jih uporablja Nuvio Enhanced.</string>
     <string name="licenses_attributions_section_app">LICENCA APLIKACIJE</string>
     <string name="licenses_attributions_section_data">PODATKI IN STORITVE</string>
     <string name="licenses_attributions_section_playback">LICENCE ZA PREDVAJANJE V ANDROIDU</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">Izvorna koda in licenčni pogoji so na voljo v repozitoriju projekta. Licencirano pod GNU General Public License v3.0.</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">Nuvio uporablja API TMDB za metapodatke o filmih in TV serijah, naslovnice, napovednike, igralsko zasedbo, podrobnosti o produkciji, zbirke in priporočila. Ta izdelek uporablja API TMDB, vendar ni odobren ali certificiran s strani TMDB.</string>
+    <string name="licenses_attributions_tmdb_body">Nuvio Enhanced uporablja API TMDB za metapodatke o filmih in TV serijah, naslovnice, napovednike, igralsko zasedbo, podrobnosti o produkciji, zbirke in priporočila. Ta izdelek uporablja API TMDB, vendar ni odobren ali certificiran s strani TMDB.</string>
     <string name="licenses_attributions_trakt_title">Trakt</string>
-    <string name="licenses_attributions_trakt_body">Nuvio se poveže s Traktom za preverjanje pristnosti računa, zgodovino ogledov, sinhronizacijo napredka, podatke knjižnice, ocene, sezname in komentarje. Nuvio ni povezan s Traktom ali odobren z njegove strani.</string>
+    <string name="licenses_attributions_trakt_body">Nuvio Enhanced se poveže s Traktom za preverjanje pristnosti računa, zgodovino ogledov, sinhronizacijo napredka, podatke knjižnice, ocene, sezname in komentarje. Nuvio Enhanced ni povezan s Traktom ali odobren z njegove strani.</string>
     <string name="licenses_attributions_mdblist_title">MDBList</string>
-    <string name="licenses_attributions_mdblist_body">Nuvio uporablja MDBList za ocene in podatke zunanjih ponudnikov ocen. Nuvio ni povezan z MDBList ali odobren z njegove strani.</string>
+    <string name="licenses_attributions_mdblist_body">Nuvio Enhanced uporablja MDBList za ocene in podatke zunanjih ponudnikov ocen. Nuvio Enhanced ni povezan z MDBList ali odobren z njegove strani.</string>
     <string name="licenses_attributions_introdb_title">IntroDB</string>
-    <string name="licenses_attributions_introdb_body">Nuvio uporablja API IntroDB za časovne žige uvodov, povzetkov, odjavnih špic in predogledov, ki jih prispeva skupnost, uporabljajo pa se za gumbe za preskakovanje. Nuvio ni povezan z IntroDB ali odobren z njegove strani.</string>
+    <string name="licenses_attributions_introdb_body">Nuvio Enhanced uporablja API IntroDB za časovne žige uvodov, povzetkov, odjavnih špic in predogledov, ki jih prispeva skupnost, uporabljajo pa se za gumbe za preskakovanje. Nuvio Enhanced ni povezan z IntroDB ali odobren z njegove strani.</string>
     <string name="licenses_attributions_imdb_title">Nekomercialne zbirke podatkov IMDb</string>
-    <string name="licenses_attributions_imdb_body">Nuvio uporablja nekomercialne zbirke podatkov IMDb, vključno s title.ratings.tsv.gz, za ocene in število glasov IMDb. Informacije so v lasti IMDb (https://www.imdb.com). Uporabljeno z dovoljenjem. Podatki IMDb so za osebno in nekomercialno uporabo pod pogoji IMDb.</string>
+    <string name="licenses_attributions_imdb_body">Nuvio Enhanced uporablja nekomercialne zbirke podatkov IMDb, vključno s title.ratings.tsv.gz, za ocene in število glasov IMDb. Informacije so v lasti IMDb (https://www.imdb.com). Uporabljeno z dovoljenjem. Podatki IMDb so za osebno in nekomercialno uporabo pod pogoji IMDb.</string>
     <string name="licenses_attributions_exoplayer_title">AndroidX Media3 ExoPlayer 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">Uporablja se kot mehanizem za predvajanje v sistemu Android. Licencirano pod licenco Apache, različica 2.0.</string>
     <string name="licenses_attributions_libmpv_title">libmpv / libmpv-android</string>
@@ -358,7 +358,7 @@
     <string name="settings_advanced_subtitle">Zmogljivost, navigacija, predpomnilnik in diagnostika</string>
     <string name="experience_mode_essential">Osnovno</string>
     <string name="experience_mode_advanced">Napredno</string>
-    <string name="experience_mode_choose_title">Izberite svojo izkušnjo Nuvio</string>
+    <string name="experience_mode_choose_title">Izberite svojo izkušnjo Nuvio Enhanced</string>
     <string name="experience_mode_choose_subtitle">Začnite preprosto ali odklenite vsako prilagoditev. Kadarkoli lahko preklopite.</string>
     <string name="experience_mode_essential_card_subtitle">Osredotočena nastavitev, dodatki, osnove predvajanja, Trakt in nastavitve računa.</string>
     <string name="experience_mode_advanced_card_subtitle">Vse nastavitve, kontrolniki postavitve, vrstni red kataloga, zbirke, vtičniki in diagnostika.</string>
@@ -558,8 +558,8 @@
     <string name="playback_player_ask_desc">Vsakič izberi predvajalnik</string>
     <string name="playback_player_auto">Samodejno (najboljše za vsebino)</string>
     <string name="playback_player_auto_desc">ExoPlayer za filme in TV-serije · MPV za anime</string>
-    <string name="playback_engine_exoplayer_desc">Najboljša združljivost s trenutnimi funkcijami Nuvio.</string>
-    <string name="playback_engine_mvplayer_desc">Uporablja libmpv s kontrolniki Nuvio OSD. Eksperimentalno.</string>
+    <string name="playback_engine_exoplayer_desc">Najboljša združljivost s trenutnimi funkcijami Nuvio Enhanced.</string>
+    <string name="playback_engine_mvplayer_desc">Uporablja libmpv s kontrolniki Nuvio Enhanced OSD. Eksperimentalno.</string>
     <string name="audio_trailer_section">Napovednik</string>
     <string name="audio_autoplay_trailers">Samodejno predvajaj napovednike</string>
     <string name="audio_autoplay_trailers_sub">Samodejno predvajaj napovednike na zaslonu s podrobnostmi po določenem času nedejavnosti</string>
@@ -901,9 +901,9 @@
     <string name="trakt_library_source_dialog_title">Vir knjižnice</string>
     <string name="trakt_library_source_dialog_subtitle">Izberite, kje želite shranjevati in upravljati elemente svoje knjižnice</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Knjižnica Nuvio</string>
+    <string name="trakt_library_source_nuvio">Knjižnica Nuvio Enhanced</string>
     <string name="trakt_library_source_trakt_selected">Izbrana je knjižnica Trakt</string>
-    <string name="trakt_library_source_nuvio_selected">Izbrana je knjižnica Nuvio</string>
+    <string name="trakt_library_source_nuvio_selected">Izbrana je knjižnica Nuvio Enhanced</string>
     <string name="trakt_setting_on">Vklopljeno</string>
     <string name="trakt_setting_off">Izklopljeno</string>
     <string name="trakt_watch_progress_trakt_selected">Vir napredka gledanja je nastavljen na Trakt</string>
@@ -935,7 +935,7 @@
     <string name="trakt_stat_watched_hours">Ure gledanja</string>
     <string name="trakt_disconnect">Prekini povezavo</string>
     <string name="trakt_disconnect_title">Prekinitev povezave s Trakt?</string>
-    <string name="trakt_disconnect_subtitle">To bo prekinilo povezavo vašega Trakt računa z Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">To bo prekinilo povezavo vašega Trakt računa z Nuvio Enhanced.</string>
     <string name="trakt_login">Prijava</string>
     <string name="trakt_retry">Poskusi znova</string>
     <string name="trakt_back">Nazaj</string>
@@ -1097,7 +1097,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">P2P pretakanje</string>
-    <string name="p2p_consent_body">To pretakanje uporablja tehnologijo peer-to-peer (P2P). Z omogočanjem P2P potrjujete in se strinjate z naslednjim:\n\n\u2022 Vaš IP naslov bo viden drugim uporabnikom v omrežju\n\u2022 Sami ste izključno odgovorni za vsebino, do katere dostopate\n\u2022 Potrjujete, da imate zakonsko pravico do pretakanja te vsebine v vaši državi/jurisdikciji\n\u2022 Nuvio ne gosti, distribuira ali nadzoruje nobene P2P vsebine\n\u2022 Nuvio ne prevzema nobene odgovornosti za morebitne pravne posledice, ki bi izhajale iz vaše uporabe P2P pretakanja\n\nTo funkcijo uporabljate izključno na lastno odgovornost. P2P lahko kadar koli onemogočite v nastavitvah.</string>
+    <string name="p2p_consent_body">To pretakanje uporablja tehnologijo peer-to-peer (P2P). Z omogočanjem P2P potrjujete in se strinjate z naslednjim:\n\n\u2022 Vaš IP naslov bo viden drugim uporabnikom v omrežju\n\u2022 Sami ste izključno odgovorni za vsebino, do katere dostopate\n\u2022 Potrjujete, da imate zakonsko pravico do pretakanja te vsebine v vaši državi/jurisdikciji\n\u2022 Nuvio Enhanced ne gosti, distribuira ali nadzoruje nobene P2P vsebine\n\u2022 Nuvio Enhanced ne prevzema nobene odgovornosti za morebitne pravne posledice, ki bi izhajale iz vaše uporabe P2P pretakanja\n\nTo funkcijo uporabljate izključno na lastno odgovornost. P2P lahko kadar koli onemogočite v nastavitvah.</string>
     <string name="p2p_consent_enable">Omogoči P2P</string>
     <string name="p2p_consent_cancel">Prekliči</string>
     <string name="settings_p2p_title">P2P pretakanje</string>
@@ -1448,11 +1448,11 @@
     <string name="catalog_see_all_from">od %1$s</string>
     <string name="catalog_see_all_empty_title">Ni elementov na voljo</string>
     <string name="catalog_see_all_empty_subtitle">Poskusite z drugim katalogom ali preverite kasneje</string>
-    <string name="layout_selection_welcome">Dobrodošli v Nuvio</string>
+    <string name="layout_selection_welcome">Dobrodošli v Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Izberite postavitev vašega domačega zaslona</string>
     <string name="layout_selection_continue">Nadaljuj</string>
     <string name="update_title">Posodobitev aplikacije</string>
-    <string name="update_installer_required">Za posodobitev aplikacije na televizorju uporabite Nuvio TV Installer.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Kaj je novega</string>
     <string name="update_release_notes_unavailable">Opis izdaje ni na voljo.</string>
     <string name="update_downloading">Prenašanje posodobitve</string>
@@ -1612,7 +1612,7 @@
     <string name="cd_preview">Predogled</string>
     <string name="cd_test">Preizkus</string>
     <string name="cd_unlink">Odstrani povezavo</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Logotip Trakt</string>
     <string name="cd_trakt_qr">QR za aktivacijo Trakt</string>
     <string name="cd_imdb">IMDb</string>
@@ -1623,7 +1623,7 @@
     <string name="cd_expand">Razširi %1$s</string>
     <string name="cd_collapse">Strni %1$s</string>
     <string name="cd_qr_login">QR koda za prijavo</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Prijava uspešna</string>
     <string name="debug_generate_description">Sistem debug je ustvaril %1$s element #%2$d</string>
     <string name="debug_generate_result_failed">Ni uspelo: %1$s</string>
@@ -1760,7 +1760,7 @@
     <string name="collections_editor_tmdb_list_helper">Primer: https://www.themoviedb.org/list/8504994 ali 8504994.</string>
     <string name="collections_editor_tmdb_person_id">ID osebe</string>
     <string name="collections_editor_tmdb_person_helper">Primer: https://www.themoviedb.org/person/31-tom-hanks ali 31.</string>
-    <string name="collections_editor_tmdb_title_helper">Prikazano kot ime vrstice/zavihka. Če je prazno, ga Nuvio ustvari iz vira.</string>
+    <string name="collections_editor_tmdb_title_helper">Prikazano kot ime vrstice/zavihka. Če je prazno, ga Nuvio Enhanced ustvari iz vira.</string>
     <string name="collections_editor_tmdb_quick_genres">Hitri žanri</string>
     <string name="collections_editor_tmdb_quick_languages">Hitri jeziki</string>
     <string name="collections_editor_tmdb_quick_countries">Hitre države</string>
@@ -1925,7 +1925,7 @@
     <string name="autoplay_regex_preset_english">Angleščina</string>
     <string name="autoplay_regex_preset_no_cam_ts">Brez CAM/TS</string>
     <string name="autoplay_regex_preset_no_remux_hdr">Brez REMUX/HDR</string>
-    <string name="playback_player_internal_desc">Uporabi vgrajeni predvajalnik NuvioTV</string>
+    <string name="playback_player_internal_desc">Uporabi vgrajeni predvajalnik Nuvio Enhanced</string>
     <string name="player_torrent_peer_info">%1$d sejalcev · %2$d vrstnikov</string>
     <string name="player_torrent_buffered_status">%1$s predpomnjeno · %2$s · %3$s</string>
     <string name="player_torrent_status">%1$s · %2$s</string>
@@ -2212,7 +2212,7 @@
     <string name="autoplay_reuse_binge_group">Ponovno uporabi Binge skupino</string>
     <string name="autoplay_reuse_binge_group_sub">Zapomni si in ponovno uporabi zadnjo skupino med sejami (Nadaljuj ogled, Podrobnosti itd.).</string>
     <string name="unsupported_device_title">Televizor ni podprt</string>
-    <string name="unsupported_device_message">Ta televizor ne izpolnjuje minimalnih zahtev za to različico Nuvio TV.</string>
+    <string name="unsupported_device_message">Ta televizor ne izpolnjuje minimalnih zahtev za to različico Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Trenutna platforma</string>
     <string name="unsupported_device_current_firmware">Trenutna vdelana programska oprema</string>
     <string name="unsupported_device_required_platform">Zahtevana platforma</string>
@@ -2234,7 +2234,7 @@
     <string name="debrid_device_auth_expired">Ta koda je potekla. Poskusite znova.</string>
     <string name="debrid_device_auth_failed">Prijave ni bilo mogoče začeti.</string>
     <string name="debrid_device_auth_connected">%1$s je povezan v tej napravi.</string>
-    <string name="debrid_device_auth_instructions">Optično preberite kodo QR in vnesite to kodo, da odobrite Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Optično preberite kodo QR in vnesite to kodo, da odobrite Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Ta način prijave ni konfiguriran v tej različici.</string>
     <string name="debrid_disconnect">Prekini povezavo</string>
     <string name="debrid_connected">Povezano</string>
@@ -2567,6 +2567,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Kljub temu lahko poskusite zagnati Nuvio TV, vendar aplikacija na tem televizorju morda ne bo delovala pravilno. Ta konfiguracija ni uradno podprta.</string>
+    <string name="unsupported_device_warning">Kljub temu lahko poskusite zagnati Nuvio Enhanced, vendar aplikacija na tem televizorju morda ne bo delovala pravilno. Ta konfiguracija ni uradno podprta.</string>
     <string name="unsupported_device_try_anyway">Vseeno zaženi</string>
 </resources>

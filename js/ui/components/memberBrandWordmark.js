@@ -21,7 +21,7 @@ export function renderMemberBrandWordmark({
   access = MemberAccessRepository.getCurrentAccess(),
   imageClass = "",
   wrapperClass = "",
-  imageAlt = "Nuvio"
+  imageAlt = "Nuvio Enhanced"
 } = {}) {
   const tier = String(access?.tier || "")
     .trim()

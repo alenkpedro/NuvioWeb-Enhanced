@@ -71,11 +71,11 @@
     <string name="auth_qr_terms_link">服務條款</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
     <string name="unsupported_device_title">此電視不受支援</string>
-    <string name="unsupported_device_message">此電視不符合此版本 Nuvio TV 的最低需求。</string>
+    <string name="unsupported_device_message">此電視不符合此版本 Nuvio Enhanced 的最低需求。</string>
     <string name="unsupported_device_current_platform">目前平台</string>
     <string name="unsupported_device_current_firmware">目前韌體</string>
     <string name="unsupported_device_required_platform">所需平台</string>
-    <string name="unsupported_device_warning">您仍可嘗試啟動 Nuvio TV，但應用程式可能無法在此電視上正常運作。此設定不受官方支援。</string>
+    <string name="unsupported_device_warning">您仍可嘗試啟動 Nuvio Enhanced，但應用程式可能無法在此電視上正常運作。此設定不受官方支援。</string>
     <string name="unsupported_device_close">關閉</string>
     <string name="unsupported_device_try_anyway">仍要啟動</string>
     <string name="unsupported_device_unavailable">無法使用</string>

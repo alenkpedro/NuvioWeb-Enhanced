@@ -82,7 +82,14 @@ export class StreamSearchSessionCache {
 
   observe(
     key,
-    { forceRefresh = false, signal = null, onAddon = null, onChunk = null, producer } = {}
+    {
+      forceRefresh = false,
+      signal = null,
+      onAddon = null,
+      onChunk = null,
+      cancelWhenUnobserved = false,
+      producer
+    } = {}
   ) {
     if (signal?.aborted) {
       return Promise.resolve(EMPTY_RESULT);
@@ -93,6 +100,9 @@ export class StreamSearchSessionCache {
 
     const normalizedKey = normalizeKey(key);
     const selected = this.acquire(normalizedKey, Boolean(forceRefresh), producer);
+    if (selected.cancelWhenUnobserved == null)
+      selected.cancelWhenUnobserved = Boolean(cancelWhenUnobserved);
+    if (!cancelWhenUnobserved) selected.cancelWhenUnobserved = false;
     const subscriber = { onAddon, onChunk };
 
     if (selected.completed) {
@@ -102,7 +112,14 @@ export class StreamSearchSessionCache {
 
     selected.subscribers.add(subscriber);
     this.replayInFlight(selected, subscriber);
-    const removeSubscriber = () => selected.subscribers.delete(subscriber);
+    const removeSubscriber = () => {
+      selected.subscribers.delete(subscriber);
+      if (selected.cancelWhenUnobserved && !selected.completed && selected.subscribers.size === 0) {
+        const id = keyString(selected.key);
+        if (this.sessions.get(id) === selected) this.sessions.delete(id);
+        this.invalidate(selected);
+      }
+    };
     let resolveAborted;
     const aborted =
       signal && typeof signal.addEventListener === "function"

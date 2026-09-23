@@ -1,5 +1,6 @@
 import { DebridSettingsStore } from "../../data/local/debridSettingsStore.js";
 import { selectAutoPlayStream, STREAM_AUTO_PLAY_MODE } from "../streams/streamAutoPlaySelector.js";
+import { rankStreamsForAutoPlay } from "../streams/streamQualityRanking.js";
 import { DirectDebridResolver } from "./directDebridResolver.js";
 
 const MAX_BACKGROUND_PREPARES_PER_MINUTE = 6;
@@ -85,6 +86,8 @@ export function prioritizeDirectDebridCandidates(
     season = null,
     episode = null,
     playerSettings = {},
+    systemLanguage = "",
+    contentLanguage = "",
     installedAddonNames = new Set()
   } = {}
 ) {
@@ -103,7 +106,16 @@ export function prioritizeDirectDebridCandidates(
   if (!candidates.length) return [];
 
   const prioritized = [];
-  const selected = selectAutoPlayStream(streams, {
+  const selectionStreams =
+    String(playerSettings.streamAutoPlayMode || "MANUAL").toUpperCase() ===
+    STREAM_AUTO_PLAY_MODE.BEST_STREAM
+      ? rankStreamsForAutoPlay(streams, DebridSettingsStore.get().streamPreferences, {
+          ...playerSettings,
+          systemLanguage,
+          contentLanguage
+        })
+      : streams;
+  const selected = selectAutoPlayStream(selectionStreams, {
     mode: playerSettings.streamAutoPlayMode,
     source: playerSettings.streamAutoPlaySource,
     regexPattern: playerSettings.streamAutoPlayRegex,
@@ -154,12 +166,33 @@ export function prioritizeDirectDebridCandidates(
 }
 
 export const DirectDebridStreamPreparer = {
+  async prepareSelected(stream, { season = null, episode = null } = {}) {
+    const resolver = stream?.clientResolve || stream?.raw?.clientResolve || null;
+    const cacheState = String(stream?.debridCacheStatus?.state || "").toUpperCase();
+    if (resolver?.isCached !== true && cacheState !== "CACHED") return null;
+    if (
+      !stream ||
+      playableStreamUrl(stream) ||
+      !DirectDebridResolver.canResolveStream(stream, { season, episode })
+    ) {
+      return null;
+    }
+    const cached = DirectDebridResolver.cachedPlayableStream(stream, { season, episode });
+    if (cached) return cached;
+    if (!consumeBudget()) return null;
+    const result = await DirectDebridResolver.resolve(stream, { season, episode }).catch(
+      () => null
+    );
+    return result?.status === "success" && result.stream?.url ? result.stream : null;
+  },
   async prepare(
     streams = [],
     {
       season = null,
       episode = null,
       playerSettings = {},
+      systemLanguage = "",
+      contentLanguage = "",
       installedAddonNames = new Set(),
       onPrepared = null
     } = {}
@@ -177,6 +210,8 @@ export const DirectDebridStreamPreparer = {
       season,
       episode,
       playerSettings,
+      systemLanguage,
+      contentLanguage,
       installedAddonNames
     });
 

@@ -192,6 +192,7 @@ class StreamRepository {
     return this.streamSearchSessions.observe(requestKey, {
       forceRefresh: options?.forceRefresh === true,
       signal: options?.signal || null,
+      cancelWhenUnobserved: options?.cancelWhenUnobserved === true,
       onAddon: options?.onAddon,
       onChunk: options?.onChunk,
       producer: ({ signal, emitAddon, emitChunk, emitResult }) =>

@@ -1,10 +1,10 @@
 {
-  "id": "space.nuvio.webos",
+  "id": "space.nuvio.enhanced",
   "version": "1.1.9",
-  "vendor": "Nuvio Media",
+  "vendor": "Nuvio Enhanced",
   "type": "web",
   "main": "index.html",
-  "title": "Nuvio TV",
+  "title": "Nuvio Enhanced",
   "appDescription": "Bring your sources together in one TV library.",
   "keywords": ["streaming", "video", "media", "tv"],
   "category": "entertainment",
@@ -15,7 +15,7 @@
   "handlesRelaunch": true,
   "resolution": "1920x1080",
   "transparent": false,
-  "services": ["space.nuvio.webos.service"],
+  "services": ["space.nuvio.enhanced.service"],
   "requiredPermissions": ["internet", "media.operation", "media.query"],
   "requiredACG": [
     "application.launcher",

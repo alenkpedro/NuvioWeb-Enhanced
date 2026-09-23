@@ -6,6 +6,7 @@
 export const STREAM_AUTO_PLAY_MODE = {
   MANUAL: "MANUAL",
   FIRST_STREAM: "FIRST_STREAM",
+  BEST_STREAM: "BEST_STREAM",
   REGEX_MATCH: "REGEX_MATCH"
 };
 
@@ -45,20 +46,8 @@ export function isRegexSelectionConfigured(regexPattern) {
 // Whether auto-play is active for these settings. Default mode MANUAL is off, so
 // existing users see no change unless they opt in (or sync it from Android TV).
 export function isAutoPlayEffectivelyEnabled(settings = {}) {
-  // Match Android's StreamAutoPlayPolicy: either persisted stream reuse
-  // preference is itself an effective auto-play capability, even when the
-  // explicit mode remains MANUAL.
-  if (settings.streamReuseLastLinkEnabled) {
-    return true;
-  }
-  if (
-    settings.streamAutoPlayReuseBingeGroup &&
-    settings.streamAutoPlayPreferBingeGroupForNextEpisode
-  ) {
-    return true;
-  }
   const mode = normalizeMode(settings.streamAutoPlayMode);
-  if (mode === STREAM_AUTO_PLAY_MODE.FIRST_STREAM) {
+  if (mode === STREAM_AUTO_PLAY_MODE.FIRST_STREAM || mode === STREAM_AUTO_PLAY_MODE.BEST_STREAM) {
     return true;
   }
   if (mode === STREAM_AUTO_PLAY_MODE.REGEX_MATCH) {
@@ -148,6 +137,9 @@ export function selectAutoPlayStream(streams, options = {}) {
     return null;
   }
   const mode = normalizeMode(options.mode);
+  if (mode === STREAM_AUTO_PLAY_MODE.MANUAL) {
+    return null;
+  }
   const source = normalizeSource(options.source);
   const installedAddonNames =
     options.installedAddonNames instanceof Set
@@ -172,8 +164,7 @@ export function selectAutoPlayStream(streams, options = {}) {
     return null;
   }
 
-  // Android gives an exact binge-group match priority over the normal mode,
-  // including MANUAL. In bingeGroupOnly mode, a miss must open the picker.
+  // In bingeGroupOnly mode, a miss must open the picker.
   const preferredBingeGroup = String(options.preferredBingeGroup || "").trim();
   if (options.preferBingeGroupInSelection && preferredBingeGroup) {
     const bingeGroupMatch = candidates.find(
@@ -187,16 +178,15 @@ export function selectAutoPlayStream(streams, options = {}) {
     }
   }
 
-  if (mode === STREAM_AUTO_PLAY_MODE.MANUAL) {
-    return null;
-  }
-
-  if (mode === STREAM_AUTO_PLAY_MODE.FIRST_STREAM) {
+  if (mode === STREAM_AUTO_PLAY_MODE.FIRST_STREAM || mode === STREAM_AUTO_PLAY_MODE.BEST_STREAM) {
     return candidates.find((stream) => isPlayableStream(stream)) || null;
   }
 
   // REGEX_MATCH
   const pattern = String(options.regexPattern || "").trim();
+  if (!isRegexSelectionConfigured(pattern)) {
+    return null;
+  }
   let includeRegex;
   try {
     includeRegex = new RegExp(pattern, "i");

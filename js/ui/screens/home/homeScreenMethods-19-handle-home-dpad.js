@@ -42,6 +42,18 @@ export function createHomeScreenMethods19() {
         repeat: Boolean(event?.repeat)
       };
 
+      if (direction === "up" && !isSidebar && this.container?.querySelector(".nuvio-top-navigation")) {
+        const continueRowIndex = nav.rows.findIndex((rowNodes) => this.getNodeRowKey(rowNodes[0]) === "continue_watching");
+        const boundaryRowIndex = continueRowIndex >= 0 ? continueRowIndex : 0;
+        if (nav.rows[boundaryRowIndex]?.includes(current)) {
+          if (this.modernVerticalFastScrollState) {
+            this.endModernVerticalFastScroll({ land: false });
+          }
+          this.lastMainFocus = current;
+          return this.openSidebar();
+        }
+      }
+
       if (
         inputMeta.repeat &&
         this.layoutMode === "modern" &&
@@ -72,6 +84,17 @@ export function createHomeScreenMethods19() {
 
       if (isSidebar) {
         const sidebarIndex = Number(current.dataset.navIndex || 0);
+        if (current.closest(".nuvio-top-navigation")) {
+          if (direction === "left" || direction === "right") {
+            const delta = direction === "left" ? -1 : 1;
+            const target = nav.sidebar[Math.max(0, Math.min(nav.sidebar.length - 1, sidebarIndex + delta))] || current;
+            this.focusNode(current, target, direction, inputMeta);
+          } else if (direction === "down") {
+            this.closeSidebarToContent();
+          }
+          event.stopImmediatePropagation?.();
+          return true;
+        }
         if (direction === "up") {
           const target = nav.sidebar[Math.max(0, sidebarIndex - 1)] || current;
           return this.focusNode(current, target, direction, inputMeta) || true;
@@ -93,6 +116,9 @@ export function createHomeScreenMethods19() {
       if (direction === "left") {
         const targetInRow = rowNodes[col - 1] || null;
         if (this.focusNode(current, targetInRow, direction, inputMeta)) {
+          return true;
+        }
+        if (this.container?.querySelector(".nuvio-top-navigation")) {
           return true;
         }
         const sidebarFallback =
@@ -143,6 +169,12 @@ export function createHomeScreenMethods19() {
             }
           }
           if (target.closest(".home-sidebar .focusable, .modern-sidebar-panel .focusable")) {
+            const previous = this.getCurrentFocusedNode();
+            if (previous && previous !== target) {
+              previous.classList.remove("focused");
+            }
+            target.classList.add("focused");
+            this.setCurrentFocusedNode(target);
             this.setSidebarExpanded(true);
             return;
           }

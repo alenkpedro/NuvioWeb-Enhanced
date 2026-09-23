@@ -69,11 +69,11 @@
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
     <string name="unsupported_device_title">TV'et understøttes ikke</string>
-    <string name="unsupported_device_message">Dette tv opfylder ikke minimumskravene til denne version af Nuvio TV.</string>
+    <string name="unsupported_device_message">Dette tv opfylder ikke minimumskravene til denne version af Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Nuværende platform</string>
     <string name="unsupported_device_current_firmware">Nuværende firmware</string>
     <string name="unsupported_device_required_platform">Påkrævet platform</string>
-    <string name="unsupported_device_warning">Du kan alligevel prøve at starte Nuvio TV, men appen fungerer muligvis ikke korrekt på dette tv. Denne konfiguration er ikke officielt understøttet.</string>
+    <string name="unsupported_device_warning">Du kan alligevel prøve at starte Nuvio Enhanced, men appen fungerer muligvis ikke korrekt på dette tv. Denne konfiguration er ikke officielt understøttet.</string>
     <string name="unsupported_device_close">Luk</string>
     <string name="unsupported_device_try_anyway">Prøv alligevel</string>
     <string name="unsupported_device_unavailable">Ikke tilgængelig</string>

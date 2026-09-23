@@ -194,12 +194,19 @@ export const ThemeManager = {
       "--bg-color-rgb": toRgbChannels(colors["--bg-color"], "13 13 13"),
       "--bg-color-rgb-legacy": toLegacyRgbChannels(colors["--bg-color"], "13, 13, 13"),
       "--bg-elevated-rgb": toRgbChannels(colors["--bg-elevated"], "26 26 26"),
+      "--bg-elevated-rgb-legacy": toLegacyRgbChannels(colors["--bg-elevated"], "26, 26, 26"),
       "--card-bg-rgb": toRgbChannels(colors["--card-bg"], "34 34 34"),
       "--secondary-color-rgb": toRgbChannels(colors["--secondary-color"], "245 245 245"),
+      "--secondary-color-rgb-legacy": toLegacyRgbChannels(
+        colors["--secondary-color"],
+        "245, 245, 245"
+      ),
       "--focus-color-rgb": toRgbChannels(colors["--focus-color"], "255 255 255"),
       "--player-secondary": colors["--secondary-color"],
       "--player-accent-gradient": colors["--accent-gradient"] || colors["--secondary-color"],
       "--player-on-secondary": colors["--on-secondary"],
+      "--player-focused-icon-filter":
+        colors["--on-secondary"] === "#ffffff" ? "brightness(0) invert(1)" : "brightness(0)",
       "--player-focus-ring": colors["--focus-color"],
       "--player-focus-background": colors["--focus-bg"],
       "--player-background-elevated": colors["--bg-elevated"],

@@ -146,6 +146,11 @@ export function createHomeScreenMethods05() {
     setSidebarExpanded(expanded) {
       const nextExpanded = Boolean(expanded);
       this.sidebarExpanded = nextExpanded;
+      const topNavigation = this.container?.querySelector(".nuvio-top-navigation");
+      if (topNavigation) {
+        topNavigation.classList.toggle("is-expanded", nextExpanded);
+        return;
+      }
       if (this.layoutPrefs?.modernSidebar) {
         return;
       }

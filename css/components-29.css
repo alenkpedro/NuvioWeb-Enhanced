@@ -170,8 +170,9 @@
   --player-subtitle-outline-color: #000000;
   --player-subtitle-font-size: 120%;
   --player-html-subtitle-font-size: clamp(30px, 4.4vh, 82px);
-  --player-subtitle-font-weight: 500;
-  --player-subtitle-shadow: 0 0 2px #000000, 0 0 4px #000000;
+  --player-subtitle-font-weight: 400;
+  --player-subtitle-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95), 0 3px 6px rgba(0, 0, 0, 0.78), 0 6px 12px rgba(0, 0, 0, 0.45);
   --player-subtitle-offset: 0vh;
   --player-controls-x: 32px;
   --player-controls-y: 24px;
@@ -181,6 +182,7 @@
 }
 
 #videoPlayer::cue {
+  font-family: "Netflix Sans", Arial, sans-serif !important;
   color: var(--player-subtitle-color);
   font-size: var(--player-subtitle-font-size);
   font-weight: var(--player-subtitle-font-weight) !important;
@@ -190,8 +192,9 @@
 
 #videoPlayer::-webkit-media-text-track-display,
 #videoPlayer::-webkit-media-text-track-container {
+  font-family: "Netflix Sans", Arial, sans-serif !important;
   font-size: var(--player-subtitle-font-size);
-  font-weight: var(--player-subtitle-font-weight);
+  font-weight: var(--player-subtitle-font-weight) !important;
   text-shadow: var(--player-subtitle-shadow);
   transform: translateY(var(--player-subtitle-offset));
 }
@@ -205,12 +208,19 @@
   inset: 0;
   z-index: 12;
   color: var(--player-subtitle-text-color);
+  font-family: "Netflix Sans", Arial, sans-serif;
   font-size: var(--player-html-subtitle-font-size);
   font-weight: var(--player-subtitle-font-weight);
   line-height: 1.28;
   text-align: center;
   text-shadow: none;
   pointer-events: none;
+}
+
+.player-html-subtitles,
+.player-html-subtitles * {
+  font-family: "Netflix Sans", Arial, sans-serif !important;
+  font-weight: var(--player-subtitle-font-weight) !important;
 }
 
 .player-html-subtitles.hidden {
@@ -253,7 +263,14 @@
   position: absolute;
   overflow: hidden;
   pointer-events: none;
-  font-family: Arial, sans-serif;
+  font-family: "Netflix Sans", Arial, sans-serif;
+}
+
+/* ass.js writes source font names inline; override those text runs and its size probe. */
+.player-ass-subtitles .ASS-dialogue [data-text],
+.player-ass-subtitles .ASS-fix-font-size span {
+  font-family: "Netflix Sans", Arial, sans-serif !important;
+  font-weight: var(--player-subtitle-font-weight) !important;
 }
 
 .player-ass-subtitles .ASS-dialogue {
@@ -342,8 +359,7 @@
   background: var(--player-subtitle-background);
 }
 
-/* Keep the edge layer separate so text alpha does not also dim Android's
-   independent outline/background colors. */
+/* Keep the shadow layer separate so text opacity does not dim the shadow. */
 
 .player-html-subtitle-shadow {
   position: absolute;

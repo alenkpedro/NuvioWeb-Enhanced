@@ -1,0 +1,254 @@
+/* webOS top navigation inspired by https://github.com/NuvioMedia/NuvioDesktop. */
+.home-sidebar.nuvio-top-navigation[data-collapsible="true"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 24px;
+  bottom: auto;
+  left: 50%;
+  z-index: 30;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 4px;
+  width: min(470px, calc(100vw - 64px));
+  height: 88px;
+  min-height: 0;
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  background: rgba(var(--bg-elevated-rgb-legacy), 0.86);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.22);
+  opacity: 1;
+  transform: translateX(-50%);
+  transition:
+    width 260ms ease,
+    background-color 260ms ease;
+  pointer-events: auto;
+  contain: none;
+}
+
+.home-sidebar.nuvio-top-navigation[data-has-discover="true"] {
+  width: min(560px, calc(100vw - 64px));
+}
+
+.home-sidebar.nuvio-top-navigation[data-collapsible="true"].is-expanded,
+.home-sidebar.nuvio-top-navigation[data-collapsible="true"]:hover,
+.home-sidebar.nuvio-top-navigation[data-collapsible="true"]:focus-within {
+  width: min(920px, calc(100vw - 64px));
+  background: rgba(var(--bg-elevated-rgb-legacy), 0.92);
+}
+
+.home-sidebar.nuvio-top-navigation[data-has-discover="true"].is-expanded,
+.home-sidebar.nuvio-top-navigation[data-has-discover="true"]:hover,
+.home-sidebar.nuvio-top-navigation[data-has-discover="true"]:focus-within {
+  width: min(1080px, calc(100vw - 64px));
+}
+
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-item,
+.home-sidebar.nuvio-top-navigation.content-expanded .nuvio-top-nav-item {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: 72px;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #b9b9bf;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-item.selected,
+.home-sidebar.nuvio-top-navigation.content-expanded .nuvio-top-nav-item.selected {
+  background: rgba(var(--secondary-color-rgb-legacy), 0.25);
+  color: #fff;
+}
+
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-item.focused,
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-item:focus,
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-item:hover {
+  color: #fff;
+  background: rgba(var(--secondary-color-rgb-legacy), 0.36);
+  outline: none;
+  transform: none;
+}
+
+.nuvio-top-nav-icon-wrap {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.nuvio-top-nav-icon,
+.nuvio-top-nav-avatar {
+  display: block;
+  width: 38px;
+  height: 38px;
+  fill: currentColor;
+  object-fit: cover;
+}
+
+.nuvio-top-nav-icon.root-sidebar-icon-material {
+  font-size: 38px;
+  line-height: 38px;
+}
+
+.nuvio-top-nav-avatar {
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--focus-color);
+}
+
+.home-sidebar.nuvio-top-navigation .nuvio-top-nav-label {
+  display: none;
+  width: auto;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 27px;
+  line-height: 1.1;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transform: none;
+}
+
+.home-sidebar.nuvio-top-navigation.is-expanded .nuvio-top-nav-label,
+.home-sidebar.nuvio-top-navigation:hover .nuvio-top-nav-label,
+.home-sidebar.nuvio-top-navigation:focus-within .nuvio-top-nav-label {
+  display: block;
+  max-width: 150px;
+  opacity: 1;
+}
+
+.home-shell:has(.nuvio-top-navigation) .home-main,
+.home-shell.has-collapsible-sidebar .home-main {
+  margin-left: 0;
+}
+
+.search-screen-shell:has(.nuvio-top-navigation) .search-content {
+  padding-top: 132px;
+}
+
+.library-shell:has(.nuvio-top-navigation) .library-main {
+  padding-top: 132px;
+}
+
+.settings-shell:has(.nuvio-top-navigation) .settings-workspace {
+  height: calc(100vh - 156px);
+  margin-top: 132px;
+  margin-bottom: 24px;
+}
+
+.discover-shell:has(.nuvio-top-navigation) .discover-main {
+  padding-top: 132px;
+}
+
+.home-shell:has(.nuvio-top-navigation)::before,
+.home-shell.has-expanded-sidebar:has(.nuvio-top-navigation)::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Source opening screen follows https://github.com/ysosrs123/NuvioTV-Fork. */
+.player-platform-webos .player-loading-overlay {
+  background: #000;
+}
+
+.player-platform-webos .player-loading-backdrop {
+  background-position: right top;
+  filter: none;
+}
+
+.player-platform-webos .player-loading-gradient {
+  background: linear-gradient(180deg, #0000004d 0%, #00000099 35%, #000000cc 70%, #000000e6 100%);
+}
+
+.player-platform-webos .player-loading-center {
+  inset: 0;
+  width: 100%;
+  transform: none;
+  display: block;
+}
+
+.player-platform-webos .player-loading-identity-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(80vw, 900px);
+  transform: translate(-50%, -50%);
+}
+
+.player-platform-webos .player-loading-details {
+  position: absolute;
+  top: calc(50% + clamp(100px, 12vh, 150px));
+  left: 50%;
+  width: min(80vw, 1000px);
+  transform: translateX(-50%);
+}
+
+.player-platform-webos .player-ui-root.player-awaiting-first-frame .player-controls-overlay,
+.player-platform-webos .player-ui-root.player-awaiting-first-frame .player-stats-overlay,
+.player-platform-webos .player-ui-root.player-awaiting-first-frame .player-torrent-overlay {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.player-platform-webos .player-loading-logo-stack {
+  height: 180px;
+  margin-bottom: 0;
+}
+
+.player-platform-webos .player-loading-title {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.player-platform-webos .player-loading-message {
+  margin-top: 12px;
+  color: #f5f7f8;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.player-platform-webos .player-loading-source {
+  margin-top: 8px;
+  max-width: min(72vw, 960px);
+  overflow: hidden;
+  color: #b3b3b3;
+  font-size: 20px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-platform-webos .player-loading-startup-ring {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin-top: 16px;
+}
+
+.player-platform-webos .player-loading-status {
+  margin-top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-sidebar.nuvio-top-navigation[data-collapsible="true"] {
+    transition: none;
+  }
+}

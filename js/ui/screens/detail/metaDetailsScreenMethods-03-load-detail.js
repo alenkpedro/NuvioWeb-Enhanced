@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import * as internals from "./metaDetailsScreenContext.js";
+import { streamRepository } from "../../../data/repository/streamRepository.js";
 
 export function createMetaDetailsScreenMethods03() {
   const {
+    Router,
     metaRepository,
     watchProgressRepository,
     savedLibraryRepository,
@@ -30,6 +32,35 @@ export function createMetaDetailsScreenMethods03() {
   } = internals;
 
   return {
+    scheduleStreamSearchPrewarm() {
+      if (this.isBackNavigation || this.params?.playOnLoad || this.params?.autoOpenContinueWatching) return;
+      if (this.streamSearchPrewarmTimer) clearTimeout(this.streamSearchPrewarmTimer);
+      const token = this.detailLoadToken;
+      this.streamSearchPrewarmTimer = setTimeout(() => {
+        this.streamSearchPrewarmTimer = null;
+        if (token !== this.detailLoadToken || Router.getCurrent() !== "detail" || !this.meta) return;
+        const isSeries = isSeriesDetailMeta(this.meta, this.episodes);
+        const episode = isSeries
+          ? this.nextEpisodeToWatch || this.episodes.find((entry) => entry.season === this.selectedSeason) || this.episodes[0]
+          : null;
+        const type = internals.resolvePlayableDetailType(this.params?.itemType || this.meta?.type, this.meta);
+        const videoId = isSeries
+          ? String(episode?.id || "")
+          : String(internals.resolveMovieStreamIdentity(this.meta, this.params).videoId || "");
+        if (!videoId) return;
+        streamRepository.setLocalPluginSearchPaused(false);
+        this.streamSearchPrewarmController = typeof AbortController === "function" ? new AbortController() : null;
+        void streamRepository
+          .getStreamsFromAllAddons(type, videoId, {
+            itemId: String(this.params?.itemId || ""),
+            season: episode?.season ?? null,
+            episode: episode?.episode ?? null,
+            signal: this.streamSearchPrewarmController?.signal || null,
+            cancelWhenUnobserved: true
+          })
+          .catch((error) => console.warn("Stream prewarm failed", error));
+      }, 650);
+    },
     async loadDetail() {
       const token = this.detailLoadToken;
       let { itemId, itemType = "movie", fallbackTitle = "Untitled" } = this.params || {};
@@ -175,6 +206,7 @@ export function createMetaDetailsScreenMethods03() {
       }
       this.render(meta);
       this.isLoadingDetail = false;
+      this.scheduleStreamSearchPrewarm();
       void this.refreshLibraryMembership(token);
       this.maybeAutoOpenContinueWatchingStream();
       this.maybePlayOnLoad(token);

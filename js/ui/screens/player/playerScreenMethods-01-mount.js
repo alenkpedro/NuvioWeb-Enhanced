@@ -20,6 +20,7 @@ export function createPlayerScreenMethods01() {
     TrackPreferencesStore,
     SubtitleDelayPreferencesStore,
     WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS,
+    WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS,
     claimEngineFsPlayback,
     AUDIO_AMPLIFICATION_MIN_DB,
     AUDIO_AMPLIFICATION_MAX_DB,
@@ -144,6 +145,9 @@ export function createPlayerScreenMethods01() {
       this.engineFsCleanupInFlight = new Set();
 
       initializePlayerMountState.call(this, params, initialStreamUrl);
+      this.statsOverlayVisible = false;
+      this.statsNetworkSample = null;
+      this.statsNetworkRequestedAt = 0;
       const playerSettings = PlayerSettingsStore.get();
       this.subtitleRenderMode = normalizeSubtitleRenderMode(playerSettings.subtitleRenderMode);
       this.subtitleDelayMs = SubtitleDelayPreferencesStore.get(this.subtitleDelayPreferenceVideoId);
@@ -210,7 +214,11 @@ export function createPlayerScreenMethods01() {
           this.engineFsPlaybackToken = "";
           this.enableStartupAudioGate({
             allowNativePlayback: allowNativePlaybackDuringStartupAudioGate,
-            maxWaitMs: prioritizeWebOsRemoteMkvPlayback ? WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS : 0
+            maxWaitMs: Environment.isWebOS()
+              ? prioritizeWebOsRemoteMkvPlayback
+                ? WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS
+                : WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS
+              : 0
           });
         }
         const playbackStartPromise = this.startPlayerControllerPlayback(

@@ -183,7 +183,10 @@ export function createPlayerScreenMethods56() {
         subtitleLoadingVisible,
         languageKey: selectedLanguageKey
       });
-      rail.classList.toggle("hidden", selectedLanguageKey === SUBTITLE_LANGUAGE_OFF_KEY && !subtitleLoadingVisible);
+      rail.classList.toggle(
+        "hidden",
+        Boolean(this.subtitleSettingsPage) || (selectedLanguageKey === SUBTITLE_LANGUAGE_OFF_KEY && !subtitleLoadingVisible)
+      );
       this.renderedSubtitleDialogMarkup = "";
       this.applySubtitleOptionVirtualScrollPosition();
       if (scheduleMeasurement) {
@@ -201,12 +204,17 @@ export function createPlayerScreenMethods56() {
       }
       const railName = String(this.subtitleFocusedRail || "language");
       const index =
-        railName === "language"
-          ? this.subtitleLanguageRailIndex
-          : railName === "options"
-            ? this.subtitleOptionRailIndex
-            : this.subtitleStyleRailIndex;
-      let selector = `.player-subtitle-${railName}-rail .player-dialog-item[data-subtitle-index="${Number(index || 0)}"]`;
+        railName === "header"
+          ? 0
+          : railName === "language"
+            ? this.subtitleLanguageRailIndex
+            : railName === "options"
+              ? this.subtitleOptionRailIndex
+              : this.subtitleStyleRailIndex;
+      let selector =
+        railName === "header"
+          ? ".player-subtitle-page-button"
+          : `.player-subtitle-${railName}-rail .player-dialog-item[data-subtitle-index="${Number(index || 0)}"]`;
       let target = dialog.querySelector(selector);
       if (!target && railName === "options") {
         this.renderSubtitleOptionsRailInPlace({ syncFocus: false });

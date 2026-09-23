@@ -69,11 +69,11 @@
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
     <string name="unsupported_device_title">Телевізор не підтримується</string>
-    <string name="unsupported_device_message">Цей телевізор не відповідає мінімальним вимогам для цієї версії Nuvio TV.</string>
+    <string name="unsupported_device_message">Цей телевізор не відповідає мінімальним вимогам для цієї версії Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Поточна платформа</string>
     <string name="unsupported_device_current_firmware">Поточна прошивка</string>
     <string name="unsupported_device_required_platform">Необхідна платформа</string>
-    <string name="unsupported_device_warning">Ви все одно можете спробувати запустити Nuvio TV, але застосунок може працювати на цьому телевізорі неправильно. Ця конфігурація офіційно не підтримується.</string>
+    <string name="unsupported_device_warning">Ви все одно можете спробувати запустити Nuvio Enhanced, але застосунок може працювати на цьому телевізорі неправильно. Ця конфігурація офіційно не підтримується.</string>
     <string name="unsupported_device_close">Закрити</string>
     <string name="unsupported_device_try_anyway">Усе одно запустити</string>
     <string name="unsupported_device_unavailable">Недоступно</string>

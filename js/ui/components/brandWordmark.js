@@ -36,7 +36,10 @@ export function syncBrandWordmarks(themeName) {
   });
 }
 
-export function renderBrandWordmarkImage({ className = "", alt = "Nuvio" } = {}) {
+export function renderBrandWordmarkImage({ className = "", alt = "Nuvio Enhanced" } = {}) {
   const safeClassName = className ? ` ${escapeHtml(className)}` : "";
-  return `<img src="${getBrandWordmarkAsset()}" class="theme-brand-wordmark${safeClassName}" data-theme-brand-wordmark alt="${escapeHtml(alt)}" />`;
+  return `<span class="enhanced-brand-lockup" role="img" aria-label="${escapeHtml(alt)}">
+    <img src="${getBrandWordmarkAsset()}" class="theme-brand-wordmark${safeClassName}" data-theme-brand-wordmark alt="" />
+    <span class="enhanced-brand-name" aria-hidden="true">ENHANCED</span>
+  </span>`;
 }

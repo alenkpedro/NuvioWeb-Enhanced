@@ -207,6 +207,7 @@ export function createStreamScreenMethods06() {
         this.listScrollTop = this.getListScrollTop(listNode);
         this.scheduleFocusedListItemVisibilityCheck(listNode, target);
       }
+      this.scheduleFocusedStreamPreparation(target);
       return true;
     },
     focusList(list, index) {

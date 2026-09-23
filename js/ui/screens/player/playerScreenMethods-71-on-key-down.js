@@ -2,7 +2,7 @@
 import * as internals from "./playerScreenContext.js";
 
 export function createPlayerScreenMethods71() {
-  const { Router, isBackEvent, isSelectKeyCode } = internals;
+  const { Environment, Router, isBackEvent, isSelectKeyCode } = internals;
 
   return {
     async onKeyDown(event) {
@@ -309,6 +309,15 @@ export function createPlayerScreenMethods71() {
           if (this.focusSkipIntroButton()) {
             return;
           }
+          if (Environment.isWebOS()) {
+            const quickStart = this.getQuickControlStartIndex();
+            if (quickStart >= 0) {
+              this.controlFocusZone = "buttons";
+              this.controlFocusIndex = Math.max(quickStart, this.controlFocusIndex);
+              this.syncControlFocusDom();
+              return;
+            }
+          }
           this.setControlsVisible(false);
           return;
         }
@@ -316,6 +325,9 @@ export function createPlayerScreenMethods71() {
           this.stickyProgressFocus = false;
           this.autoHideControlsAfterSeek = false;
           this.controlFocusZone = "buttons";
+          if (Environment.isWebOS() && this.controlFocusIndex >= this.getQuickControlStartIndex()) {
+            this.controlFocusIndex = 0;
+          }
           this.syncControlFocusDom();
           return;
         }
@@ -337,10 +349,18 @@ export function createPlayerScreenMethods71() {
         return;
       }
       if (keyCode === 38) {
+        if (Environment.isWebOS() && this.controlFocusIndex >= this.getQuickControlStartIndex()) {
+          this.setControlsVisible(false);
+          return;
+        }
         this.focusProgressBar();
         return;
       }
       if (keyCode === 40) {
+        if (Environment.isWebOS() && this.controlFocusIndex >= this.getQuickControlStartIndex()) {
+          this.focusProgressBar();
+          return;
+        }
         this.setControlsVisible(false);
         return;
       }

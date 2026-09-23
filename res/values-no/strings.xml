@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Film</string>
     <string name="type_series">Serie</string>
     <string name="type_unknown">Ukjent</string>
@@ -593,7 +593,7 @@
     <string name="trakt_stat_watched_hours">Sette timer</string>
     <string name="trakt_disconnect">Koble fra</string>
     <string name="trakt_disconnect_title">Koble fra Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Dette vil koble fra Trakt-kontoen din fra Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Dette vil koble fra Trakt-kontoen din fra Nuvio Enhanced.</string>
     <string name="trakt_login">Logge inn</string>
     <string name="trakt_retry">Prøv igjen</string>
     <string name="trakt_back">Tilbake</string>
@@ -967,11 +967,11 @@
     <string name="catalog_see_all_from">fra %1$s</string>
     <string name="catalog_see_all_empty_title">Ingen elementer tilgjengelig</string>
     <string name="catalog_see_all_empty_subtitle">Prøv en annen katalog eller kom tilbake senere</string>
-    <string name="layout_selection_welcome">Velkommen til Nuvio</string>
+    <string name="layout_selection_welcome">Velkommen til Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Velg oppsettet for hjemmeskjermen</string>
     <string name="layout_selection_continue">Fortsett</string>
     <string name="update_title">Appoppdatering</string>
-    <string name="update_installer_required">Bruk Nuvio TV Installer for å oppdatere appen på TV-en.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Dette er nytt</string>
     <string name="update_release_notes_unavailable">Ingen utgivelsesbeskrivelse er tilgjengelig.</string>
     <string name="update_downloading">Laster ned oppdatering</string>
@@ -1044,7 +1044,7 @@
     <string name="autoplay_reuse_binge_group">Bruk bingegruppe på nytt</string>
     <string name="autoplay_reuse_binge_group_sub">Husk og bruk den siste bingegruppen på nytt mellom økter (Fortsett å se, Detaljer osv.).</string>
     <string name="unsupported_device_title">TV-en støttes ikke</string>
-    <string name="unsupported_device_message">Denne TV-en oppfyller ikke minimumskravene for denne versjonen av Nuvio TV.</string>
+    <string name="unsupported_device_message">Denne TV-en oppfyller ikke minimumskravene for denne versjonen av Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Gjeldende plattform</string>
     <string name="unsupported_device_current_firmware">Gjeldende fastvare</string>
     <string name="unsupported_device_required_platform">Påkrevd plattform</string>
@@ -1074,7 +1074,7 @@
     <string name="debrid_device_auth_expired">Denne koden er utløpt. Prøv igjen.</string>
     <string name="debrid_device_auth_failed">Kunne ikke starte påloggingen.</string>
     <string name="debrid_device_auth_connected">%1$s er koblet til på denne enheten.</string>
-    <string name="debrid_device_auth_instructions">Skann QR-koden og skriv inn denne koden for å godkjenne Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Skann QR-koden og skriv inn denne koden for å godkjenne Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Denne påloggingsmetoden er ikke konfigurert i denne versjonen.</string>
     <string name="debrid_disconnect">Koble fra</string>
     <string name="debrid_connected">Tilkoblet</string>
@@ -1424,6 +1424,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Du kan likevel prøve å starte Nuvio TV, men appen fungerer kanskje ikke som den skal på denne TV-en. Denne konfigurasjonen støttes ikke offisielt.</string>
+    <string name="unsupported_device_warning">Du kan likevel prøve å starte Nuvio Enhanced, men appen fungerer kanskje ikke som den skal på denne TV-en. Denne konfigurasjonen støttes ikke offisielt.</string>
     <string name="unsupported_device_try_anyway">Prøv likevel</string>
 </resources>

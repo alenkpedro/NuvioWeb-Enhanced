@@ -268,6 +268,7 @@ export function createPlayerScreenMethods19() {
           return;
         }
         this.pauseOverlayMeta = this.buildPauseOverlayMeta(result.data);
+        this.syncPlayerHeaderArtwork();
         this.renderPauseOverlay();
       } catch (error) {
         if (requestToken === this.pauseOverlayMetaRequestToken) {

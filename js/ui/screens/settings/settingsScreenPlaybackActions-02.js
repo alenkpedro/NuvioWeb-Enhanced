@@ -10,6 +10,9 @@ export function registerPlaybackActionsPart02(model) {
     PREFERRED_SUBTITLE_LANGUAGE_OPTIONS,
     PREFERRED_PLAYBACK_LANGUAGE_OPTIONS,
     SECONDARY_PLAYBACK_LANGUAGE_OPTIONS,
+    STREAM_AUTOPLAY_MODE_OPTIONS,
+    labelForOptionId,
+    translateOptionCaption,
     SUBTITLE_SIZE_OPTIONS,
     SUBTITLE_OFFSET_OPTIONS,
     SUBTITLE_TEXT_COLOR_OPTIONS,
@@ -273,9 +276,12 @@ export function registerPlaybackActionsPart02(model) {
       ? t("settings_p2p_unsupported_subtitle", {}, "Not supported on this TV.")
       : t("settings_p2p_subtitle");
     this.actionMap.set("playback:autoStreamMode", () => {
-      const current = String(PlayerSettingsStore.get().streamAutoPlayMode || "MANUAL");
-      PlayerSettingsStore.set({
-        streamAutoPlayMode: current === "MANUAL" ? "FIRST_STREAM" : "MANUAL"
+      this.openOptionDialog({
+        title: t("autoplay_stream_selection", {}, "Auto Stream Selection"),
+        options: STREAM_AUTOPLAY_MODE_OPTIONS,
+        selectedId: PlayerSettingsStore.get().streamAutoPlayMode,
+        returnFocusKey: "playback:autoStreamMode",
+        onSelect: (option) => PlayerSettingsStore.set({ streamAutoPlayMode: option.id })
       });
     });
     const preferredSubtitle = model.player.subtitleStyle?.preferredLanguage || model.player.subtitleLanguage || "off";
@@ -290,11 +296,11 @@ export function registerPlaybackActionsPart02(model) {
               ${this.renderActionRow({
                 focusKey: "playback:autoStreamMode",
                 title: t("essential_stream_selection", {}, "Stream selection"),
-                subtitle: t("essential_stream_selection_subtitle", {}, "Choose streams manually or play the first available stream."),
-                value:
-                  String(model.player.streamAutoPlayMode || "MANUAL") === "FIRST_STREAM"
-                    ? t("stream_auto_play_first_stream", {}, "First stream")
-                    : t("stream_auto_play_manual_short", {}, "Manual")
+                subtitle: translateOptionCaption(
+                  STREAM_AUTOPLAY_MODE_OPTIONS.find((option) => option.id === model.player.streamAutoPlayMode),
+                  t("autoplay_mode_manual_desc", {}, "Always show the source list and let me choose.")
+                ),
+                value: labelForOptionId(STREAM_AUTOPLAY_MODE_OPTIONS, model.player.streamAutoPlayMode, "Manual (choose stream)")
               })}
               ${this.renderToggleRow({
                 focusKey: "playback:autoplay",

@@ -1,0 +1,461 @@
+/* webOS player panels adapted from https://github.com/ysosrs123/NuvioTV-Fork (GPL-3.0). */
+.player-platform-webos .player-stream-metadata {
+  position: absolute;
+  z-index: 1;
+  top: 48px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-platform-webos .player-stream-metadata.hidden {
+  display: none;
+}
+
+.player-platform-webos .player-controls-overlay.pause-overlay-active .player-stream-metadata {
+  opacity: 0;
+}
+
+.player-platform-webos .player-stream-metadata-chip {
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.player-platform-webos .player-modal-backdrop {
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.player-platform-webos .player-subtitle-modal,
+.player-platform-webos .player-audio-modal {
+  top: auto;
+  right: 64px;
+  bottom: 56px;
+  left: auto;
+  width: min(640px, calc(100vw - 96px));
+  max-height: calc(100vh - 112px);
+  padding: 28px 32px 32px;
+  border: 0;
+  border-radius: 38px;
+  background: rgba(5, 5, 5, 0.96);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  box-sizing: border-box;
+}
+
+.player-platform-webos .player-subtitle-modal {
+  height: min(82vh, 850px);
+}
+
+.player-platform-webos .player-subtitle-header,
+.player-platform-webos .player-audio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 0 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 18px;
+  padding: 0 8px 16px 20px;
+}
+
+.player-platform-webos .player-subtitle-page-button,
+.player-platform-webos .player-audio-page-button {
+  flex: 0 0 auto;
+  min-height: 52px;
+  padding: 8px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.player-platform-webos .player-subtitle-page-button.focused,
+.player-platform-webos .player-audio-page-button.focused {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-subtitle-modal.tracks-only {
+  height: auto;
+  min-height: 260px;
+}
+
+.player-platform-webos .player-audio-modal {
+  height: auto;
+  min-height: 260px;
+  max-height: min(70vh, 720px);
+}
+
+.player-platform-webos .player-audio-modal.settings-page {
+  max-height: min(65vh, 700px);
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-title,
+.player-platform-webos .player-audio-modal .player-dialog-title {
+  flex: 0 0 auto;
+  margin: 0 0 18px;
+  padding: 0 20px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.player-platform-webos .player-subtitle-header .player-dialog-title,
+.player-platform-webos .player-audio-header .player-dialog-title {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.player-platform-webos .player-subtitle-overlay-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.player-platform-webos .player-subtitle-modal.tracks-only .player-subtitle-overlay-grid {
+  flex: 0 1 auto;
+  max-height: min(50vh, 500px);
+}
+
+.player-platform-webos .player-subtitle-rail {
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  padding: 0 4px 2px 0;
+  gap: 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.player-platform-webos .player-subtitle-language-rail {
+  flex: 0 0 auto;
+  max-height: min(30vh, 300px);
+}
+
+.player-platform-webos .player-subtitle-modal.tracks-only .player-subtitle-language-rail {
+  flex: 0 0 auto;
+  max-height: min(50vh, 500px);
+}
+
+.player-platform-webos .player-subtitle-options-rail {
+  flex: 1 1 auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.player-platform-webos .player-subtitle-style-rail {
+  flex: 1 1 auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.player-platform-webos .player-subtitle-modal.settings-page .player-subtitle-overlay-grid {
+  gap: 0;
+}
+
+.player-platform-webos .player-subtitle-rail.hidden {
+  display: none;
+}
+
+.player-platform-webos .player-audio-overlay-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 0;
+  max-height: none;
+  gap: 18px;
+  overflow: hidden;
+}
+
+.player-platform-webos .player-audio-track-list {
+  flex: 0 1 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
+.player-platform-webos .player-audio-controls-list {
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 0;
+  max-height: none;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  overflow-y: auto;
+}
+
+.player-platform-webos .player-audio-control-card {
+  padding: 14px 18px;
+  border: 2px solid transparent;
+  border-radius: 19px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.player-platform-webos .player-audio-control-card.focused {
+  border-color: var(--player-focus-ring);
+  background: var(--player-focus-background);
+}
+
+.player-platform-webos .player-speed-modal {
+  top: auto;
+  right: 64px;
+  bottom: 56px;
+  left: auto;
+  width: 420px;
+  max-height: calc(100vh - 112px);
+  padding: 28px 32px 32px;
+  border-radius: 32px;
+  background: rgba(5, 5, 5, 0.96);
+}
+
+.player-platform-webos .player-speed-modal .player-dialog-title {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.player-platform-webos .player-speed-modal .player-dialog-item {
+  min-height: 62px;
+  padding: 10px 18px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: transparent;
+}
+
+.player-platform-webos .player-speed-modal .player-dialog-item.focused {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-speed-modal .player-dialog-item.focused > * {
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item,
+.player-platform-webos .player-audio-modal .player-dialog-item {
+  min-height: 66px;
+  padding: 12px 22px;
+  border: 2px solid transparent;
+  border-radius: 19px;
+  background: transparent;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item.selected,
+.player-platform-webos .player-audio-modal .player-dialog-item.selected {
+  border-color: transparent;
+  background: rgba(var(--secondary-color-rgb-legacy), 0.13);
+  color: #fff;
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item.focused,
+.player-platform-webos .player-subtitle-modal .player-dialog-item.selected.focused,
+.player-platform-webos .player-audio-modal .player-dialog-item.focused,
+.player-platform-webos .player-audio-modal .player-dialog-item.selected.focused {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+  box-shadow: none;
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item.focused .player-dialog-item-main,
+.player-platform-webos .player-subtitle-modal .player-dialog-item.focused .player-dialog-item-sub,
+.player-platform-webos .player-subtitle-modal .player-dialog-item.focused .player-dialog-item-check,
+.player-platform-webos .player-audio-modal .player-dialog-item.focused .player-dialog-item-main,
+.player-platform-webos .player-audio-modal .player-dialog-item.focused .player-dialog-item-sub,
+.player-platform-webos .player-audio-modal .player-dialog-item.focused .player-dialog-item-check {
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item-main,
+.player-platform-webos .player-audio-modal .player-dialog-item-main {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item-sub,
+.player-platform-webos .player-audio-modal .player-dialog-item-sub {
+  font-size: 21px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-item-check,
+.player-platform-webos .player-audio-modal .player-dialog-item-check {
+  font-size: 30px;
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-step,
+.player-platform-webos .player-audio-modal .player-dialog-step {
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.player-platform-webos .player-subtitle-modal .player-dialog-step.focused,
+.player-platform-webos .player-audio-modal .player-dialog-step.focused {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-episode-panel,
+.player-platform-webos .player-sources-panel {
+  width: min(54.2vw, 1040px);
+  max-width: calc(100vw - 32px);
+  padding: 48px 52px;
+  border: 0;
+  border-radius: 36px 0 0 36px;
+  background: var(--player-background-elevated);
+  box-sizing: border-box;
+}
+
+.player-platform-webos .player-episode-panel-title,
+.player-platform-webos .player-sources-title {
+  font-size: 48px;
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+.player-platform-webos .player-episode-close-btn,
+.player-platform-webos .player-sources-top-btn {
+  height: 64px;
+  padding: 0 30px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.player-platform-webos .player-episode-close-btn.focused,
+.player-platform-webos .player-sources-top-btn.focused {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-episode-season-tabs,
+.player-platform-webos .player-sources-filters {
+  margin-top: 44px;
+  gap: 22px;
+  padding: 4px;
+}
+
+.player-platform-webos .player-episode-season-tab,
+.player-platform-webos .player-sources-filter {
+  height: 84px;
+  padding: 0 38px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.player-platform-webos .player-episode-season-tab.selected,
+.player-platform-webos .player-sources-filter.selected {
+  border-color: var(--player-secondary);
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos .player-episode-season-tab.focused,
+.player-platform-webos .player-sources-filter.focused {
+  box-shadow: 0 0 0 3px var(--player-focus-ring);
+}
+
+.player-platform-webos .player-episode-list,
+.player-platform-webos .player-episode-panel.has-season-tabs .player-episode-list,
+.player-platform-webos .player-sources-list {
+  margin-top: 34px;
+  padding: 4px 6px 24px;
+}
+
+.player-platform-webos .player-episode-item,
+.player-platform-webos .player-source-card {
+  gap: 28px;
+  margin-bottom: 18px;
+  padding: 20px;
+  border: 2px solid transparent;
+  border-radius: 32px;
+  background: var(--player-background-card);
+  box-sizing: border-box;
+}
+
+.player-platform-webos .player-episode-item.focused,
+.player-platform-webos .player-episode-item.selected.focused,
+.player-platform-webos .player-source-card.focused {
+  border-color: var(--player-focus-ring);
+  background: var(--player-focus-background);
+  box-shadow: 0 0 0 3px var(--player-focus-ring);
+  transform: none;
+}
+
+.player-platform-webos .player-episode-thumb-wrap {
+  width: 260px;
+  min-width: 260px;
+  height: 180px;
+  border-radius: 24px;
+}
+
+.player-platform-webos .player-episode-item-title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.player-platform-webos .player-episode-date,
+.player-platform-webos .player-episode-item-subtitle {
+  font-size: 22px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.player-platform-webos .player-episode-code {
+  left: 16px;
+  bottom: 16px;
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.player-platform-webos .player-episode-current {
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+  font-size: 26px;
+}

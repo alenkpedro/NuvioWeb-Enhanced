@@ -109,6 +109,7 @@ export function createPlayerScreenMethods31() {
     updateLoadingVisibility() {
       const overlay = this.uiRefs?.loadingOverlay;
       const bufferingSpinner = this.uiRefs?.bufferingSpinner;
+      this.uiRefs?.root?.classList.toggle("player-awaiting-first-frame", !this.hasPresentedPlaybackFrame);
       if (!overlay) {
         if (!this.loadingVisible) {
           if (this.isStartupGateReleaseReady()) {

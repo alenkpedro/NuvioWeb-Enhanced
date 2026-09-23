@@ -15,12 +15,50 @@ export function createStreamScreenMethods09() {
     t,
     isPerformanceConstrainedRuntime,
     escapeHtml,
+    renderLoadingIndicator,
     renderStreamBadgeContents
   } = internals;
 
   return {
+    renderAutoSourceSearch() {
+      const { title, subtitle } = this.getHeaderMeta();
+      const logo = String(this.params?.logo || "").trim();
+      const backdrop = String(this.getBackdropUrl() || "").trim();
+      const message = t("stream_best_source_search", {}, "Buscando a melhor fonte...");
+      const nextMarkup = `
+          <div class="stream-route-shell${Environment.isWebOS() ? " player-platform-webos" : ""}">
+            <div class="player-loading-overlay" role="status" aria-label="${escapeHtml(message)}">
+              <div class="player-loading-backdrop"${backdrop ? ` style="background-image:url('${escapeHtml(backdrop.replace(/'/g, "%27"))}')"` : ""}></div>
+              <div class="player-loading-gradient"></div>
+              <div class="player-loading-center">
+                <div class="player-loading-identity-anchor">
+                  <div class="player-loading-identity${logo ? " has-logo" : ""}">
+                    ${logo ? `<div class="player-loading-logo-stack"><img class="player-loading-logo player-loading-logo-base" src="${escapeHtml(logo)}" alt="${escapeHtml(title)}" /></div>` : ""}
+                    <div class="player-loading-title">${escapeHtml(title)}</div>
+                  </div>
+                </div>
+                <div class="player-loading-details">
+                  <div class="player-loading-subtitle${subtitle ? "" : " hidden"}">${escapeHtml(subtitle)}</div>
+                  <div class="player-loading-message">${escapeHtml(message)}</div>
+                  ${renderLoadingIndicator({ className: "player-loading-startup-ring" })}
+                </div>
+              </div>
+            </div>
+          </div>`;
+      if (this.renderedMarkup !== nextMarkup) {
+        this.container.innerHTML = nextMarkup;
+        this.renderedMarkup = nextMarkup;
+        this.streamFocusDomCache = null;
+        this.focusedElement = null;
+      }
+      this.hasRenderedStreamRouteShell = true;
+    },
     render() {
       this.cancelScheduledRender();
+      if (this.autoSourceSearchUiActive) {
+        this.renderAutoSourceSearch();
+        return;
+      }
       const previousVirtualModel = this.streamVirtualized ? this.streamVirtualModel : null;
       const previousFocusedIndex = Number(this.focusState?.row);
       const previousFocusedKey =

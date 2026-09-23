@@ -10,6 +10,7 @@ export function createPlayerScreenMethods50() {
     STARTUP_AUDIO_PREFERENCE_RETRY_WINDOW_MS,
     STARTUP_AUDIO_PREFERENCE_RETRY_INTERVAL_MS,
     SUBTITLE_LANGUAGE_OFF_KEY,
+    SUBTITLE_LANGUAGE_EMBEDDED_KEY,
     normalizeTrackLanguageCode,
     normalizeSubtitleLanguageKey,
     extractSubtitleLanguageSetting
@@ -103,7 +104,7 @@ export function createPlayerScreenMethods50() {
         this.scrollSubtitleRailNodeIntoView(languageNode);
       } else if (this.subtitleFocusedRail === "options") {
         this.scrollSubtitleRailNodeIntoView(optionNode);
-      } else {
+      } else if (this.subtitleFocusedRail === "style") {
         this.scrollSubtitleRailNodeIntoView(styleNode);
       }
       this.subtitleDialogScrollMode = "nearest";
@@ -117,7 +118,16 @@ export function createPlayerScreenMethods50() {
       const sourceRank = { internal: 0, addon: 1, off: 2 };
       const locale = typeof I18n.getLocale === "function" ? I18n.getLocale() : undefined;
       const filteredOptions = this.collectSubtitleOptionItems()
-        .filter((entry) => entry.languageKey === normalizedLanguageKey && entry.languageKey !== SUBTITLE_LANGUAGE_OFF_KEY)
+        .filter((entry) => {
+          if (normalizedLanguageKey === SUBTITLE_LANGUAGE_EMBEDDED_KEY) {
+            return Environment.isWebOS() && entry.sourceType === "internal";
+          }
+          return (
+            entry.languageKey === normalizedLanguageKey &&
+            entry.languageKey !== SUBTITLE_LANGUAGE_OFF_KEY &&
+            (!Environment.isWebOS() || entry.sourceType !== "internal")
+          );
+        })
         .sort((left, right) => {
           const sourceDelta = (sourceRank[left.sourceType] ?? 99) - (sourceRank[right.sourceType] ?? 99);
           if (sourceDelta !== 0) {

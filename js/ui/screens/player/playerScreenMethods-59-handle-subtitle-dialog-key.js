@@ -2,7 +2,7 @@
 import * as internals from "./playerScreenContext.js";
 
 export function createPlayerScreenMethods59() {
-  const { isSelectKeyCode, SUBTITLE_LANGUAGE_OFF_KEY, getAudioTrackSupportState, formatAudioTrackDisplay, clamp } = internals;
+  const { Environment, isSelectKeyCode, SUBTITLE_LANGUAGE_OFF_KEY, getAudioTrackSupportState, formatAudioTrackDisplay, clamp } = internals;
 
   return {
     handleSubtitleDialogKey(event) {
@@ -12,6 +12,81 @@ export function createPlayerScreenMethods59() {
       const options = this.getSubtitleOptionsForLanguage(selectedLanguageKey);
       const styleItems = this.getSubtitleStyleControls();
       const styleItem = styleItems[this.subtitleStyleRailIndex];
+
+      if (Environment.isWebOS() && this.subtitleFocusedRail === "header") {
+        if (isSelectKeyCode(keyCode)) {
+          this.subtitleSettingsPage = !this.subtitleSettingsPage;
+          this.subtitleFocusedRail = this.subtitleSettingsPage ? "style" : "language";
+          this.subtitleStyleRailIndex = 0;
+          this.renderSubtitleDialog();
+        } else if (keyCode === 40) {
+          this.subtitleFocusedRail = this.subtitleSettingsPage ? "style" : "language";
+          this.syncSubtitleDialogFocusDom();
+        }
+        return keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40 || isSelectKeyCode(keyCode);
+      }
+
+      if (Environment.isWebOS() && this.subtitleSettingsPage) {
+        if (keyCode === 38 || keyCode === 40) {
+          const nextIndex = this.subtitleStyleRailIndex + (keyCode === 40 ? 1 : -1);
+          if (nextIndex < 0) {
+            this.subtitleFocusedRail = "header";
+          } else {
+            this.subtitleStyleRailIndex = clamp(nextIndex, 0, Math.max(0, styleItems.length - 1));
+          }
+          this.syncSubtitleDialogFocusDom();
+          return true;
+        }
+        if (keyCode === 37 || keyCode === 39) {
+          this.subtitleStyleControlSide = keyCode === 39 ? "plus" : "minus";
+          this.syncSubtitleDialogFocusDom();
+          return true;
+        }
+        if (isSelectKeyCode(keyCode)) {
+          if (styleItem?.id === "delay" && !styleItem.disabled) {
+            this.showSubtitleDelayOverlay();
+          } else if (styleItem && !styleItem.disabled) {
+            this.adjustSubtitleStyleControl(styleItem.id, this.getSubtitleStyleControlDelta(this.subtitleStyleControlSide), {
+              isRepeat: Boolean(event?.repeat)
+            });
+          }
+          return true;
+        }
+      }
+
+      if (Environment.isWebOS() && (keyCode === 38 || keyCode === 40)) {
+        const movingDown = keyCode === 40;
+        if (this.subtitleFocusedRail === "language") {
+          const nextIndex = this.subtitleLanguageRailIndex + (movingDown ? 1 : -1);
+          if (movingDown && nextIndex >= languages.length && options.length) {
+            this.subtitleFocusedRail = "options";
+          } else if (!movingDown && nextIndex < 0) {
+            this.subtitleFocusedRail = "header";
+          } else {
+            this.subtitleLanguageRailIndex = clamp(nextIndex, 0, Math.max(0, languages.length - 1));
+            this.subtitleFocusedLanguageKey = languages[this.subtitleLanguageRailIndex]?.key || SUBTITLE_LANGUAGE_OFF_KEY;
+          }
+        } else if (this.subtitleFocusedRail === "options") {
+          const nextIndex = this.subtitleOptionRailIndex + (movingDown ? 1 : -1);
+          if (!movingDown && nextIndex < 0) {
+            this.subtitleFocusedRail = "language";
+          } else {
+            this.subtitleOptionRailIndex = clamp(nextIndex, 0, Math.max(0, options.length - 1));
+            this.rememberSubtitleOptionFocus(selectedLanguageKey, options, this.subtitleOptionRailIndex);
+          }
+        } else {
+          const nextIndex = this.subtitleStyleRailIndex + (movingDown ? 1 : -1);
+          if (!movingDown && nextIndex < 0) {
+            this.subtitleFocusedRail = options.length ? "options" : "language";
+          } else {
+            this.subtitleStyleRailIndex = clamp(nextIndex, 0, Math.max(0, styleItems.length - 1));
+          }
+        }
+        if (!this.syncSubtitleDialogFocusDom()) {
+          this.renderSubtitleDialog();
+        }
+        return true;
+      }
 
       if (keyCode === 38) {
         if (this.subtitleFocusedRail === "language") {
@@ -82,7 +157,7 @@ export function createPlayerScreenMethods59() {
           }
           return true;
         }
-        if (this.subtitleFocusedRail === "options") {
+        if (this.subtitleFocusedRail === "options" && !Environment.isWebOS()) {
           this.subtitleFocusedRail = "style";
           this.subtitleStyleControlSide = "minus";
           if (!this.syncSubtitleDialogFocusDom()) {

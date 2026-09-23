@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Filmas</string>
     <string name="type_series">Serialas</string>
     <string name="type_unknown">Nežinoma</string>
@@ -533,7 +533,7 @@
     <string name="trakt_stat_watched_hours">Žiūrėta valandų</string>
     <string name="trakt_disconnect">Atsijungti</string>
     <string name="trakt_disconnect_title">Atsijungti nuo „Trakt“?</string>
-    <string name="trakt_disconnect_subtitle">Tai atsies jūsų „Trakt“ paskyrą nuo „Nuvio“.</string>
+    <string name="trakt_disconnect_subtitle">Tai atsies jūsų „Trakt“ paskyrą nuo „Nuvio Enhanced“.</string>
     <string name="trakt_login">Prisijungti</string>
     <string name="trakt_retry">Bandyti dar kartą</string>
     <string name="trakt_back">Atgal</string>
@@ -857,11 +857,11 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="catalog_see_all_from">iš %1$s</string>
     <string name="catalog_see_all_empty_title">Elementų nėra</string>
     <string name="catalog_see_all_empty_subtitle">Šiame kataloge turinio nerasta</string>
-    <string name="layout_selection_welcome">Sveiki atvykę į Nuvio</string>
+    <string name="layout_selection_welcome">Sveiki atvykę į Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Pasirinkite, kaip norite matyti pradinį ekraną</string>
     <string name="layout_selection_continue">Tęsti</string>
     <string name="update_title">Programos atnaujinimas</string>
-    <string name="update_installer_required">Norėdami atnaujinti programą televizoriuje, naudokite Nuvio TV Installer.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Kas naujo</string>
     <string name="update_release_notes_unavailable">Leidimo aprašymas nepasiekiamas.</string>
     <string name="update_downloading">Atsiunčiama…</string>
@@ -931,7 +931,7 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="autoplay_reuse_binge_group">Pakartotinai naudoti „Binge“ grupę</string>
     <string name="autoplay_reuse_binge_group_sub">Įsiminti ir pakartotinai naudoti paskutinę grupę tarp seansų (Tęsti žiūrėjimą, Išsami informacija ir kt.).</string>
     <string name="unsupported_device_title">Televizorius nepalaikomas</string>
-    <string name="unsupported_device_message">Šis televizorius neatitinka minimalių šios „Nuvio TV“ versijos reikalavimų.</string>
+    <string name="unsupported_device_message">Šis televizorius neatitinka minimalių šios „Nuvio Enhanced“ versijos reikalavimų.</string>
     <string name="unsupported_device_current_platform">Dabartinė platforma</string>
     <string name="unsupported_device_current_firmware">Dabartinė programinė aparatinė įranga</string>
     <string name="unsupported_device_required_platform">Reikalinga platforma</string>
@@ -961,7 +961,7 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="debrid_device_auth_expired">Šis kodas nebegalioja. Bandykite dar kartą.</string>
     <string name="debrid_device_auth_failed">Nepavyko pradėti prisijungimo.</string>
     <string name="debrid_device_auth_connected">%1$s prijungtas šiame įrenginyje.</string>
-    <string name="debrid_device_auth_instructions">Nuskaitykite QR kodą ir įveskite šį kodą, kad patvirtintumėte Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Nuskaitykite QR kodą ir įveskite šį kodą, kad patvirtintumėte Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Šis prisijungimo būdas nesukonfigūruotas šioje versijoje.</string>
     <string name="debrid_disconnect">Atjungti</string>
     <string name="debrid_connected">Prijungta</string>
@@ -1311,6 +1311,6 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Vis tiek galite pabandyti paleisti „Nuvio TV“, tačiau programa šiame televizoriuje gali veikti netinkamai. Ši konfigūracija oficialiai nepalaikoma.</string>
+    <string name="unsupported_device_warning">Vis tiek galite pabandyti paleisti „Nuvio Enhanced“, tačiau programa šiame televizoriuje gali veikti netinkamai. Ši konfigūracija oficialiai nepalaikoma.</string>
     <string name="unsupported_device_try_anyway">Vis tiek paleisti</string>
 </resources>

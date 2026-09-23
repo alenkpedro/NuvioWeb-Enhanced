@@ -275,7 +275,11 @@ export function createPlayerScreenMethods20() {
       const episodeTitle = this.getDisplayEpisodeTitle();
       const subtitle = hasEpisodeContext ? [episodeCode, episodeTitle].filter(Boolean).join(" • ") : "";
       const meta = String(this.params?.playerReleaseYear || this.params?.releaseYear || this.params?.year || "").trim();
-      return { title, subtitle, meta };
+      const logoUrl =
+        [this.params?.playerLogoUrl, this.params?.logo]
+          .map((candidate) => String(candidate || "").trim())
+          .find((candidate) => /^https?:\/\//i.test(candidate)) || "";
+      return { title, subtitle, meta, logoUrl };
     },
     getCurrentStreamDisplayName() {
       if (!this.paused) {

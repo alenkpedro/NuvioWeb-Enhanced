@@ -90,6 +90,13 @@ export function createPlayerScreenMethods70() {
 
       const subtitleNode = target.closest?.("[data-subtitle-rail]");
       if (subtitleNode && this.subtitleDialogVisible) {
+        if (subtitleNode.dataset.subtitleRail === "header") {
+          this.subtitleSettingsPage = !this.subtitleSettingsPage;
+          this.subtitleFocusedRail = this.subtitleSettingsPage ? "style" : "language";
+          this.subtitleStyleRailIndex = 0;
+          this.renderSubtitleDialog();
+          return true;
+        }
         return this.handleSubtitleDialogKey({ keyCode: 13 });
       }
 
@@ -101,7 +108,12 @@ export function createPlayerScreenMethods70() {
 
       const audioNode = target.closest?.("[data-audio-column]");
       if (audioNode && this.audioDialogVisible) {
-        if (this.audioFocusedColumn === "tracks") {
+        if (this.audioFocusedColumn === "header") {
+          this.audioSettingsPage = !this.audioSettingsPage;
+          this.audioFocusedColumn = this.audioSettingsPage ? "controls" : this.getAudioEntries().length ? "tracks" : "header";
+          this.audioMixFocusIndex = 0;
+          this.renderAudioDialog();
+        } else if (this.audioFocusedColumn === "tracks") {
           this.applyAudioTrack(this.audioDialogIndex, { rememberSelection: true });
         } else {
           this.activateAudioControl(this.audioMixFocusIndex === 0 ? 1 : 0);
@@ -259,11 +271,23 @@ export function createPlayerScreenMethods70() {
       }
 
       if (this.subtitleDialogVisible) {
+        if (this.subtitleSettingsPage) {
+          this.subtitleSettingsPage = false;
+          this.subtitleFocusedRail = "header";
+          this.renderSubtitleDialog();
+          return true;
+        }
         this.closeSubtitleDialog();
         return true;
       }
 
       if (this.audioDialogVisible) {
+        if (this.audioSettingsPage) {
+          this.audioSettingsPage = false;
+          this.audioFocusedColumn = "header";
+          this.renderAudioDialog();
+          return true;
+        }
         this.closeAudioDialog();
         return true;
       }

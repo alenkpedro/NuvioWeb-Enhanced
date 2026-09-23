@@ -140,9 +140,11 @@ export function createPlayerScreenMethods44() {
           isAssSubtitleCodec(track?.codec_name) ||
           Boolean(windowData.assBody);
         const cues = this.parseSubtitleCues(windowData.body);
+        // Native webOS text is rendered outside CSS; use our overlay when extraction succeeds.
         const shouldUseHtml =
           isTizenEmbeddedTextSubtitleFallbackTrack(track) ||
           this.webOsEmbeddedTextSubtitleUsingHtml ||
+          (Environment.isWebOS() && cues.length > 0) ||
           Boolean(windowData.hasAssOverrideTags) ||
           (isAssTrack && cues.length > 0);
         if (!shouldUseHtml || (!cues.length && !this.webOsEmbeddedTextSubtitleUsingHtml)) {

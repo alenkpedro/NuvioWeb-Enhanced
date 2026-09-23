@@ -62,6 +62,9 @@ export function createPlayerScreenMethods69() {
       if (subtitleNode && this.subtitleDialogVisible) {
         this.subtitleFocusedRail = subtitleNode.dataset.subtitleRail || "language";
         const index = Number(subtitleNode.dataset.subtitleIndex || 0);
+        if (this.subtitleFocusedRail === "header") {
+          return;
+        }
         if (this.subtitleFocusedRail === "language") {
           this.subtitleLanguageRailIndex = index;
           this.subtitleFocusedLanguageKey = this.getSubtitleLanguageRailItems()[index]?.key || SUBTITLE_LANGUAGE_OFF_KEY;
@@ -84,6 +87,9 @@ export function createPlayerScreenMethods69() {
       const audioNode = target?.closest?.("[data-audio-column]");
       if (audioNode && this.audioDialogVisible) {
         this.audioFocusedColumn = audioNode.dataset.audioColumn || "tracks";
+        if (this.audioFocusedColumn === "header") {
+          return;
+        }
         const index = Number(audioNode.dataset.audioIndex || 0);
         if (this.audioFocusedColumn === "tracks") {
           this.audioDialogIndex = index;

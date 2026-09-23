@@ -18,10 +18,10 @@ const requireConfiguredRuntimeEnv = /^(1|true|yes|on)$/i.test(
   String(process.env.NUVIO_REQUIRE_LOCAL_PROPERTIES || "")
 );
 
-const appName = "Nuvio TV";
-const defaultTizenPackageId = "NuvioTV001";
-const defaultTizenAppId = "NuvioTV001.NuvioTV";
-const defaultWidgetUri = "https://nuvio.tv";
+const appName = "Nuvio Enhanced";
+const defaultTizenPackageId = "NuvioEnh01";
+const defaultTizenAppId = "NuvioEnh01.NuvioEnhanced";
+const defaultWidgetUri = "https://nuvio-enhanced.example";
 const tizenEngineFsServiceRelativePath = "services/tizen/enginefs-service.js";
 const tizenEngineFsRuntimeDirRelativePath = "services/tizen/runtime";
 const tizenPluginServiceRelativePath = "services/tizen/plugin-service.js";
@@ -93,7 +93,7 @@ function buildConfigXml({
   const engineFsService = includeEngineFsService
     ? `  <tizen:service id="${engineFsServiceId}" type="ui" auto-restart="false" on-boot="false">
     <tizen:content src="${tizenEngineFsServiceRelativePath}"/>${serviceMetadata}
-    <tizen:name>Nuvio EngineFS Service</tizen:name>
+    <tizen:name>Nuvio Enhanced EngineFS Service</tizen:name>
     <tizen:icon src="icon.png"/>
     <tizen:description>Local torrent streaming service for Nuvio Tizen playback</tizen:description>
     <tizen:category name="http://tizen.org/category/service"/>
@@ -103,7 +103,7 @@ function buildConfigXml({
   const pluginService = includePluginService
     ? `  <tizen:service id="${pluginServiceId}" type="ui" auto-restart="false" on-boot="false">
     <tizen:content src="${tizenPluginServiceRelativePath}"/>
-    <tizen:name>Nuvio Plugin Network Service</tizen:name>
+    <tizen:name>Nuvio Enhanced Plugin Network Service</tizen:name>
     <tizen:icon src="icon.png"/>
     <tizen:description>Bounded network service for Nuvio JavaScript plugins</tizen:description>
     <tizen:category name="http://tizen.org/category/service"/>
@@ -114,7 +114,7 @@ function buildConfigXml({
 <widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="${defaultWidgetUri}" version="${version}" viewmodes="maximized">
   <access origin="*" subdomains="true"/>
   <tizen:application id="${appId}" package="${packageId}" required_version="${compatibilityPolicy.tizenInstallMinimumVersion}"/>
-  <author href="${defaultWidgetUri}">Nuvio</author>
+  <author>Nuvio Enhanced</author>
   <content src="index.html"/>
   <feature name="http://tizen.org/feature/screen.size.all"/>
 ${serviceFeature}  <icon src="icon.png"/>

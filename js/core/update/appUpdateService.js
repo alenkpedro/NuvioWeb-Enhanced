@@ -1,4 +1,11 @@
-const LATEST_RELEASE_URL = "https://api.github.com/repos/NuvioMedia/NuvioTVSmart/releases/latest";
+import { NUVIO_ENHANCED_RELEASE_REPO } from "../../config.js";
+
+export const APP_UPDATE_AVAILABLE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(
+  NUVIO_ENHANCED_RELEASE_REPO
+);
+const LATEST_RELEASE_URL = APP_UPDATE_AVAILABLE
+  ? `https://api.github.com/repos/${NUVIO_ENHANCED_RELEASE_REPO}/releases/latest`
+  : "";
 const DEFAULT_TIMEOUT_MS = 8000;
 const DEFAULT_RETRY_DELAY_MS = 2000;
 const DEFAULT_MAX_ATTEMPTS = 2;
@@ -75,6 +82,9 @@ export async function getLatestAppUpdate({
   fetchImpl = globalThis.fetch,
   timeoutMs = DEFAULT_TIMEOUT_MS
 } = {}) {
+  if (!APP_UPDATE_AVAILABLE) {
+    return null;
+  }
   if (typeof fetchImpl !== "function") {
     throw new Error("Fetch is unavailable");
   }

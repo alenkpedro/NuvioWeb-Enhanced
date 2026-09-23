@@ -115,7 +115,11 @@ export function createPlayerScreenMethods53() {
       this.dismissSubtitleTimingDialog();
       this.hideSubtitleDelayOverlay({ scheduleControls: false });
       this.syncTrackState();
+      if (this.canDiscoverEmbeddedSubtitleTracks() && !this.embeddedSubtitleTracks.length && !this.embeddedSubtitleLoading) {
+        void this.loadEmbeddedSubtitleTracks();
+      }
       this.subtitleDialogVisible = true;
+      this.subtitleSettingsPage = false;
       this.beginSubtitleDialogSession();
       this.audioDialogVisible = false;
       this.speedDialogVisible = false;
@@ -142,6 +146,7 @@ export function createPlayerScreenMethods53() {
     closeSubtitleDialog() {
       this.flushPersistPlayerPresentationSettings();
       this.subtitleDialogVisible = false;
+      this.subtitleSettingsPage = false;
       this.subtitleFocusedRail = "language";
       this.subtitleFocusedLanguageKey = SUBTITLE_LANGUAGE_OFF_KEY;
       this.subtitleStyleControlSide = "minus";

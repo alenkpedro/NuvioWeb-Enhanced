@@ -248,6 +248,12 @@ export const STREAM_AUTOPLAY_MODE_OPTIONS = [
     label: "Auto-play first source"
   },
   {
+    id: "BEST_STREAM",
+    labelKey: "autoplay_mode_best",
+    captionKey: "autoplay_mode_best_desc",
+    label: "Automatically play the best source"
+  },
+  {
     id: "REGEX_MATCH",
     labelKey: "autoplay_mode_regex",
     captionKey: "autoplay_mode_regex_desc",

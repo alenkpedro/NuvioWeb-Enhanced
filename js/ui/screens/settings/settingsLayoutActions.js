@@ -34,6 +34,10 @@ export function registerLayoutActions(model) {
   this.actionMap.set("layout:modernSidebar", () => {
     LayoutPreferences.set({ modernSidebar: !LayoutPreferences.get().modernSidebar });
   });
+  this.actionMap.set("layout:webOsNavigationMode", () => {
+    const currentMode = LayoutPreferences.get().webOsNavigationMode;
+    LayoutPreferences.set({ webOsNavigationMode: currentMode === "sidebar" ? "top" : "sidebar" });
+  });
   this.actionMap.set("layout:modernSidebarBlur", () => {
     LayoutPreferences.set({ modernSidebarBlur: !LayoutPreferences.get().modernSidebarBlur });
   });

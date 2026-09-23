@@ -46,8 +46,8 @@ export const ExperienceModeSelectionScreen = {
     this.container.innerHTML = `
       <main class="experience-mode-screen">
         ${renderBrandWordmarkImage({ className: "experience-mode-logo" })}
-        <h1>${escapeHtml(isLayout ? t("layout_selection_welcome", "Welcome to Nuvio") : t("experience_mode_choose_title", "Choose your Nuvio experience"))}</h1>
-        <p>${escapeHtml(isLayout ? t("layout_selection_subtitle", "Choose how Nuvio should look on your TV.") : t("experience_mode_choose_subtitle", "Start simple or unlock every customization. You can switch anytime."))}</p>
+        <h1>${escapeHtml(isLayout ? t("layout_selection_welcome", "Welcome to Nuvio Enhanced") : t("experience_mode_choose_title", "Choose your Nuvio Enhanced experience"))}</h1>
+        <p>${escapeHtml(isLayout ? t("layout_selection_subtitle", "Choose how Nuvio Enhanced should look on your TV.") : t("experience_mode_choose_subtitle", "Start simple or unlock every customization. You can switch anytime."))}</p>
         <div class="experience-mode-options ${isLayout ? "is-layout" : ""}">
           ${
             isLayout

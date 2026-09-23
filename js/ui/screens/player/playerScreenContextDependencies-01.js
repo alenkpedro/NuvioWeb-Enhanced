@@ -242,6 +242,8 @@ import { STARTUP_AUDIO_PREFERENCE_RETRY_INTERVAL_MS } from "./playerScreenHelper
 
 import { WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS } from "./playerScreenHelpers-01-clock-formatter-cache.js";
 
+import { WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS } from "./playerScreenHelpers-01-clock-formatter-cache.js";
+
 import { WEBOS_NATIVE_STARTUP_LOADING_EXTENSION_MS } from "./playerScreenHelpers-01-clock-formatter-cache.js";
 
 import { WEBOS_HLS_REBUFFER_STALL_TIMEOUT_MS } from "./playerScreenHelpers-01-clock-formatter-cache.js";
@@ -301,6 +303,7 @@ import { LANGUAGE_CODE_ALIASES } from "./playerScreenHelpers-02-language-code-al
 import { LANGUAGE_NAME_ALIASES } from "./playerScreenHelpers-02-language-code-aliases.js";
 
 import { SUBTITLE_LANGUAGE_OFF_KEY } from "./playerScreenHelpers-02-language-code-aliases.js";
+import { SUBTITLE_LANGUAGE_EMBEDDED_KEY } from "./playerScreenHelpers-02-language-code-aliases.js";
 
 import { SUBTITLE_LANGUAGE_UNKNOWN_KEY } from "./playerScreenHelpers-02-language-code-aliases.js";
 
@@ -486,6 +489,7 @@ export {
   STARTUP_AUDIO_PREFERENCE_RETRY_WINDOW_MS,
   STARTUP_AUDIO_PREFERENCE_RETRY_INTERVAL_MS,
   WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS,
+  WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS,
   WEBOS_NATIVE_STARTUP_LOADING_EXTENSION_MS,
   WEBOS_HLS_REBUFFER_STALL_TIMEOUT_MS,
   WEBOS_HLS_PLAYBACK_RECOVERY_MAX_ATTEMPTS,
@@ -516,6 +520,7 @@ export {
   LANGUAGE_CODE_ALIASES,
   LANGUAGE_NAME_ALIASES,
   SUBTITLE_LANGUAGE_OFF_KEY,
+  SUBTITLE_LANGUAGE_EMBEDDED_KEY,
   SUBTITLE_LANGUAGE_UNKNOWN_KEY,
   SUBTITLE_TEXT_COLORS,
   SUBTITLE_OUTLINE_COLORS,

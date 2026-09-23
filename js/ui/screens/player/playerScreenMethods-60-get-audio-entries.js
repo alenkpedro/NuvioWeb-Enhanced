@@ -240,6 +240,7 @@ export function createPlayerScreenMethods60() {
       this.syncTrackState();
       this.applyAudioAmplification();
       this.audioDialogVisible = true;
+      this.audioSettingsPage = false;
       this.subtitleDialogVisible = false;
       this.speedDialogVisible = false;
       this.sourcesPanelVisible = false;
@@ -250,6 +251,9 @@ export function createPlayerScreenMethods60() {
       }
       const selectedEntry = entries.findIndex((entry) => entry.selected);
       this.audioDialogIndex = Math.max(0, selectedEntry >= 0 ? selectedEntry : 0);
+      if (Environment.isWebOS()) {
+        this.audioFocusedColumn = entries.length ? "tracks" : "header";
+      }
       this.setControlsVisible(true, { focus: false });
       this.renderSubtitleDialog();
       this.renderAudioDialog();
@@ -259,6 +263,7 @@ export function createPlayerScreenMethods60() {
     },
     closeAudioDialog() {
       this.audioDialogVisible = false;
+      this.audioSettingsPage = false;
       this.renderAudioDialog();
       this.updateModalBackdrop();
       this.resetControlsAutoHide();

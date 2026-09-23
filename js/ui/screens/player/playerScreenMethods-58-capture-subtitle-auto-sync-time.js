@@ -10,6 +10,7 @@ export function createPlayerScreenMethods58() {
     sanitizeSubtitleAutoSyncCueText,
     isSelectKeyCode,
     SUBTITLE_LANGUAGE_OFF_KEY,
+    Environment,
     t,
     clamp,
     escapeHtml,
@@ -280,6 +281,9 @@ export function createPlayerScreenMethods58() {
         (this.embeddedSubtitleLoading && this.canDiscoverEmbeddedSubtitleTracks())
       );
       const showOptionsRail = selectedLanguageKey !== SUBTITLE_LANGUAGE_OFF_KEY || subtitleLoadingVisible;
+      const webOsSettingsPage = Environment.isWebOS() && Boolean(this.subtitleSettingsPage);
+      dialog.classList.toggle("tracks-only", !showOptionsRail && !webOsSettingsPage);
+      dialog.classList.toggle("settings-page", webOsSettingsPage);
       const supportNotice = this.getSubtitleDialogSupportNotice();
       const optionsMarkup = this.renderSubtitleOptionsMarkup(options, {
         subtitleLoadingVisible,
@@ -287,10 +291,13 @@ export function createPlayerScreenMethods58() {
       });
 
       const nextMarkup = `
-          <div class="player-dialog-title">${escapeHtml(t("subtitle_dialog_title", {}, "Subtitles"))}</div>
+          <div class="player-subtitle-header">
+            <div class="player-dialog-title">${escapeHtml(webOsSettingsPage ? t("subtitle_style_title", {}, "Subtitle Style") : t("subtitle_dialog_title", {}, "Subtitles"))}</div>
+            ${Environment.isWebOS() ? `<button type="button" class="player-subtitle-page-button focusable" data-subtitle-rail="header" data-subtitle-index="0" aria-label="${escapeAttribute(webOsSettingsPage ? t("subtitle_dialog_title", {}, "Subtitles") : t("subtitle_settings_button", {}, "Settings"))}">${escapeHtml(webOsSettingsPage ? t("subtitle_dialog_title", {}, "Subtitles") : t("subtitle_settings_button", {}, "Settings"))}</button>` : ""}
+          </div>
           ${supportNotice ? `<div class="player-dialog-support-message" role="status">${escapeHtml(supportNotice)}</div>` : ""}
           <div class="player-subtitle-overlay-grid">
-            <div class="player-subtitle-rail player-subtitle-language-rail">
+            <div class="player-subtitle-rail player-subtitle-language-rail${webOsSettingsPage ? " hidden" : ""}">
               ${languages
                 .map(
                   (item, index) => `
@@ -302,10 +309,10 @@ export function createPlayerScreenMethods58() {
                 )
                 .join("")}
             </div>
-            <div class="player-subtitle-rail player-subtitle-options-rail${showOptionsRail ? "" : " hidden"}">
+            <div class="player-subtitle-rail player-subtitle-options-rail${showOptionsRail && !webOsSettingsPage ? "" : " hidden"}">
               ${optionsMarkup}
             </div>
-            <div class="player-subtitle-rail player-subtitle-style-rail${showOptionsRail ? "" : " hidden"}">
+            <div class="player-subtitle-rail player-subtitle-style-rail${!Environment.isWebOS() || webOsSettingsPage ? "" : " hidden"}">
               ${styleItems.map((item, index) => this.renderSubtitleStyleItemMarkup(item, index)).join("")}
             </div>
           </div>

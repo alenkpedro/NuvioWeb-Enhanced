@@ -6,6 +6,7 @@ export function createPlayerScreenMethods68() {
     PlayerController,
     subtitleRepository,
     PlayerSettingsStore,
+    Environment,
     subtitleLabel,
     normalizeTrackLanguageCode,
     clamp,
@@ -130,7 +131,11 @@ export function createPlayerScreenMethods68() {
         this.syncControlFocusDom();
         return;
       }
-      const nextIndex = clamp(this.controlFocusIndex + delta, 0, controls.length - 1);
+      const quickStart = Environment.isWebOS() ? this.getQuickControlStartIndex(controls) : -1;
+      const inQuickActions = quickStart >= 0 && this.controlFocusIndex >= quickStart;
+      const firstIndex = inQuickActions ? quickStart : 0;
+      const lastIndex = quickStart >= 0 && !inQuickActions ? quickStart - 1 : controls.length - 1;
+      const nextIndex = clamp(this.controlFocusIndex + delta, firstIndex, lastIndex);
       this.controlFocusZone = "buttons";
       this.controlFocusIndex = nextIndex;
       this.syncControlFocusDom();
@@ -158,6 +163,16 @@ export function createPlayerScreenMethods68() {
       if (action === "playPause") {
         this.togglePause();
         this.renderControlButtons();
+        return;
+      }
+
+      if (action === "restart") {
+        this.dismissPauseOverlay();
+        this.seekPlaybackSeconds(0);
+        if (this.paused) {
+          this.togglePause();
+        }
+        this.updateUiTick();
         return;
       }
 
@@ -245,6 +260,10 @@ export function createPlayerScreenMethods68() {
       if (action === "aspect") {
         this.cycleAspectMode();
         return;
+      }
+      if (action === "stats") {
+        this.statsOverlayVisible = !this.statsOverlayVisible;
+        this.updatePlaybackStatsOverlay();
       }
     }
   };

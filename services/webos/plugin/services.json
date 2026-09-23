@@ -1,9 +1,9 @@
 {
-  "id": "space.nuvio.webos.plugin.service",
+  "id": "space.nuvio.enhanced.plugin.service",
   "description": "Network boundary for Nuvio Web TV JavaScript plugins",
   "services": [
     {
-      "name": "space.nuvio.webos.plugin.service",
+      "name": "space.nuvio.enhanced.plugin.service",
       "description": "Validates and fetches Android-compatible HTTP(S) provider responses for JS plugins",
       "commands": [
         { "name": "ping", "description": "Report plugin service health", "public": true },

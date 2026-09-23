@@ -193,7 +193,7 @@ export function createSettingsScreenMethods11() {
             this.traktStatusMessage =
               option.id === TraktLibrarySourceMode.TRAKT
                 ? t("trakt_library_source_trakt_selected", {}, "Trakt library selected")
-                : t("trakt_library_source_nuvio_selected", {}, "Nuvio library selected");
+                : t("trakt_library_source_nuvio_selected", {}, "Nuvio Enhanced library selected");
           }
         });
       });

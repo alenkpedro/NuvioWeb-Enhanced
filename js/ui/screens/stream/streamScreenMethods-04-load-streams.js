@@ -261,6 +261,9 @@ export function createStreamScreenMethods04() {
         this.streamSearchCompleted = true;
         this.sourceChips = this.sourceChips.map((chip) => (chip.status === "loading" ? { ...chip, status: "error" } : chip));
         this.loading = false;
+        if (!this.streams.length) {
+          this.autoSourceSearchUiActive = false;
+        }
         if (this.streams.length) {
           const visibleStreams = this.getFilteredStreams();
           const maxCardIndex = Math.max(0, visibleStreams.length - 1);
@@ -293,6 +296,7 @@ export function createStreamScreenMethods04() {
         this.streamSearchCompleted = true;
         this.loading = false;
         this.autoResumeUiActive = false;
+        this.autoSourceSearchUiActive = false;
         this.error = error?.message || "Failed to load streams.";
         this.sourceChips = this.sourceChips.map((chip) => (chip.status === "loading" ? { ...chip, status: "error" } : chip));
         this.requestRender();

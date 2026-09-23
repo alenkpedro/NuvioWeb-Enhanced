@@ -52,7 +52,8 @@ export function createSettingsScreenMethods01() {
     getCurrentRailScrollTop() {
       const rail = this.container?.querySelector?.("[data-settings-nav]");
       if (rail) {
-        this.railScrollTop = Number(rail.scrollTop || 0);
+        const horizontal = rail.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon";
+        this.railScrollTop = Number((horizontal ? rail.scrollLeft : rail.scrollTop) || 0);
       }
       return Number.isFinite(this.railScrollTop) ? Math.max(0, this.railScrollTop) : 0;
     },

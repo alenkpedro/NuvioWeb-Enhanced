@@ -1,11 +1,14 @@
 /* eslint-disable no-unused-vars */
 import * as internals from "./streamScreen.js";
+import { rankStreamsForAutoPlay } from "../../../core/streams/streamQualityRanking.js";
 
 export function createStreamScreenMethods05() {
   const {
     Router,
     addonRepository,
     PlayerSettingsStore,
+    DebridSettingsStore,
+    I18n,
     StreamPreferencesStore,
     selectAutoPlayStream,
     isAutoPlayEffectivelyEnabled,
@@ -21,10 +24,18 @@ export function createStreamScreenMethods05() {
 
   return {
     maybeAutoResumeStream({ allLoaded = false } = {}) {
+      if (this.params?.manualSelection) {
+        this.autoResumeUiActive = false;
+        return;
+      }
       if (this.autoResumeAttempted) {
         return;
       }
       const settings = PlayerSettingsStore.get();
+      if (String(settings.streamAutoPlayMode || "MANUAL").toUpperCase() === "MANUAL") {
+        this.autoResumeUiActive = false;
+        return;
+      }
       const reusableStream = settings.streamReuseLastLinkEnabled
         ? StreamPreferencesStore.getValid(
             this.params?.itemId,
@@ -91,16 +102,12 @@ export function createStreamScreenMethods05() {
       if (!allLoaded && !this.autoPlaySelectionReady) {
         return;
       }
-      // "Manual (choose stream)" is authoritative for a fresh stream screen.
-      // Persisted binge groups may still guide an enabled auto-play mode and the
-      // next-episode player flow, but must not turn Continue Watching or Details
-      // into an implicit auto-play entry point.
       const autoPlayMode = String(settings.streamAutoPlayMode || "MANUAL").toUpperCase();
       if (autoPlayMode === "MANUAL" || !isAutoPlayEffectivelyEnabled(settings)) {
         return;
       }
       const savedPreference =
-        settings.streamAutoPlayPreferBingeGroupForNextEpisode && settings.streamAutoPlayReuseBingeGroup
+        autoPlayMode !== "BEST_STREAM" && settings.streamAutoPlayPreferBingeGroupForNextEpisode && settings.streamAutoPlayReuseBingeGroup
           ? StreamPreferencesStore.getEntry(this.params?.itemId, this.params?.videoId || this.params?.itemId)
           : null;
       const preferredBingeGroup = String(savedPreference?.bingeGroup || "").trim();
@@ -109,8 +116,17 @@ export function createStreamScreenMethods05() {
           .map((addon) => String(addon?.displayName || addon?.name || "").trim())
           .filter(Boolean)
       );
-      const selected = selectAutoPlayStream(this.getFilteredStreams(), {
-        mode: settings.streamAutoPlayMode,
+      const visibleStreams = this.getFilteredStreams();
+      const selectionStreams =
+        autoPlayMode === "BEST_STREAM"
+          ? rankStreamsForAutoPlay(visibleStreams, DebridSettingsStore.get().streamPreferences, {
+              ...settings,
+              systemLanguage: I18n.getLocale(),
+              contentLanguage: this.params?.contentLanguage || this.params?.originalLanguage || this.params?.original_language
+            })
+          : visibleStreams;
+      const selected = selectAutoPlayStream(selectionStreams, {
+        mode: autoPlayMode,
         source: settings.streamAutoPlaySource,
         regexPattern: settings.streamAutoPlayRegex,
         installedAddonNames,
@@ -122,6 +138,8 @@ export function createStreamScreenMethods05() {
       if (!selected?.id) {
         if (allLoaded) {
           this.autoPlayAttempted = true;
+          this.autoSourceSearchUiActive = false;
+          this.requestRender({ delayMs: 0 });
         }
         return;
       }
@@ -230,19 +248,22 @@ export function createStreamScreenMethods05() {
       // this on every move via badge hydration) does not re-sort and re-parse
       // the whole source list each keypress. The cache is keyed on the inputs
       // that affect the result and is cleared in render() when data changes.
-      const cache = this._filteredStreamsCache;
-      if (cache && cache.streams === this.streams && cache.chips === this.sourceChips && cache.filter === filter) {
-        return cache.result;
+      let cache = this._filteredStreamsCache;
+      if (!cache || cache.streams !== this.streams || cache.chips !== this.sourceChips) {
+        cache = {
+          streams: this.streams,
+          chips: this.sourceChips,
+          results: new Map([["all", sortStreamsByAddonOrder(this.streams, this.sourceChips)]])
+        };
+        this._filteredStreamsCache = cache;
       }
-      const orderedStreams = sortStreamsByAddonOrder(this.streams, this.sourceChips);
-      const result = filter === "all" ? orderedStreams : orderedStreams.filter((stream) => stream.addonName === filter);
-      this._filteredStreamsCache = {
-        streams: this.streams,
-        chips: this.sourceChips,
-        filter,
-        result
-      };
-      return result;
+      if (!cache.results.has(filter)) {
+        cache.results.set(
+          filter,
+          cache.results.get("all").filter((stream) => stream.addonName === filter)
+        );
+      }
+      return cache.results.get(filter);
     },
     hasPendingSourceLoads(filter = this.addonFilter) {
       if (this.loading) {

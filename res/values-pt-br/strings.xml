@@ -1,5 +1,18 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
+    <string name="nav_main">Navegação principal</string>
+    <string name="layout_webos_top_navigation">Barra de navegação superior</string>
+    <string name="layout_webos_top_navigation_sub">Desative para voltar à barra lateral anterior.</string>
+    <string name="player_stats_title">Estatísticas da reprodução</string>
+    <string name="player_stats_engine">Player</string>
+    <string name="player_stats_resolution">Resolução reproduzida</string>
+    <string name="player_stats_source_resolution">Resolução da fonte</string>
+    <string name="player_stats_file_size">Tamanho informado</string>
+    <string name="player_stats_buffer">Buffer à frente</string>
+    <string name="player_stats_download">Velocidade de download</string>
+    <string name="player_stats_estimated_speed">Banda estimada</string>
+    <string name="player_stats_audio">Áudio selecionado</string>
+    <string name="player_stats_dropped">Quadros perdidos</string>
     <string name="tv_channel_continue_watching">Continuar Assistindo</string>
     <string name="type_movie">Filme</string>
     <string name="type_movies">Filmes</string>
@@ -327,22 +340,22 @@
     <string name="about_licenses_attributions">Licenças e Atribuições</string>
     <string name="about_licenses_attributions_subtitle">Fontes de dados, agradecimentos e licenças Android</string>
     <string name="licenses_attributions_title">Licenças e Atribuições</string>
-    <string name="licenses_attributions_subtitle">Provedores de dados, créditos de serviços e licenças de reprodução Android usadas pelo Nuvio TV.</string>
+    <string name="licenses_attributions_subtitle">Provedores de dados, créditos de serviços e licenças de reprodução Android usadas pelo Nuvio Enhanced.</string>
     <string name="licenses_attributions_section_app">LICENÇA DO APP</string>
     <string name="licenses_attributions_section_data">DADOS e SERVIÇOS</string>
     <string name="licenses_attributions_section_playback">LICENÇAS DE REPRODUÇÃO ANDROID</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">Código-fonte e os termos de licença estão disponíveis no repositório do projeto. Licenciado sob a GNU General Public License v3.0.</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">O Nuvio utiliza a API do TMDB para metadados de filmes e séries, artes, trailers, elenco, detalhes de produção, coleções e recomendações. Este produto usa a API do TMDB, mas não é endossado ou certificado pelo TMDB.</string>
+    <string name="licenses_attributions_tmdb_body">O Nuvio Enhanced utiliza a API do TMDB para metadados de filmes e séries, artes, trailers, elenco, detalhes de produção, coleções e recomendações. Este produto usa a API do TMDB, mas não é endossado ou certificado pelo TMDB.</string>
     <string name="licenses_attributions_trakt_title">Trakt</string>
-    <string name="licenses_attributions_trakt_body">O Nuvio conecta-se ao Trakt para autenticação de contas, histórico de assistidos, sincronização de progresso, dados de biblioteca, avaliações, listas e comentários. O Nuvio não é afiliado nem endossado pelo Trakt.</string>
+    <string name="licenses_attributions_trakt_body">O Nuvio Enhanced conecta-se ao Trakt para autenticação de contas, histórico de assistidos, sincronização de progresso, dados de biblioteca, avaliações, listas e comentários. O Nuvio Enhanced não é afiliado nem endossado pelo Trakt.</string>
     <string name="licenses_attributions_mdblist_title">MDBList</string>
-    <string name="licenses_attributions_mdblist_body">O Nuvio utiliza o MDBList para avaliações e dados de provedores de pontuação externa. O Nuvio não é afiliado nem endossado pelo MDBList.</string>
+    <string name="licenses_attributions_mdblist_body">O Nuvio Enhanced utiliza o MDBList para avaliações e dados de provedores de pontuação externa. O Nuvio Enhanced não é afiliado nem endossado pelo MDBList.</string>
     <string name="licenses_attributions_introdb_title">IntroDB</string>
-    <string name="licenses_attributions_introdb_body">O Nuvio utiliza a API do IntroDB para introduções, recaps, créditos e marcações de prévias fornecidas pela comunidade, usadas nos controles de pular. O Nuvio não é afiliado nem endossado pelo IntroDB.</string>
+    <string name="licenses_attributions_introdb_body">O Nuvio Enhanced utiliza a API do IntroDB para introduções, recaps, créditos e marcações de prévias fornecidas pela comunidade, usadas nos controles de pular. O Nuvio Enhanced não é afiliado nem endossado pelo IntroDB.</string>
     <string name="licenses_attributions_imdb_title">IMDb Conjuntos de Dados Não-Comerciais</string>
-    <string name="licenses_attributions_imdb_body">O Nuvio utiliza conjuntos de dados não-comerciais do IMDb, incluindo title.ratings.tsv.gz, para avaliações e contagem de votos do IMDb. Informações cortesia do IMDb (https://www.imdb.com). Usado com permissão. Os dados do IMDb são para uso pessoal e não-comercial sob os termos do IMDb.</string>
+    <string name="licenses_attributions_imdb_body">O Nuvio Enhanced utiliza conjuntos de dados não-comerciais do IMDb, incluindo title.ratings.tsv.gz, para avaliações e contagem de votos do IMDb. Informações cortesia do IMDb (https://www.imdb.com). Usado com permissão. Os dados do IMDb são para uso pessoal e não-comercial sob os termos do IMDb.</string>
     <string name="licenses_attributions_exoplayer_title">AndroidX Media3 ExoPlayer 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">Usado como motor de reprodução Android. Licenciado sob a Apache License, Versão 2.0.</string>
     <string name="licenses_attributions_libmpv_title">libmpv / libmpv-android</string>
@@ -368,7 +381,7 @@
     <string name="settings_advanced_subtitle">Desempenho, navegação, cache e diagnósticos</string>
     <string name="experience_mode_essential">Essencial</string>
     <string name="experience_mode_advanced">Avançado</string>
-    <string name="experience_mode_choose_title">Escolha sua experiência Nuvio</string>
+    <string name="experience_mode_choose_title">Escolha sua experiência Nuvio Enhanced</string>
     <string name="experience_mode_choose_subtitle">Simples ou completo, mude a qualquer hora</string>
     <string name="experience_mode_essential_card_subtitle">Configurações básicas, addons e Trakt</string>
     <string name="experience_mode_advanced_card_subtitle">Configurações, layout, catálogo e diagnósticos</string>
@@ -574,8 +587,8 @@
     <string name="playback_player_ask_desc">Escolher player sempre</string>
     <string name="playback_player_auto">Automático (Melhor para conteúdo)</string>
     <string name="playback_player_auto_desc">ExoPlayer: Filmes/Séries · MPV: Animes</string>
-    <string name="playback_engine_exoplayer_desc">Compatível com recursos atuais do Nuvio</string>
-    <string name="playback_engine_mvplayer_desc">Usa libmpv com OSD do Nuvio (Experimental)</string>
+    <string name="playback_engine_exoplayer_desc">Compatível com recursos atuais do Nuvio Enhanced</string>
+    <string name="playback_engine_mvplayer_desc">Usa libmpv com OSD do Nuvio Enhanced (Experimental)</string>
     <string name="video_section">Vídeo</string>
     <string name="audio_trailer_section">Trailer</string>
     <string name="audio_autoplay_trailers">Reproduzir trailers Automaticamente</string>
@@ -708,6 +721,7 @@
     <string name="cache_duration_days_hours">%1$dd %2$dh</string>
     <string name="autoplay_mode_manual">Manual (escolher fonte)</string>
     <string name="autoplay_mode_first">Reproduzir automaticamente a primeira fonte</string>
+    <string name="autoplay_mode_best">Reproduzir automaticamente a melhor fonte</string>
     <string name="autoplay_mode_regex">Reprodução automática por palavra-chave (Regex)</string>
     <string name="autoplay_stream_selection">Seleção automática de fonte</string>
     <string name="autoplay_next_episode">Autorreproduzir próximo episódio</string>
@@ -740,6 +754,7 @@
     <string name="autoplay_no_items">Nenhum item disponível</string>
     <string name="autoplay_mode_manual_desc">Escolha sempre a fonte na lista exibida.</string>
     <string name="autoplay_mode_first_desc">Reproduza a primeira fonte disponível.</string>
+    <string name="autoplay_mode_best_desc">Priorize o idioma de áudio preferido e depois a melhor resolução e qualidade.</string>
     <string name="autoplay_mode_regex_desc">Reproduza fonte que coincidir com as palavras-chave (Regex).</string>
     <string name="autoplay_scope_all_desc">Use tanto addons quanto plugins.</string>
     <string name="autoplay_scope_addons_desc">Considere apenas fontes de addons instalados.</string>
@@ -924,7 +939,7 @@
     <string name="debrid_disconnect">Desconectar</string>
     <string name="debrid_device_auth_connected">%1$s está conectado neste dispositivo.</string>
     <string name="debrid_device_auth_starting">Iniciando login seguro...</string>
-    <string name="debrid_device_auth_instructions">Escaneie o QR Code e digite este código para aprovar o Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Escaneie o QR Code e digite este código para aprovar o Nuvio Enhanced.</string>
     <string name="debrid_device_auth_code_copied">Código copiado.</string>
     <string name="debrid_device_auth_waiting">Aguardando aprovação...</string>
     <string name="debrid_device_auth_failed">Não foi possível iniciar o login.</string>
@@ -1084,9 +1099,9 @@
     <string name="trakt_library_source_dialog_title">Fonte para Biblioteca</string>
     <string name="trakt_library_source_dialog_subtitle">Escolha onde salvar e gerenciar os itens da sua biblioteca</string>
     <string name="trakt_library_source_trakt">Trakt</string>
-    <string name="trakt_library_source_nuvio">Nuvio</string>
+    <string name="trakt_library_source_nuvio">Nuvio Enhanced</string>
     <string name="trakt_library_source_trakt_selected">Biblioteca Trakt selecionada</string>
-    <string name="trakt_library_source_nuvio_selected">Biblioteca Nuvio selecionada</string>
+    <string name="trakt_library_source_nuvio_selected">Biblioteca Nuvio Enhanced selecionada</string>
     <string name="trakt_setting_on">Ativado</string>
     <string name="trakt_setting_off">Desativado</string>
     <string name="trakt_watch_progress_trakt_selected">Fonte de progresso definida para Trakt</string>
@@ -1118,7 +1133,7 @@
     <string name="trakt_stat_watched_hours">Horas assistidas</string>
     <string name="trakt_disconnect">Desconectar</string>
     <string name="trakt_disconnect_title">Desconectar Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Isso removerá sua conta Trakt do Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Isso removerá sua conta Trakt do Nuvio Enhanced.</string>
     <string name="trakt_login">Login</string>
     <string name="trakt_retry">Tentar novamente</string>
     <string name="trakt_back">Voltar</string>
@@ -1286,6 +1301,7 @@
     <string name="stream_no_streams">Nenhuma fonte encontrada</string>
     <string name="stream_no_streams_hint">Tente instalar mais addons para encontrar links</string>
     <string name="stream_finding_source">Buscando fontes…</string>
+    <string name="stream_best_source_search">Buscando a melhor fonte...</string>
     <string name="debrid_resolving_stream">Processando fonte Debrid…</string>
     <string name="debrid_stale_stream">Este resultado Debrid expirou. Atualizando fontes.</string>
     <string name="debrid_missing_api_key">Adicione uma chave de API Debrid em Ajustes.</string>
@@ -1294,7 +1310,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">Fontes P2P</string>
-    <string name="p2p_consent_body">Esta fonte usa tecnologia peer-to-peer (P2P). Ao habilitar o P2P, você reconhece e concorda que:\n\n\u2022 Seu endereço IP ficará visível para outros peers na rede\n\u2022 Você é o único responsável pelo conteúdo que acessa\n\u2022 Você confirma que possui o direito legal de transmitir este conteúdo em sua jurisdição\n\u2022 O Nuvio não hospeda, distribui ou controla nenhum conteúdo P2P\n\u2022 O Nuvio não se responsabiliza por quaisquer consequências legais decorrentes do uso de streaming P2P\n\nVocê usa este recurso inteiramente por sua conta e risco. O P2P pode ser desativado a qualquer momento nas Configurações.</string>
+    <string name="p2p_consent_body">Esta fonte usa tecnologia peer-to-peer (P2P). Ao habilitar o P2P, você reconhece e concorda que:\n\n\u2022 Seu endereço IP ficará visível para outros peers na rede\n\u2022 Você é o único responsável pelo conteúdo que acessa\n\u2022 Você confirma que possui o direito legal de transmitir este conteúdo em sua jurisdição\n\u2022 O Nuvio Enhanced não hospeda, distribui ou controla nenhum conteúdo P2P\n\u2022 O Nuvio Enhanced não se responsabiliza por quaisquer consequências legais decorrentes do uso de streaming P2P\n\nVocê usa este recurso inteiramente por sua conta e risco. O P2P pode ser desativado a qualquer momento nas Configurações.</string>
     <string name="p2p_consent_enable">Ativar P2P</string>
     <string name="p2p_consent_cancel">Cancelar</string>
     <string name="settings_p2p_title">Fonte P2P</string>
@@ -1399,6 +1415,7 @@
     <string name="player_aspect_mode_slight_zoom">Zoom leve</string>
     <string name="player_aspect_mode_cinema_zoom">Zoom cinema</string>
     <string name="audio_dialog_title">Áudio</string>
+    <string name="audio_settings_button">Ajustes</string>
     <string name="audio_dialog_tab_tracks">Áudio</string>
     <string name="audio_dialog_tab_mix">Mixagem</string>
     <string name="audio_delay_label">Atraso de áudio</string>
@@ -1418,11 +1435,12 @@
     <string name="audio_maintain_original_audio_on_downmix_title">Manter volume original na mixagem</string>
     <string name="audio_maintain_original_audio_on_downmix_subtitle">Se desativado, a normalização da mixagem pode reduzir o volume geral do áudio.</string>
     <string name="subtitle_dialog_title">Legendas</string>
+    <string name="subtitle_settings_button">Ajustes</string>
     <string name="subtitle_no_builtin">Sem legendas embutidas</string>
     <string name="subtitle_loading_addon">Carregando legendas dos addons…</string>
     <string name="subtitle_no_addon">Nenhuma legenda de addon disponível</string>
     <string name="subtitle_text_color">Cor do texto</string>
-    <string name="subtitle_outline_color">Cor do contorno</string>
+    <string name="subtitle_outline_color">Cor da sombra</string>
     <string name="subtitle_reset_defaults">Redefinir padrões</string>
     <string name="subtitle_tab_builtin">Embutidas</string>
     <string name="subtitle_tab_addons">Addons</string>
@@ -1436,7 +1454,7 @@
     <string name="subtitle_section_advanced">Avançado</string>
     <string name="subtitle_font_size">Tamanho da fonte</string>
     <string name="subtitle_bold">Negrito</string>
-    <string name="subtitle_outline">Contorno</string>
+    <string name="subtitle_outline">Sombra da legenda</string>
     <string name="subtitle_bottom_offset">Altura da legenda</string>
     <string name="subtitle_on">Ligado</string>
     <string name="subtitle_off">Desligado</string>
@@ -1448,7 +1466,7 @@
     <string name="subtitle_style_bold">Negrito</string>
     <string name="subtitle_style_text_color">Cor do texto</string>
     <string name="subtitle_style_text_opacity">Opacidade do Texto</string>
-    <string name="subtitle_style_outline">Contorno</string>
+    <string name="subtitle_style_outline">Sombra</string>
     <string name="subtitle_style_bottom_offset">Altura da legenda</string>
     <string name="subtitle_style_defaults">Padrões</string>
     <string name="subtitle_style_on">Ligado</string>
@@ -1721,11 +1739,11 @@
     <string name="catalog_see_all_from">de %1$s</string>
     <string name="catalog_see_all_empty_title">Nada por aqui</string>
     <string name="catalog_see_all_empty_subtitle">Tente outro catálogo ou volte mais tarde</string>
-    <string name="layout_selection_welcome">Bem-vindo ao Nuvio</string>
+    <string name="layout_selection_welcome">Bem-vindo ao Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Escolha o layout da sua tela inicial</string>
     <string name="layout_selection_continue">Continuar</string>
     <string name="update_title">Atualização do App</string>
-    <string name="update_installer_required">Use o Nuvio TV Installer para atualizar o app na TV.</string>
+    <string name="update_installer_required">Instale o pacote mais recente do Nuvio Enhanced na sua TV.</string>
     <string name="update_release_notes">Notas de versão</string>
     <string name="update_release_notes_unavailable">Nenhuma descrição da versão está disponível.</string>
     <string name="update_downloading">Baixando atualização</string>
@@ -1825,6 +1843,9 @@
     <string name="ratings_episode_label">E%1$d</string>
     <string name="cd_play">Assistir</string>
     <string name="cd_pause">Pausar</string>
+    <string name="player_control_play">Reproduzir</string>
+    <string name="player_restart">Reiniciar</string>
+    <string name="player_stream_metadata">Detalhes da fonte</string>
     <string name="cd_subtitles">Legendas</string>
     <string name="cd_audio_tracks">Faixas de áudio</string>
     <string name="cd_sources">Fontes</string>
@@ -1852,7 +1873,7 @@
     <string name="cd_preview">Pré-visualizar</string>
     <string name="cd_test">Testar</string>
     <string name="cd_unlink">Desvincular</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Logo Trakt</string>
     <string name="cd_trakt_qr">QR de ativação Trakt</string>
     <string name="cd_imdb">IMDb</string>
@@ -1863,7 +1884,7 @@
     <string name="cd_expand">Expandir %1$s</string>
     <string name="cd_collapse">Recolher %1$s</string>
     <string name="cd_qr_login">Código QR de login</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Login realizado com sucesso</string>
     <string name="debug_generate_description">Item %1$s gerado em debug #%2$d</string>
     <string name="debug_generate_result_failed">Falha: %1$s</string>
@@ -2000,7 +2021,7 @@
     <string name="collections_editor_tmdb_list_helper">Exemplo: https://www.themoviedb.org/list/8504994 ou 8504994.</string>
     <string name="collections_editor_tmdb_person_id">ID da pessoa</string>
     <string name="collections_editor_tmdb_person_helper">Exemplo: https://www.themoviedb.org/person/31-tom-hanks ou 31.</string>
-    <string name="collections_editor_tmdb_title_helper">Exibido como o nome da fileira/aba. Se estiver em branco, o Nuvio criará um baseado na fonte.</string>
+    <string name="collections_editor_tmdb_title_helper">Exibido como o nome da fileira/aba. Se estiver em branco, o Nuvio Enhanced criará um baseado na fonte.</string>
     <string name="collections_editor_tmdb_quick_genres">Gêneros rápidos</string>
     <string name="collections_editor_tmdb_quick_languages">Idiomas rápidos</string>
     <string name="collections_editor_tmdb_quick_countries">Países rápidos</string>
@@ -2165,7 +2186,7 @@
     <string name="autoplay_regex_preset_english">Inglês</string>
     <string name="autoplay_regex_preset_no_cam_ts">Sem CAM/TS</string>
     <string name="autoplay_regex_preset_no_remux_hdr">Sem REMUX/HDR</string>
-    <string name="playback_player_internal_desc">Usar player interno do NuvioTV</string>
+    <string name="playback_player_internal_desc">Usar player interno do Nuvio Enhanced</string>
     <string name="player_torrent_peer_info">%1$d seeds · %2$d peers</string>
     <string name="player_torrent_buffered_status">%1$s armazenado · %2$s · %3$s</string>
     <string name="player_torrent_status">%1$s · %2$s</string>
@@ -2480,7 +2501,7 @@
     <string name="player_aspect_fill">Preencher</string>
     <string name="subtitle_loading_builtin">Carregando faixas de legenda…</string>
     <string name="subtitle_none_forced_only">Nenhuma (somente forçadas)</string>
-    <string name="subtitle_style_outline_color">Cor do contorno</string>
+    <string name="subtitle_style_outline_color">Cor da sombra</string>
     <string name="library_message_synced">Biblioteca sincronizada</string>
     <string name="cast_detail_known_for">Conhecido por</string>
     <string name="common.auto">Automático</string>
@@ -2577,6 +2598,7 @@
     <string name="sidebar.profileFallback">Perfil</string>
     <string name="sidebar.switchProfile">Trocar perfil</string>
     <string name="settings.about.portedBy">Portado por WhiteGiso e edoedac0.</string>
+    <string name="settings.about.forkBy">Fork Nuvio Enhanced por @pdr.alnk.</string>
     <string name="settings.account.signOutSubtitle">Desconecte esta TV da sua conta.</string>
     <string name="settings.appearance.themes.amber">Âmbar</string>
     <string name="settings.appearance.themes.crimson">Carmesim</string>
@@ -2640,7 +2662,7 @@
     <string name="skip_outro">Pular encerramento</string>
     <string name="common_all">Todos</string>
     <string name="unsupported_device_title">TV não compatível</string>
-    <string name="unsupported_device_message">Esta TV não atende aos requisitos mínimos para esta versão do Nuvio TV.</string>
+    <string name="unsupported_device_message">Esta TV não atende aos requisitos mínimos para esta versão do Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Plataforma atual</string>
     <string name="unsupported_device_current_firmware">Firmware atual</string>
     <string name="unsupported_device_required_platform">Plataforma necessária</string>
@@ -2650,8 +2672,8 @@
     <string name="subtitle_position_subtitle">Move as legendas para cima ou para baixo na tela.</string>
     <string name="subtitle_font_size_subtitle">Tamanho do texto usado nas legendas durante a reprodução.</string>
     <string name="subtitle_bold_subtitle">Exibe o texto das legendas em negrito.</string>
-    <string name="subtitle_outline_subtitle">Desenha um contorno ao redor do texto das legendas para melhorar a legibilidade.</string>
-    <string name="subtitle_outline_color_subtitle">Cor do contorno das legendas.</string>
+    <string name="subtitle_outline_subtitle">Projeta uma sombra suave abaixo do texto das legendas.</string>
+    <string name="subtitle_outline_color_subtitle">Cor da sombra das legendas.</string>
     <string name="subtitle_text_color_subtitle">Cor do texto das legendas.</string>
     <string name="player_error_web_headers_unsupported">Esta fonte não é compatível com o player deste dispositivo porque exige cabeçalhos de requisição especiais. Tente outra fonte ou entre em contato com o provedor do complemento.</string>
     <string name="appearance_settings_style">Estilo das Configurações</string>
@@ -2705,9 +2727,9 @@
     <string name="playback_net_http2_sub">Ativa o protocolo HTTP/2 para conexões de rede, permitindo multiplexação de requisições e conexões mais rápidas.</string>
     <string name="playback_estimated_memory_usage">Uso estimado de memória: %1$d / %2$d MB</string>
     <string name="licenses_attributions_premiumize_title">Premiumize</string>
-    <string name="licenses_attributions_premiumize_body">O Nuvio se conecta ao Premiumize para autenticação de conta, acesso à biblioteca na nuvem, verificação de cache e recursos de reprodução na nuvem. O Nuvio não é afiliado ou endossado pelo Premiumize.</string>
+    <string name="licenses_attributions_premiumize_body">O Nuvio Enhanced se conecta ao Premiumize para autenticação de conta, acesso à biblioteca na nuvem, verificação de cache e recursos de reprodução na nuvem. O Nuvio Enhanced não é afiliado ou endossado pelo Premiumize.</string>
     <string name="licenses_attributions_torbox_title">TorBox</string>
-    <string name="licenses_attributions_torbox_body">O Nuvio se conecta ao TorBox para autenticação de conta, acesso à biblioteca na nuvem, verificação de cache e recursos de reprodução na nuvem. O Nuvio não é afiliado ou endossado pelo TorBox.</string>
+    <string name="licenses_attributions_torbox_body">O Nuvio Enhanced se conecta ao TorBox para autenticação de conta, acesso à biblioteca na nuvem, verificação de cache e recursos de reprodução na nuvem. O Nuvio Enhanced não é afiliado ou endossado pelo TorBox.</string>
     <string name="debrid_selection_count_value">{{count}} selecionado</string>
     <string name="cloud_library_search_label">Pesquisar na biblioteca em nuvem</string>
     <string name="cloud_library_search_placeholder">Pesquisar arquivos</string>
@@ -2841,6 +2863,6 @@
     <string name="auth_qr_terms_prefix">Ao se cadastrar ou entrar, você concorda com os</string>
     <string name="auth_qr_terms_link">Termos</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Você pode tentar iniciar o Nuvio TV mesmo assim, mas o aplicativo pode não funcionar corretamente nesta TV. Esta configuração não tem suporte oficial.</string>
+    <string name="unsupported_device_warning">Você pode tentar iniciar o Nuvio Enhanced mesmo assim, mas o aplicativo pode não funcionar corretamente nesta TV. Esta configuração não tem suporte oficial.</string>
     <string name="unsupported_device_try_anyway">Tentar mesmo assim</string>
 </resources>

@@ -84,11 +84,11 @@
     <string name="auth_qr_terms_link">Uslove korišćenja</string>
     <string name="auth_qr_manual_instruction">Ili idite na %1$s i unesite</string>
     <string name="unsupported_device_title">TV nije podržan</string>
-    <string name="unsupported_device_message">Ovaj TV ne ispunjava minimalne zahteve za ovu verziju aplikacije Nuvio TV.</string>
+    <string name="unsupported_device_message">Ovaj TV ne ispunjava minimalne zahteve za ovu verziju aplikacije Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Trenutna platforma</string>
     <string name="unsupported_device_current_firmware">Trenutni firmver</string>
     <string name="unsupported_device_required_platform">Potrebna platforma</string>
-    <string name="unsupported_device_warning">Ipak možete pokušati da pokrenete Nuvio TV, ali aplikacija možda neće ispravno raditi na ovom televizoru. Ova konfiguracija nije zvanično podržana.</string>
+    <string name="unsupported_device_warning">Ipak možete pokušati da pokrenete Nuvio Enhanced, ali aplikacija možda neće ispravno raditi na ovom televizoru. Ova konfiguracija nije zvanično podržana.</string>
     <string name="unsupported_device_close">Zatvori</string>
     <string name="unsupported_device_try_anyway">Ipak pokreni</string>
     <string name="unsupported_device_unavailable">Nije dostupno</string>

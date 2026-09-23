@@ -9,6 +9,7 @@ export function createSettingsScreenMethods12() {
     bindRootSidebarEvents,
     renderRootSidebar,
     getLatestAppUpdate,
+    APP_UPDATE_AVAILABLE,
     showAppUpdatePrompt,
     CURRENT_APP_VERSION,
     SETTINGS_VERSION_LABEL,
@@ -119,18 +120,19 @@ export function createSettingsScreenMethods12() {
       });
       this.actionMap.set("about:supporters", () => Router.navigate("supportersContributors"));
       this.actionMap.set("about:licenses", () => Router.navigate("licensesAttributions"));
-      this.actionMap.set("about:checkUpdates", async () => {
-        this.aboutUpdateStatus = t("update_checking", {}, "Checking for updates…");
-        await this.render({ refreshModel: false });
-        try {
-          const update = await getLatestAppUpdate({ currentVersion: CURRENT_APP_VERSION });
-          this.aboutUpdateStatus = update ? String(update.tag || "") : t("update_latest_version", {}, "You’re using the latest version.");
-          if (update) showAppUpdatePrompt(update);
-        } catch (_) {
-          this.aboutUpdateStatus = t("update_error_check_failed", {}, "Update check failed");
-        }
-        await this.render({ refreshModel: false });
-      });
+      if (APP_UPDATE_AVAILABLE)
+        this.actionMap.set("about:checkUpdates", async () => {
+          this.aboutUpdateStatus = t("update_checking", {}, "Checking for updates…");
+          await this.render({ refreshModel: false });
+          try {
+            const update = await getLatestAppUpdate({ currentVersion: CURRENT_APP_VERSION });
+            this.aboutUpdateStatus = update ? String(update.tag || "") : t("update_latest_version", {}, "You’re using the latest version.");
+            if (update) showAppUpdatePrompt(update);
+          } catch (_) {
+            this.aboutUpdateStatus = t("update_error_check_failed", {}, "Update check failed");
+          }
+          await this.render({ refreshModel: false });
+        });
       this.actionMap.set("about:debugConsole", () => Router.navigate("debugConsole"));
 
       return `
@@ -144,15 +146,20 @@ export function createSettingsScreenMethods12() {
               })}
               <p class="settings-about-copy">${t("settings.about.madeWithLove")}</p>
               <p class="settings-about-copy">${t("settings.about.version", { version: SETTINGS_VERSION_LABEL })}</p>
+              <p class="settings-about-copy">${t("settings.about.forkBy")}</p>
               <p class="settings-about-copy">${t("settings.about.portedBy")}</p>
             </div>
             <div class="settings-stack">
-              ${this.renderActionRow({
-                focusKey: "about:checkUpdates",
-                title: t("about_check_updates", {}, "Check for updates"),
-                subtitle:
-                  this.aboutUpdateStatus || t("about_check_updates_subtitle", {}, "Check the latest release for manual installation")
-              })}
+              ${
+                APP_UPDATE_AVAILABLE
+                  ? this.renderActionRow({
+                      focusKey: "about:checkUpdates",
+                      title: t("about_check_updates", {}, "Check for updates"),
+                      subtitle:
+                        this.aboutUpdateStatus || t("about_check_updates_subtitle", {}, "Check the latest release for manual installation")
+                    })
+                  : ""
+              }
               ${this.renderActionRow({
                 focusKey: "about:privacy",
                 title: t("settings.about.privacyPolicy.title"),
@@ -255,7 +262,8 @@ export function createSettingsScreenMethods12() {
           this.railScrollNode.removeEventListener("scroll", this.handleRailScrollBound);
         }
         this.handleRailScrollBound = () => {
-          this.railScrollTop = Number(navSlot.scrollTop || 0);
+          const horizontal = navSlot.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon";
+          this.railScrollTop = Number((horizontal ? navSlot.scrollLeft : navSlot.scrollTop) || 0);
           updateSettingsRailIndicators(navSlot);
         };
         navSlot.addEventListener("scroll", this.handleRailScrollBound, { passive: true });
@@ -266,8 +274,11 @@ export function createSettingsScreenMethods12() {
           cancelAnimationFrame(navSlot.settingsScrollAnimationFrame);
           navSlot.settingsScrollAnimationFrame = null;
         }
-        navSlot.scrollTop = clamp(this.restoreRailScrollTop, 0, Math.max(0, navSlot.scrollHeight - navSlot.clientHeight));
-        this.railScrollTop = Number(navSlot.scrollTop || 0);
+        const horizontal = navSlot.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon";
+        const scrollProperty = horizontal ? "scrollLeft" : "scrollTop";
+        const maxScroll = Math.max(0, horizontal ? navSlot.scrollWidth - navSlot.clientWidth : navSlot.scrollHeight - navSlot.clientHeight);
+        navSlot[scrollProperty] = clamp(this.restoreRailScrollTop, 0, maxScroll);
+        this.railScrollTop = Number(navSlot[scrollProperty] || 0);
         this.restoreRailScrollTop = null;
       }
       updateSettingsRailIndicatorsSoon(navSlot);

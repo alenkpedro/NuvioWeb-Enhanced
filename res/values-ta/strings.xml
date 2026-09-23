@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">நுவியோ</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="tv_channel_continue_watching">தொடர்ந்து பார்க்கவும்</string>
     <string name="type_movie">திரைப்படம்</string>
     <string name="type_movies">திரைப்படங்கள்</string>
@@ -325,22 +325,22 @@
     <string name="about_licenses_attributions">உரிமங்கள் &amp; நன்றிக்குறிப்புகள்</string>
     <string name="about_licenses_attributions_subtitle">தரவு மூலங்கள், நன்றிகள் மற்றும் ஆண்ட்ராய்டு உரிமங்கள்</string>
     <string name="licenses_attributions_title">உரிமங்கள் &amp; நன்றிக்குறிப்புகள்</string>
-    <string name="licenses_attributions_subtitle">நுவியோ டிவி பயன்படுத்தும் தரவு வழங்குநர்கள், சேவை நன்றிகள் மற்றும் ஆண்ட்ராய்டு இயக்க உரிமங்கள்.</string>
+    <string name="licenses_attributions_subtitle">Nuvio Enhanced பயன்படுத்தும் தரவு வழங்குநர்கள், சேவை நன்றிகள் மற்றும் ஆண்ட்ராய்டு இயக்க உரிமங்கள்.</string>
     <string name="licenses_attributions_section_app">செயலி உரிமம்</string>
     <string name="licenses_attributions_section_data">தரவு &amp; சேவைகள்</string>
     <string name="licenses_attributions_section_playback">ஆண்ட்ராய்டு இயக்க உரிமங்கள்</string>
-    <string name="licenses_attributions_nuvio_title">நுவியோ டிவி</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">மூலக் குறியீடு மற்றும் உரிம நிபந்தனைகள் திட்ட களஞ்சியத்தில் கிடைக்கின்றன. GNU பொது உரிமம் v3.0 கீழ் வழங்கப்படுகிறது.</string>
     <string name="licenses_attributions_tmdb_title">தி மூவி டேட்டாபேஸ் (TMDB)</string>
-    <string name="licenses_attributions_tmdb_body">நுவியோ திரைப்படம் மற்றும் டிவி தகவல்கள், கலைப்படங்கள், முன்னோட்டங்கள், நடிகர்கள், தயாரிப்பு விவரங்கள், தொகுப்புகள் மற்றும் பரிந்துரைகளுக்காக TMDB API-ஐ பயன்படுத்துகிறது. இந்த தயாரிப்பு TMDB API-ஐ பயன்படுத்தினாலும் TMDB ஆதரவு அல்லது சான்றளிப்பு பெறவில்லை.</string>
+    <string name="licenses_attributions_tmdb_body">Nuvio Enhanced திரைப்படம் மற்றும் டிவி தகவல்கள், கலைப்படங்கள், முன்னோட்டங்கள், நடிகர்கள், தயாரிப்பு விவரங்கள், தொகுப்புகள் மற்றும் பரிந்துரைகளுக்காக TMDB API-ஐ பயன்படுத்துகிறது. இந்த தயாரிப்பு TMDB API-ஐ பயன்படுத்தினாலும் TMDB ஆதரவு அல்லது சான்றளிப்பு பெறவில்லை.</string>
     <string name="licenses_attributions_trakt_title">ட்ராக்ட்</string>
-    <string name="licenses_attributions_trakt_body">நுவியோ கணக்கு உள்நுழைவு, பார்த்த வரலாறு, முன்னேற்ற ஒத்திசைவு, நூலகத் தரவு, மதிப்பீடுகள், பட்டியல்கள் மற்றும் கருத்துகளுக்காக ட்ராக்டுடன் இணைகிறது. நுவியோ ட்ராக்டுடன் தொடர்புடையதல்ல.</string>
+    <string name="licenses_attributions_trakt_body">Nuvio Enhanced கணக்கு உள்நுழைவு, பார்த்த வரலாறு, முன்னேற்ற ஒத்திசைவு, நூலகத் தரவு, மதிப்பீடுகள், பட்டியல்கள் மற்றும் கருத்துகளுக்காக ட்ராக்டுடன் இணைகிறது. Nuvio Enhanced ட்ராக்டுடன் தொடர்புடையதல்ல.</string>
     <string name="licenses_attributions_mdblist_title">எம்டிபிலிஸ்ட்</string>
-    <string name="licenses_attributions_mdblist_body">நுவியோ மதிப்பீடுகள் மற்றும் வெளிப்புற மதிப்பெண் தரவுகளுக்காக MDBList-ஐ பயன்படுத்துகிறது. நுவியோ MDBList உடன் தொடர்புடையதல்ல.</string>
+    <string name="licenses_attributions_mdblist_body">Nuvio Enhanced மதிப்பீடுகள் மற்றும் வெளிப்புற மதிப்பெண் தரவுகளுக்காக MDBList-ஐ பயன்படுத்துகிறது. Nuvio Enhanced MDBList உடன் தொடர்புடையதல்ல.</string>
     <string name="licenses_attributions_introdb_title">இன்ட்ரோடிபி</string>
-    <string name="licenses_attributions_introdb_body">நுவியோ தொடக்க பகுதி, சுருக்கம், கிரெடிட்ஸ் மற்றும் முன்காட்சி நேரங்களுக்காக IntroDB API-ஐ பயன்படுத்துகிறது.</string>
+    <string name="licenses_attributions_introdb_body">Nuvio Enhanced தொடக்க பகுதி, சுருக்கம், கிரெடிட்ஸ் மற்றும் முன்காட்சி நேரங்களுக்காக IntroDB API-ஐ பயன்படுத்துகிறது.</string>
     <string name="licenses_attributions_imdb_title">IMDb வணிகமற்ற தரவுத்தொகுப்புகள்</string>
-    <string name="licenses_attributions_imdb_body">நுவியோ IMDb மதிப்பீடுகள் மற்றும் வாக்கு எண்ணிக்கைகளுக்காக IMDb தரவுத்தொகுப்புகளை பயன்படுத்துகிறது.</string>
+    <string name="licenses_attributions_imdb_body">Nuvio Enhanced IMDb மதிப்பீடுகள் மற்றும் வாக்கு எண்ணிக்கைகளுக்காக IMDb தரவுத்தொகுப்புகளை பயன்படுத்துகிறது.</string>
     <string name="licenses_attributions_exoplayer_title">ஆண்ட்ராய்ட்எக்ஸ் மீடியா3 எக்ஸோபிளேயர் 1.8.0</string>
     <string name="licenses_attributions_exoplayer_body">ஆண்ட்ராய்டு இயக்க இயந்திரமாக பயன்படுத்தப்படுகிறது. அபாச்சி உரிமம் 2.0 கீழ் வழங்கப்படுகிறது.</string>
     <string name="licenses_attributions_libmpv_title">லிப்எம்பிவி / லிப்எம்பிவி-ஆண்ட்ராய்டு</string>
@@ -366,7 +366,7 @@
     <string name="settings_advanced_subtitle">செயல்திறன், வழிசெலுத்தல், கேச் மற்றும் ஆய்வு</string>
     <string name="experience_mode_essential">எளிமை</string>
     <string name="experience_mode_advanced">மேம்பட்டது</string>
-    <string name="experience_mode_choose_title">உங்கள் நுவியோ பயன்பாட்டு முறையை தேர்ந்தெடுக்கவும்</string>
+    <string name="experience_mode_choose_title">உங்கள் Nuvio Enhanced பயன்பாட்டு முறையை தேர்ந்தெடுக்கவும்</string>
     <string name="experience_mode_choose_subtitle">எளிமையாக தொடங்கவும் அல்லது முழு தனிப்பயனாக்கத்தையும் திறக்கவும். எப்போது வேண்டுமானாலும் மாற்றலாம்.</string>
     <string name="experience_mode_essential_card_subtitle">அடிப்படை அமைப்பு, ஆட்-ஆன்கள், இயக்கம் மற்றும் அக்கவுண்ட் அமைப்புகள்.</string>
     <string name="experience_mode_advanced_card_subtitle">முழு அமைப்புகள், வடிவமைப்பு கட்டுப்பாடுகள், தொகுப்புகள் மற்றும் ஆய்வுகள்.</string>
@@ -568,8 +568,8 @@
     <string name="playback_player_ask_desc">ஒவ்வொரு முறையும் பிளேயரை தேர்வு செய்</string>
     <string name="playback_player_auto">தானாக (உள்ளடக்கத்திற்கு சிறந்தது)</string>
     <string name="playback_player_auto_desc">திரைப்படங்கள் &amp; தொடர்களுக்கு ExoPlayer · Anime-க்கு MPV</string>
-    <string name="playback_engine_exoplayer_desc">தற்போதைய Nuvio அம்சங்களுடன் சிறந்த பொருத்தம்.</string>
-    <string name="playback_engine_mvplayer_desc">Nuvio OSD கட்டுப்பாடுகளுடன் libmpv பயன்படுத்துகிறது. சோதனை நிலையில் உள்ளது.</string>
+    <string name="playback_engine_exoplayer_desc">தற்போதைய Nuvio Enhanced அம்சங்களுடன் சிறந்த பொருத்தம்.</string>
+    <string name="playback_engine_mvplayer_desc">Nuvio Enhanced OSD கட்டுப்பாடுகளுடன் libmpv பயன்படுத்துகிறது. சோதனை நிலையில் உள்ளது.</string>
     <string name="audio_trailer_section">ட்ரெய்லர்</string>
     <string name="audio_autoplay_trailers">தானியங்கு ட்ரெய்லர் இயக்கம்</string>
     <string name="audio_autoplay_trailers_sub">செயலற்ற நிலையில் சில நேரம் கழித்து விவரத் திரையில் ட்ரெய்லர்களை தானாக இயக்கவும்</string>
@@ -911,9 +911,9 @@
     <string name="trakt_library_source_dialog_title">நூலக மூலம்</string>
     <string name="trakt_library_source_dialog_subtitle">உங்கள் நூலக உருப்படிகளை எங்கு சேமித்து நிர்வகிப்பது என்பதை தேர்வு செய்யவும்</string>
     <string name="trakt_library_source_trakt">ட்ராக்ட்</string>
-    <string name="trakt_library_source_nuvio">நுவியோ நூலகம்</string>
+    <string name="trakt_library_source_nuvio">Nuvio Enhanced நூலகம்</string>
     <string name="trakt_library_source_trakt_selected">ட்ராக்ட் நூலகம் தேர்ந்தெடுக்கப்பட்டது</string>
-    <string name="trakt_library_source_nuvio_selected">நுவியோ நூலகம் தேர்ந்தெடுக்கப்பட்டது</string>
+    <string name="trakt_library_source_nuvio_selected">Nuvio Enhanced நூலகம் தேர்ந்தெடுக்கப்பட்டது</string>
     <string name="trakt_setting_on">இயக்கம்</string>
     <string name="trakt_setting_off">நிறுத்தம்</string>
     <string name="trakt_watch_progress_trakt_selected">பார்வை முன்னேற்ற மூலம் ட்ராக்ட் ஆக அமைக்கப்பட்டது</string>
@@ -945,7 +945,7 @@
     <string name="trakt_stat_watched_hours">பார்த்த மணிநேரங்கள்</string>
     <string name="trakt_disconnect">இணைப்பை துண்டிக்கவும்</string>
     <string name="trakt_disconnect_title">ட்ராக்ட் இணைப்பை துண்டிக்கவா?</string>
-    <string name="trakt_disconnect_subtitle">இது உங்கள் ட்ராக்ட் கணக்கை நுவியோவிலிருந்து துண்டிக்கும்.</string>
+    <string name="trakt_disconnect_subtitle">இது உங்கள் ட்ராக்ட் கணக்கை Nuvio Enhancedவிலிருந்து துண்டிக்கும்.</string>
     <string name="trakt_login">உள்நுழை</string>
     <string name="trakt_retry">மீண்டும் முயற்சி</string>
     <string name="trakt_back">பின்</string>
@@ -1110,7 +1110,7 @@
     <string name="stream_type_torrent">டோரண்ட்</string>
     <string name="stream_type_youtube">யூடியூப்</string>
     <string name="p2p_consent_title">பீடூபீ ஸ்ட்ரீமிங்</string>
-    <string name="p2p_consent_body">இந்த ஸ்ட்ரீம் பியர்-டு-பியர் (பீடூபீ) தொழில்நுட்பத்தை பயன்படுத்துகிறது. பீடூபீயை இயக்குவதன் மூலம், நீங்கள் பின்வருவனவற்றை ஒப்புக்கொள்கிறீர்கள்:\n\n\u2022 உங்கள் ஐபி முகவரி பிணையத்தில் உள்ள பிற பியர்களுக்கு தெரியும்\n\u2022 நீங்கள் அணுகும் உள்ளடக்கத்திற்கு முழுப் பொறுப்பு உங்களுக்கே\n\u2022 உங்கள் சட்டப்பரப்பில் இந்த உள்ளடக்கத்தை ஸ்ட்ரீம் செய்ய சட்டப்பூர்வ உரிமை உங்களிடம் உள்ளது என்பதை உறுதிப்படுத்துகிறீர்கள்\n\u2022 நுவியோ எந்த பீடூபீ உள்ளடக்கத்தையும் ஹோஸ்ட் செய்யாது, பகிராது அல்லது கட்டுப்படுத்தாது\n\u2022 பீடூபீ ஸ்ட்ரீமிங்கைப் பயன்படுத்துவதால் ஏற்படும் எந்த சட்ட விளைவுகளுக்கும் நுவியோ பொறுப்பேற்காது\n\nஇந்த அம்சத்தை முழுமையாக உங்கள் சொந்த ஆபத்தில் பயன்படுத்துகிறீர்கள். அமைப்புகளில் எப்போது வேண்டுமானாலும் பீடூபீயை முடக்கலாம்.</string>
+    <string name="p2p_consent_body">இந்த ஸ்ட்ரீம் பியர்-டு-பியர் (பீடூபீ) தொழில்நுட்பத்தை பயன்படுத்துகிறது. பீடூபீயை இயக்குவதன் மூலம், நீங்கள் பின்வருவனவற்றை ஒப்புக்கொள்கிறீர்கள்:\n\n\u2022 உங்கள் ஐபி முகவரி பிணையத்தில் உள்ள பிற பியர்களுக்கு தெரியும்\n\u2022 நீங்கள் அணுகும் உள்ளடக்கத்திற்கு முழுப் பொறுப்பு உங்களுக்கே\n\u2022 உங்கள் சட்டப்பரப்பில் இந்த உள்ளடக்கத்தை ஸ்ட்ரீம் செய்ய சட்டப்பூர்வ உரிமை உங்களிடம் உள்ளது என்பதை உறுதிப்படுத்துகிறீர்கள்\n\u2022 Nuvio Enhanced எந்த பீடூபீ உள்ளடக்கத்தையும் ஹோஸ்ட் செய்யாது, பகிராது அல்லது கட்டுப்படுத்தாது\n\u2022 பீடூபீ ஸ்ட்ரீமிங்கைப் பயன்படுத்துவதால் ஏற்படும் எந்த சட்ட விளைவுகளுக்கும் Nuvio Enhanced பொறுப்பேற்காது\n\nஇந்த அம்சத்தை முழுமையாக உங்கள் சொந்த ஆபத்தில் பயன்படுத்துகிறீர்கள். அமைப்புகளில் எப்போது வேண்டுமானாலும் பீடூபீயை முடக்கலாம்.</string>
     <string name="p2p_consent_enable">பீடூபீயை இயக்கு</string>
     <string name="p2p_consent_cancel">ரத்து செய்</string>
     <string name="settings_p2p_title">பீடூபீ ஸ்ட்ரீமிங்</string>
@@ -1465,11 +1465,11 @@
     <string name="catalog_see_all_from">%1$s இலிருந்து</string>
     <string name="catalog_see_all_empty_title">உருப்படிகள் எதுவும் இல்லை</string>
     <string name="catalog_see_all_empty_subtitle">வேறு கேட்டலாக் முயற்சிக்கவும் அல்லது பின்னர் பார்க்கவும்</string>
-    <string name="layout_selection_welcome">நூவியோவிற்கு வரவேற்கிறோம்</string>
+    <string name="layout_selection_welcome">Nuvio Enhancedவிற்கு வரவேற்கிறோம்</string>
     <string name="layout_selection_subtitle">உங்கள் முகப்புத்திரை வடிவமைப்பை தேர்ந்தெடுக்கவும்</string>
     <string name="layout_selection_continue">தொடர்க</string>
     <string name="update_title">செயலி புதுப்பிப்பு</string>
-    <string name="update_installer_required">உங்கள் டிவியில் செயலியைப் புதுப்பிக்க Nuvio TV Installer-ஐப் பயன்படுத்தவும்.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">புதியவை</string>
     <string name="update_release_notes_unavailable">வெளியீட்டு விளக்கம் கிடைக்கவில்லை.</string>
     <string name="update_downloading">புதுப்பிப்பு பதிவிறக்கப்படுகிறது</string>
@@ -1630,7 +1630,7 @@
     <string name="cd_preview">முன்னோட்டம்</string>
     <string name="cd_test">சோதனை</string>
     <string name="cd_unlink">இணைப்பை நீக்கு</string>
-    <string name="cd_nuvio_logo">நுவியோடிவி</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">ட்ராக்ட் லோகோ</string>
     <string name="cd_trakt_qr">ட்ராக்ட் செயல்படுத்தும் க்யூஆர்</string>
     <string name="cd_imdb">ஐஎம்டிபி</string>
@@ -1641,7 +1641,7 @@
     <string name="cd_expand">விரிவு செய் %1$s</string>
     <string name="cd_collapse">சுருக்கு %1$s</string>
     <string name="cd_qr_login">க்யூஆர் உள்நுழைவு குறியீடு</string>
-    <string name="cd_nuvio">நுவியோ</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">வெற்றிகரமாக உள்நுழைந்தது</string>
     <string name="debug_generate_description">டீபக் உருவாக்கிய %1$s உருப்பு #%2$d</string>
     <string name="debug_generate_result_failed">தோல்வி: %1$s</string>
@@ -1778,7 +1778,7 @@
     <string name="collections_editor_tmdb_list_helper">எடுத்துக்காட்டு: https://www.themoviedb.org/list/8504994 அல்லது 8504994.</string>
     <string name="collections_editor_tmdb_person_id">நபர் ஐடி</string>
     <string name="collections_editor_tmdb_person_helper">எடுத்துக்காட்டு: https://www.themoviedb.org/person/31-tom-hanks அல்லது 31.</string>
-    <string name="collections_editor_tmdb_title_helper">இது வரிசை/தாவல் பெயராக காட்டப்படும். காலியாக இருந்தால், நுவியோ மூலத்திலிருந்து ஒன்றை உருவாக்கும்.</string>
+    <string name="collections_editor_tmdb_title_helper">இது வரிசை/தாவல் பெயராக காட்டப்படும். காலியாக இருந்தால், Nuvio Enhanced மூலத்திலிருந்து ஒன்றை உருவாக்கும்.</string>
     <string name="collections_editor_tmdb_quick_genres">விரைவு வகைகள்</string>
     <string name="collections_editor_tmdb_quick_languages">விரைவு மொழிகள்</string>
     <string name="collections_editor_tmdb_quick_countries">விரைவு நாடுகள்</string>
@@ -1943,7 +1943,7 @@
     <string name="autoplay_regex_preset_english">ஆங்கிலம்</string>
     <string name="autoplay_regex_preset_no_cam_ts">CAM/TS இல்லை</string>
     <string name="autoplay_regex_preset_no_remux_hdr">REMUX/HDR இல்லை</string>
-    <string name="playback_player_internal_desc">நுவியோடிவியின் உள்ளமைந்த பிளேயரை பயன்படுத்து</string>
+    <string name="playback_player_internal_desc">Nuvio Enhanced-இன் உள்ளமைந்த பிளேயரை பயன்படுத்து</string>
     <string name="player_torrent_peer_info">%1$d விதைகள் · %2$d இணைகள்</string>
     <string name="player_torrent_buffered_status">%1$s சேமிக்கப்பட்டது · %2$s · %3$s</string>
     <string name="player_torrent_status">%1$s · %2$s</string>
@@ -2096,7 +2096,7 @@
     <string name="autoplay_reuse_binge_group">பிஞ்ச் குழுவை மீண்டும் பயன்படுத்து</string>
     <string name="autoplay_reuse_binge_group_sub">அமர்வுகளுக்கு இடையில் கடைசி பிஞ்ச் குழுவை நினைவில் வைத்து மீண்டும் பயன்படுத்து (தொடர்ந்து பார்க்க, விவரங்கள் போன்றவை).</string>
     <string name="unsupported_device_title">இந்த டிவி ஆதரிக்கப்படவில்லை</string>
-    <string name="unsupported_device_message">இந்த டிவி, Nuvio TV இன் இந்தப் பதிப்பிற்கான குறைந்தபட்சத் தேவைகளைப் பூர்த்தி செய்யவில்லை.</string>
+    <string name="unsupported_device_message">இந்த டிவி, Nuvio Enhanced இன் இந்தப் பதிப்பிற்கான குறைந்தபட்சத் தேவைகளைப் பூர்த்தி செய்யவில்லை.</string>
     <string name="unsupported_device_current_platform">தற்போதைய இயங்குதளம்</string>
     <string name="unsupported_device_current_firmware">தற்போதைய ஃபார்ம்வேர்</string>
     <string name="unsupported_device_required_platform">தேவையான இயங்குதளம்</string>
@@ -2118,7 +2118,7 @@
     <string name="debrid_device_auth_expired">இந்தக் குறியீடு காலாவதியானது. மீண்டும் முயற்சிக்கவும்.</string>
     <string name="debrid_device_auth_failed">உள்நுழைவைத் தொடங்க முடியவில்லை.</string>
     <string name="debrid_device_auth_connected">இந்தச் சாதனத்தில் %1$s இணைக்கப்பட்டுள்ளது.</string>
-    <string name="debrid_device_auth_instructions">QR குறியீட்டை ஸ்கேன் செய்து Nuvio-ஐ அங்கீகரிக்க இந்தக் குறியீட்டை உள்ளிடவும்.</string>
+    <string name="debrid_device_auth_instructions">QR குறியீட்டை ஸ்கேன் செய்து Nuvio Enhanced-ஐ அங்கீகரிக்க இந்தக் குறியீட்டை உள்ளிடவும்.</string>
     <string name="debrid_device_auth_missing_configuration">இந்த உருவாக்கத்தில் இந்த உள்நுழைவு முறை உள்ளமைக்கப்படவில்லை.</string>
     <string name="debrid_disconnect">இணைப்பைத் துண்டிக்கவும்</string>
     <string name="debrid_connected">இணைக்கப்பட்டது</string>
@@ -2454,6 +2454,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">இருந்தாலும் Nuvio TV-ஐ தொடங்க முயற்சிக்கலாம், ஆனால் இந்தத் தொலைக்காட்சியில் பயன்பாடு சரியாக இயங்காமல் இருக்கலாம். இந்த அமைப்பு அதிகாரப்பூர்வமாக ஆதரிக்கப்படவில்லை.</string>
+    <string name="unsupported_device_warning">இருந்தாலும் Nuvio Enhanced-ஐ தொடங்க முயற்சிக்கலாம், ஆனால் இந்தத் தொலைக்காட்சியில் பயன்பாடு சரியாக இயங்காமல் இருக்கலாம். இந்த அமைப்பு அதிகாரப்பூர்வமாக ஆதரிக்கப்படவில்லை.</string>
     <string name="unsupported_device_try_anyway">இருந்தாலும் தொடங்கு</string>
 </resources>

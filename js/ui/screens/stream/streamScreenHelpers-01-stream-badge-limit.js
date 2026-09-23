@@ -150,7 +150,7 @@ export function normalizeExternalLaunchFileName(value = "") {
     trimmed
       .replace(/[\\/:*?"<>|]+/g, " ")
       .replace(/\s+/g, " ")
-      .trim() || "Nuvio"
+      .trim() || "Nuvio Enhanced"
   );
 }
 

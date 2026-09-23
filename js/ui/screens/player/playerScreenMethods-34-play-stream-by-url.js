@@ -8,6 +8,7 @@ export function createPlayerScreenMethods34() {
     isExpiredStreamUrl,
     Environment,
     WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS,
+    WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS,
     claimEngineFsPlayback
   } = internals;
 
@@ -58,6 +59,7 @@ export function createPlayerScreenMethods34() {
       if (selectedIndex >= 0) {
         this.currentStreamIndex = selectedIndex;
       }
+      this.refreshLoadingOverlayPresentation();
       const sourceContext = this.getPlaybackSourceContext(sourceCandidate);
       if (sourceContext) {
         this.activePlaybackSourceContext = sourceContext;
@@ -117,7 +119,11 @@ export function createPlayerScreenMethods34() {
       } else {
         this.enableStartupAudioGate({
           allowNativePlayback: allowNativePlaybackDuringStartupAudioGate,
-          maxWaitMs: prioritizeWebOsRemoteMkvPlayback ? WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS : 0
+          maxWaitMs: Environment.isWebOS()
+            ? prioritizeWebOsRemoteMkvPlayback
+              ? WEBOS_REMOTE_MKV_AUDIO_GATE_MAX_WAIT_MS
+              : WEBOS_STARTUP_AUDIO_GATE_MAX_WAIT_MS
+            : 0
         });
       }
       this.cancelSeekPreview({ commit: false });
@@ -194,6 +200,8 @@ export function createPlayerScreenMethods34() {
       this.trackDiscoveryStartedAt = 0;
       this.trackDiscoveryDeadline = 0;
       this.activePlaybackUrl = streamUrl;
+      this.statsNetworkSample = null;
+      this.statsNetworkRequestedAt = 0;
       this.currentEngineFsStream = nextEngineFsState || null;
       if (this.currentEngineFsStream) {
         this.engineFsPlaybackToken = claimEngineFsPlayback(this.currentEngineFsStream);

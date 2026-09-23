@@ -1,16 +1,167 @@
 /* eslint-disable no-unused-vars */
 import * as internals from "./playerScreenContext.js";
+import { getPlayerStreamMetadata } from "./playerPlaybackMetadata.js";
 
 export function createPlayerScreenMethods32() {
-  const { PlayerController, deltaMsForKeyRepeat, calculateRemainingPlaybackMilliseconds, t, formatTime, formatClock, formatEndsAt, clamp } =
-    internals;
+  const {
+    PlayerController,
+    Environment,
+    deltaMsForKeyRepeat,
+    calculateRemainingPlaybackMilliseconds,
+    t,
+    formatTime,
+    formatClock,
+    formatEndsAt,
+    formatBytes,
+    escapeHtml,
+    clamp
+  } = internals;
+  const formatPlayerTime = (seconds) => {
+    const value = formatTime(seconds);
+    return value.length === 4 ? `0${value}` : value;
+  };
 
   return {
+    updatePlaybackStatsOverlay() {
+      const node = this.uiRefs?.statsOverlay;
+      if (!node) return;
+      node.classList.toggle("hidden", !this.statsOverlayVisible);
+      this.uiRefs?.root?.classList.toggle("stats-visible", Boolean(this.statsOverlayVisible));
+      if (!this.statsOverlayVisible) return;
+
+      const now = Date.now();
+      if (this.currentEngineFsStream && !this.statsNetworkPending && now - Number(this.statsNetworkRequestedAt || 0) > 4000) {
+        this.statsNetworkRequestedAt = now;
+        this.statsNetworkPending = true;
+        const playbackUrl = this.activePlaybackUrl;
+        void this.fetchCurrentEngineFsStats({ timeoutMs: 1200 })
+          .then((stats) => {
+            if (stats && this.playerRouteActive && this.activePlaybackUrl === playbackUrl) {
+              this.statsNetworkSample = this.getEngineFsStallSnapshot(stats);
+            }
+          })
+          .catch(() => {
+            // Playback continues even when optional network diagnostics fail.
+          })
+          .finally(() => {
+            this.statsNetworkPending = false;
+            if (this.playerRouteActive && this.statsOverlayVisible) this.updatePlaybackStatsOverlay();
+          });
+      }
+
+      const video = PlayerController.video;
+      let dimensions = null;
+      if (PlayerController.isUsingAvPlay?.()) {
+        try {
+          dimensions = PlayerController.getAvPlayVideoDimensions?.() || null;
+        } catch (_) {
+          dimensions = null;
+        }
+      }
+      const actualWidth = Number(video?.videoWidth || dimensions?.width || 0);
+      const actualHeight = Number(video?.videoHeight || dimensions?.height || 0);
+      const metadata = getPlayerStreamMetadata({
+        video,
+        avPlayDimensions: dimensions,
+        candidate: this.getCurrentStreamCandidate(),
+        fallbackSize: this.params?.videoSize
+      });
+      const current = this.getPlaybackCurrentSeconds();
+      const buffered = this.getPlaybackBufferedSeconds();
+      const ahead = Number.isFinite(buffered) ? Math.max(0, buffered - current) : null;
+      const hlsBandwidth = Number(PlayerController.hlsInstance?.bandwidthEstimate || 0);
+      const measuredSpeed = Number(this.statsNetworkSample?.downloadSpeed || 0);
+      const speedBytes = measuredSpeed > 0 ? measuredSpeed : hlsBandwidth > 0 ? hlsBandwidth / 8 : 0;
+      let audioEntry = null;
+      let quality = null;
+      try {
+        audioEntry = this.getAudioEntries?.().find((entry) => entry.selected) || null;
+      } catch (_) {
+        audioEntry = null;
+      }
+      try {
+        quality = video?.getVideoPlaybackQuality?.() || null;
+      } catch (_) {
+        quality = null;
+      }
+      const rows = [
+        [
+          t("player_stats_engine", {}, "Player"),
+          PlayerController.isUsingAvPlay?.() ? "AVPlay" : PlayerController.hlsInstance ? "hls.js" : "HTML5"
+        ],
+        [
+          t(
+            actualWidth && actualHeight ? "player_stats_resolution" : "player_stats_source_resolution",
+            {},
+            actualWidth && actualHeight ? "Video resolution" : "Source resolution"
+          ),
+          metadata.resolution
+        ],
+        [t("player_stats_file_size", {}, "Reported file size"), formatBytes(metadata.sizeBytes)],
+        [t("player_stats_buffer", {}, "Buffered ahead"), ahead == null ? "" : `${ahead.toFixed(1)} s`],
+        [
+          t(
+            measuredSpeed > 0 ? "player_stats_download" : "player_stats_estimated_speed",
+            {},
+            measuredSpeed > 0 ? "Download speed" : "Estimated bandwidth"
+          ),
+          speedBytes > 0 ? `${formatBytes(speedBytes)}/s` : ""
+        ],
+        [t("player_stats_audio", {}, "Selected audio"), audioEntry?.label || ""],
+        [
+          t("player_stats_dropped", {}, "Dropped frames"),
+          Number.isFinite(Number(quality?.droppedVideoFrames)) ? String(quality.droppedVideoFrames) : ""
+        ]
+      ].filter(([, value]) => value);
+      const markup = `<div class="player-stats-title">${escapeHtml(t("player_stats_title", {}, "Playback stats"))}</div>${rows
+        .map(
+          ([label, value]) => `<div class="player-stats-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`
+        )
+        .join("")}`;
+      if (node.innerHTML !== markup) node.innerHTML = markup;
+    },
+    syncPlayerStreamMetadata() {
+      const node = this.uiRefs?.streamMetadata;
+      if (!node || !Environment.isWebOS()) {
+        return;
+      }
+      const now = Date.now();
+      const sourceKey = `${this.currentStreamIndex}:${this.activePlaybackUrl || ""}`;
+      if (sourceKey === this.playerStreamMetadataSourceKey && now - Number(this.playerStreamMetadataCheckedAt || 0) < 1500) {
+        return;
+      }
+      this.playerStreamMetadataSourceKey = sourceKey;
+      this.playerStreamMetadataCheckedAt = now;
+
+      let avPlayDimensions = null;
+      if (typeof PlayerController.isUsingAvPlay === "function" && PlayerController.isUsingAvPlay()) {
+        try {
+          avPlayDimensions = PlayerController.getAvPlayVideoDimensions?.() || null;
+        } catch (_) {
+          avPlayDimensions = null;
+        }
+      }
+      const { resolution, sizeBytes } = getPlayerStreamMetadata({
+        video: PlayerController.video,
+        avPlayDimensions,
+        candidate: this.getCurrentStreamCandidate(),
+        fallbackSize: this.params?.videoSize
+      });
+      const chips = [resolution, formatBytes(sizeBytes)].filter(Boolean);
+      const signature = chips.join("|");
+      if (signature !== this.playerStreamMetadataSignature) {
+        node.innerHTML = chips.map((label) => `<span class="player-stream-metadata-chip">${escapeHtml(label)}</span>`).join("");
+        node.classList.toggle("hidden", !chips.length);
+        this.playerStreamMetadataSignature = signature;
+      }
+    },
     updateUiTick() {
       if (this.isExternalFrameMode()) {
         return;
       }
       this.syncPlayerStreamSource();
+      this.syncPlayerStreamMetadata();
+      this.updatePlaybackStatsOverlay();
       this.ensureNextEpisodeStreamsPrefetch();
       this.shouldShowNextEpisodeCard();
       void this.refreshLoadingOverlayProgress();
@@ -99,12 +250,23 @@ export function createPlayerScreenMethods32() {
       }
 
       const timeLabel = uiRefs.timeLabel;
+      const elapsedText = formatTime(effectiveProgressSeconds);
+      const durationText = formatTime(duration);
       if (timeLabel) {
-        const nextTimeLabel = `${formatTime(effectiveProgressSeconds)} / ${formatTime(duration)}`;
+        const nextTimeLabel = `${elapsedText} / ${durationText}`;
         if (uiState.timeLabelText !== nextTimeLabel) {
           timeLabel.textContent = nextTimeLabel;
           uiState.timeLabelText = nextTimeLabel;
         }
+      }
+      const displayElapsedText = formatPlayerTime(effectiveProgressSeconds);
+      if (uiRefs.timeElapsed && uiRefs.timeElapsed.textContent !== displayElapsedText) {
+        uiRefs.timeElapsed.textContent = displayElapsedText;
+      }
+      const remainingText =
+        Number.isFinite(duration) && duration > 0 ? `-${formatPlayerTime(Math.max(0, duration - effectiveProgressSeconds))}` : "";
+      if (uiRefs.timeRemaining && uiRefs.timeRemaining.textContent !== remainingText) {
+        uiRefs.timeRemaining.textContent = remainingText;
       }
 
       this.syncPauseOverlayState();

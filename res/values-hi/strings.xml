@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">फ़िल्म</string>
     <string name="type_series">सीरीज़</string>
     <string name="type_unknown">अज्ञात</string>
@@ -525,7 +525,7 @@
     <string name="trakt_stat_watched_hours">देखे गए घंटे</string>
     <string name="trakt_disconnect">डिस्कनेक्ट</string>
     <string name="trakt_disconnect_title">Trakt डिस्कनेक्ट करें?</string>
-    <string name="trakt_disconnect_subtitle">यह आपके Trakt अकाउंट को Nuvio से डिस्कनेक्ट कर देगा।</string>
+    <string name="trakt_disconnect_subtitle">यह आपके Trakt अकाउंट को Nuvio Enhanced से डिस्कनेक्ट कर देगा।</string>
     <string name="trakt_login">लॉगिन</string>
     <string name="trakt_retry">फिर से कोशिश करें</string>
     <string name="trakt_back">वापस</string>
@@ -846,11 +846,11 @@
     <string name="catalog_see_all_from">%1$s से</string>
     <string name="catalog_see_all_empty_title">कोई आइटम उपलब्ध नहीं</string>
     <string name="catalog_see_all_empty_subtitle">कोई दूसरा कैटलॉग आज़माएँ या बाद में देखें</string>
-    <string name="layout_selection_welcome">Nuvio में आपका स्वागत है</string>
+    <string name="layout_selection_welcome">Nuvio Enhanced में आपका स्वागत है</string>
     <string name="layout_selection_subtitle">अपना होम स्क्रीन लेआउट चुनें</string>
     <string name="layout_selection_continue">जारी रखें</string>
     <string name="update_title">ऐप अपडेट</string>
-    <string name="update_installer_required">अपने टीवी पर ऐप अपडेट करने के लिए Nuvio TV Installer का उपयोग करें।</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">नया क्या है</string>
     <string name="update_release_notes_unavailable">रिलीज़ का विवरण उपलब्ध नहीं है।</string>
     <string name="update_downloading">अपडेट डाउनलोड हो रहा है</string>
@@ -1053,7 +1053,7 @@
     <string name="autoplay_reuse_binge_group">बिंज ग्रुप का फिर से उपयोग करें</string>
     <string name="autoplay_reuse_binge_group_sub">सत्रों के बीच अंतिम बिंज ग्रुप को याद रखें और फिर उपयोग करें (देखना जारी रखें, विवरण आदि)।</string>
     <string name="unsupported_device_title">टीवी समर्थित नहीं है</string>
-    <string name="unsupported_device_message">यह टीवी Nuvio TV के इस संस्करण की न्यूनतम आवश्यकताओं को पूरा नहीं करता।</string>
+    <string name="unsupported_device_message">यह टीवी Nuvio Enhanced के इस संस्करण की न्यूनतम आवश्यकताओं को पूरा नहीं करता।</string>
     <string name="unsupported_device_current_platform">वर्तमान प्लेटफ़ॉर्म</string>
     <string name="unsupported_device_current_firmware">वर्तमान फ़र्मवेयर</string>
     <string name="unsupported_device_required_platform">आवश्यक प्लेटफ़ॉर्म</string>
@@ -1083,7 +1083,7 @@
     <string name="debrid_device_auth_expired">यह कोड समाप्त हो गया है। फिर से प्रयास करें।</string>
     <string name="debrid_device_auth_failed">साइन-इन शुरू नहीं किया जा सका।</string>
     <string name="debrid_device_auth_connected">इस डिवाइस पर %1$s कनेक्ट है।</string>
-    <string name="debrid_device_auth_instructions">QR कोड स्कैन करें और Nuvio को अनुमति देने के लिए यह कोड दर्ज करें।</string>
+    <string name="debrid_device_auth_instructions">QR कोड स्कैन करें और Nuvio Enhanced को अनुमति देने के लिए यह कोड दर्ज करें।</string>
     <string name="debrid_device_auth_missing_configuration">इस बिल्ड में यह साइन-इन तरीका कॉन्फ़िगर नहीं है।</string>
     <string name="debrid_disconnect">डिस्कनेक्ट करें</string>
     <string name="debrid_connected">कनेक्टेड</string>
@@ -1430,6 +1430,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">आप फिर भी Nuvio TV शुरू करने का प्रयास कर सकते हैं, लेकिन यह ऐप इस टीवी पर सही ढंग से काम नहीं कर सकता। यह कॉन्फ़िगरेशन आधिकारिक रूप से समर्थित नहीं है।</string>
+    <string name="unsupported_device_warning">आप फिर भी Nuvio Enhanced शुरू करने का प्रयास कर सकते हैं, लेकिन यह ऐप इस टीवी पर सही ढंग से काम नहीं कर सकता। यह कॉन्फ़िगरेशन आधिकारिक रूप से समर्थित नहीं है।</string>
     <string name="unsupported_device_try_anyway">फिर भी शुरू करें</string>
 </resources>

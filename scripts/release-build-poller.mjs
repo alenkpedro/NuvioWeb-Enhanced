@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const stateDir = path.join(rootDir, ".cache");
 const defaultStateFile = path.join(stateDir, "release-build-poller.json");
-const defaultRepo = process.env.RELEASE_POLL_REPO || "NuvioMedia/NuvioTVSmart";
+const defaultRepo = String(process.env.RELEASE_POLL_REPO || "").trim();
 const defaultIntervalMs = Number(process.env.RELEASE_POLL_INTERVAL_MS || 30 * 60 * 1000);
 const includePrereleases =
   String(process.env.RELEASE_POLL_INCLUDE_PRERELEASES || "true").toLowerCase() !== "false";
@@ -236,6 +236,11 @@ async function checkOnce() {
 }
 
 async function main() {
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(defaultRepo)) {
+    throw new Error(
+      "Set RELEASE_POLL_REPO to the Nuvio Enhanced owner/repository before polling releases."
+    );
+  }
   if (!Number.isFinite(defaultIntervalMs) || defaultIntervalMs <= 0) {
     throw new Error(
       `Invalid RELEASE_POLL_INTERVAL_MS value: ${process.env.RELEASE_POLL_INTERVAL_MS || ""}`

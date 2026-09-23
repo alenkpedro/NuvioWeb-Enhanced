@@ -21,6 +21,7 @@ import { PLUGIN_REPOSITORY_TYPES, isExecutableScraper, pluginSupportsType } from
 import { selectAutoPlayStream, isAutoPlayEffectivelyEnabled } from "../../../core/streams/streamAutoPlaySelector.js";
 
 import { orderSourceNames, orderStreamsByAddonOrder } from "../../../core/streams/streamOrdering.js";
+import { rankStreamsByQuality } from "../../../core/streams/streamQualityRanking.js";
 
 import { buildStreamResumeIdentity } from "../../../core/streams/streamResumeIdentity.js";
 
@@ -193,7 +194,11 @@ export function getOrderedFilterNames(sourceChips = [], streams = []) {
 }
 
 export function sortStreamsByAddonOrder(streams = [], sourceChips = []) {
-  return orderStreamsByAddonOrder(streams, sourceChips, {
+  const sourceOrdered = orderStreamsByAddonOrder(streams, sourceChips, {
     isDirectDebrid: (stream) => DebridStreamPresentation.isDirectDebrid(stream)
   });
+  const preferences = DebridSettingsStore.get().streamPreferences || {};
+  // Keep a user's explicit debrid sort profile authoritative in the visible list.
+  if (Array.isArray(preferences.sortCriteria) && preferences.sortCriteria.length) return sourceOrdered;
+  return rankStreamsByQuality(sourceOrdered, preferences);
 }

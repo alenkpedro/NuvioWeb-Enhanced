@@ -117,6 +117,7 @@ export function createMetaDetailsScreenMethods02() {
           void this.loadMdbListRatings(this.meta, refreshToken);
         }
         this.maybeAutoOpenContinueWatchingStream();
+        this.scheduleStreamSearchPrewarm();
         return;
       }
 

@@ -150,10 +150,14 @@ export function updateSettingsScrollIndicators(container) {
       container.classList?.contains("settings-sidebar") ||
       container.classList?.contains("settings-trakt-scroll-area"))
   ) {
-    const maxScroll = getScrollMax(container, "y");
-    const scrollTop = getScrollPosition(container, "y");
-    verticalFrame.classList.toggle("can-scroll-backward", scrollTop > 1);
-    verticalFrame.classList.toggle("can-scroll-forward", maxScroll > 1 && scrollTop < maxScroll - 1);
+    const axis =
+      container.classList?.contains("settings-sidebar") && container.closest?.(".settings-shell")?.dataset?.settingsStyle === "horizon"
+        ? "x"
+        : "y";
+    const maxScroll = getScrollMax(container, axis);
+    const position = getScrollPosition(container, axis);
+    verticalFrame.classList.toggle("can-scroll-backward", position > 1);
+    verticalFrame.classList.toggle("can-scroll-forward", maxScroll > 1 && position < maxScroll - 1);
   }
 
   const horizontalFrame = container.closest?.(".settings-horizontal-scroll-frame");

@@ -107,7 +107,7 @@
 - [ ] I included a linked issue, reproduction steps, and testing notes if this is a critical bug fix.
 - [ ] I listed the testing performed below.
 
-> Feature additions, broad UI changes, refactors, playback rewrites, platform rewrites, installer rewrites, and other non-critical changes may be closed or deferred without review while Nuvio TV is being prepared for a stable Smart TV release.
+> Feature additions, broad UI changes, refactors, playback rewrites, platform rewrites, installer rewrites, and other non-critical changes may be closed or deferred without review while Nuvio Enhanced is being prepared for a stable Smart TV release.
 
 ## Scope boundaries
 

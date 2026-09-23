@@ -130,7 +130,7 @@ export {
 
 export { renderLoadingIndicator } from "../../components/loadingIndicator.js";
 
-export { getLatestAppUpdate } from "../../../core/update/appUpdateService.js";
+export { APP_UPDATE_AVAILABLE, getLatestAppUpdate } from "../../../core/update/appUpdateService.js";
 
 export { showAppUpdatePrompt } from "../../components/appUpdatePrompt.js";
 

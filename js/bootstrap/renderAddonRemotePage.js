@@ -47,7 +47,7 @@ function clonePrefs(prefs = {}) {
 }
 
 function createShell() {
-  document.title = "Nuvio TV - Manage Addons";
+  document.title = "Nuvio Enhanced - Manage Addons";
   document.body.innerHTML = `
     <div class="addon-remote-shell">
       <style>

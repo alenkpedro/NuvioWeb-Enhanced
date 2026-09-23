@@ -9,12 +9,12 @@ import { writeRuntimeEnvScriptFile } from "./envProperties.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const distDir = path.join(rootDir, "dist");
-const appName = "Nuvio TV";
+const appName = "Nuvio Enhanced";
 const bundledCssFile = "bundle.css";
 const webOsRuntimeScriptPath = "assets/libs/webOSTV.js";
-const legacyWebOsServiceSourceDirName = "space.nuvio.webos.service";
+const legacyWebOsServiceSourceDirName = "space.nuvio.enhanced.service";
 const webOsServiceSourceDirName = "webos";
-const webOsServiceId = "space.nuvio.webos.service";
+const webOsServiceId = "space.nuvio.enhanced.service";
 const webOsServiceDirName = webOsServiceId;
 const tizenEngineFsServiceDirName = "tizen";
 const tizenEngineFsServiceRelativePath = "services/tizen/enginefs-service.js";
@@ -534,7 +534,7 @@ function upsertTizenEngineFsService(xml, serviceId) {
   // known-good EngineFS package and its Tizen launch path.
   const serviceSnippet = `<tizen:service id="${serviceId}" auto-restart="false" on-boot="false">
     <tizen:content src="${tizenEngineFsServiceRelativePath}"/>
-    <tizen:name>Nuvio EngineFS Service</tizen:name>
+    <tizen:name>Nuvio Enhanced EngineFS Service</tizen:name>
     <tizen:description>Local torrent streaming service for Nuvio Tizen playback</tizen:description>
   </tizen:service>`;
   const withoutOldService = removeTizenEngineFsService(xml);
@@ -549,7 +549,7 @@ function upsertTizenPluginService(xml, serviceId) {
   // EngineFS. PluginService remains a separate service and port.
   const serviceSnippet = `<tizen:service id="${serviceId}" auto-restart="false" on-boot="false">
     <tizen:content src="${tizenPluginServiceRelativePath}"/>
-    <tizen:name>Nuvio Plugin Network Service</tizen:name>
+    <tizen:name>Nuvio Enhanced Plugin Network Service</tizen:name>
     <tizen:description>Bounded network service for Nuvio JavaScript plugins</tizen:description>
   </tizen:service>`;
   const withoutOldService = removeTizenPluginService(xml);

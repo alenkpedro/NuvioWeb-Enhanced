@@ -144,7 +144,7 @@ export function createPlayerScreenMethods33() {
       }
 
       const title =
-        String(this.params?.playerTitle || this.params?.itemTitle || this.params?.title || this.params?.itemId).trim() || "Nuvio";
+        String(this.params?.playerTitle || this.params?.itemTitle || this.params?.title || this.params?.itemId).trim() || "Nuvio Enhanced";
       const episodeTitle = String(this.params?.playerEpisodeTitle || this.params?.episodeTitle || this.params?.playerSubtitle || "").trim();
       const season = Number(this.params?.season);
       const episode = Number(this.params?.episode);
@@ -152,7 +152,9 @@ export function createPlayerScreenMethods33() {
       const episodeCode =
         isSeries && Number.isFinite(season) && season >= 0 && Number.isFinite(episode) && episode > 0 ? `S${season}:E${episode}` : "";
       const releaseYear = String(this.params?.playerReleaseYear || this.params?.releaseYear || this.params?.year || "").trim();
-      const artist = isSeries ? [episodeCode, episodeTitle].filter(Boolean).join(" – ") || "Nuvio" : releaseYear || "Nuvio";
+      const artist = isSeries
+        ? [episodeCode, episodeTitle].filter(Boolean).join(" – ") || "Nuvio Enhanced"
+        : releaseYear || "Nuvio Enhanced";
       const artworkUrl = String(
         this.params?.playerPosterUrl || this.params?.poster || this.params?.playerBackdropUrl || this.params?.backdrop || ""
       ).trim();
@@ -161,7 +163,7 @@ export function createPlayerScreenMethods33() {
         mediaSession.metadata = new MediaMetadataConstructor({
           title,
           artist,
-          album: isSeries ? title : "Nuvio",
+          album: isSeries ? title : "Nuvio Enhanced",
           artwork: artworkUrl ? [{ src: artworkUrl }] : []
         });
       } catch (_) {

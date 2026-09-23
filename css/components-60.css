@@ -1,0 +1,197 @@
+/* Player controls adapted from https://github.com/ysosrs123/NuvioTV-Fork (GPL-3.0). */
+.player-artwork {
+  min-width: 0;
+}
+
+.player-title-logo {
+  display: none;
+  width: auto;
+  height: auto;
+  max-width: min(25vw, 480px);
+  max-height: min(5vw, 96px);
+  object-fit: contain;
+  object-position: left bottom;
+}
+
+.player-platform-webos .player-title-logo {
+  display: block;
+}
+
+.player-platform-webos .player-artwork.has-logo:not(.logo-failed) .player-title {
+  display: none;
+}
+
+.player-artwork:not(.has-logo) .player-title-logo,
+.player-artwork.logo-failed .player-title-logo {
+  display: none;
+}
+
+.player-control-playback-actions,
+.player-control-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: min(0.42vw, 8px);
+}
+
+.player-control-pill-label,
+.player-time-row {
+  display: none;
+}
+
+.player-platform-webos #playerUiRoot {
+  --player-control-size: 64px;
+  --player-control-icon: 34px;
+}
+
+.player-platform-webos .player-controls-overlay {
+  padding: 40px 64px 48px;
+}
+
+.player-platform-webos .player-controls-gradient-bottom {
+  height: 38vh;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88));
+}
+
+.player-platform-webos .player-controls-bottom {
+  padding-top: 0;
+  gap: 0;
+}
+
+.player-platform-webos .player-meta {
+  max-width: calc(100% - 520px);
+  min-height: 64px;
+}
+
+.player-platform-webos .player-title {
+  font-size: 48px;
+  line-height: 1.16;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-platform-webos .player-subtitle {
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.player-platform-webos .player-meta-secondary {
+  font-size: 22px;
+}
+
+.player-platform-webos .player-progress-shell {
+  margin-top: 20px;
+}
+
+.player-platform-webos .player-progress-track {
+  height: 6px;
+  border-radius: 99px;
+}
+
+.player-platform-webos .player-progress-shell.focused .player-progress-track {
+  height: 14px;
+}
+
+.player-platform-webos .player-time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-platform-webos .player-controls-row {
+  margin-top: 16px;
+}
+
+.player-platform-webos .player-control-buttons {
+  width: 100%;
+}
+
+.player-platform-webos .player-time-label {
+  display: none;
+}
+
+.player-platform-webos .player-control-quick-actions {
+  position: absolute;
+  top: 12px;
+  right: 0;
+}
+
+.player-platform-webos .player-control-quick-actions .player-control-btn {
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+  color: #fff;
+}
+
+.player-platform-webos .player-control-playback-actions .player-control-btn {
+  width: auto;
+  min-width: 64px;
+  height: 64px;
+  padding: 0 24px;
+  gap: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.17);
+  color: #fff;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.player-platform-webos .player-control-playback-actions .player-control-btn.focused,
+.player-platform-webos .player-control-playback-actions .player-control-btn:focus,
+.player-platform-webos .player-control-quick-actions .player-control-btn.focused,
+.player-platform-webos .player-control-quick-actions .player-control-btn:focus {
+  background: var(--player-secondary);
+  color: var(--player-on-secondary);
+}
+
+.player-platform-webos
+  .player-control-playback-actions
+  .player-control-btn[data-action="playNextEpisode"] {
+  padding: 0;
+}
+
+.player-platform-webos .player-control-pill-label {
+  display: inline;
+  white-space: nowrap;
+}
+
+.player-platform-webos .player-control-playback-actions .player-control-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.player-platform-webos
+  .player-control-playback-actions
+  .player-control-btn.focused
+  .player-control-icon,
+.player-platform-webos
+  .player-control-playback-actions
+  .player-control-btn:focus
+  .player-control-icon,
+.player-platform-webos
+  .player-control-quick-actions
+  .player-control-btn.focused
+  .player-control-icon,
+.player-platform-webos
+  .player-control-quick-actions
+  .player-control-btn:focus
+  .player-control-icon {
+  filter: var(--player-focused-icon-filter, brightness(0));
+}
+
+.player-platform-webos .player-control-btn.focused .player-control-icon-mask,
+.player-platform-webos .player-control-btn:focus .player-control-icon-mask {
+  background-color: var(--player-on-secondary);
+  filter: none;
+}
+
+.no-flex-gap .player-control-playback-actions > * + *,
+.no-flex-gap .player-control-quick-actions > * + * {
+  margin-left: 8px;
+}

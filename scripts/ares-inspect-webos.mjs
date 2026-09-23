@@ -1,6 +1,6 @@
 import { runAresCli } from "./aresCli.mjs";
 
-const defaultAppId = "space.nuvio.webos";
+const defaultAppId = "space.nuvio.enhanced";
 
 function hasAppOrServiceArg(args) {
   return args.some((arg, index) => {

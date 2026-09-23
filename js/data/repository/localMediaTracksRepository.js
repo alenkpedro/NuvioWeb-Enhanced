@@ -84,17 +84,22 @@ async function requestTracksViaLuna(mediaUrl) {
 
 async function requestTracksViaLunaWithRetry(mediaUrl) {
   let lastError = null;
-  for (let attempt = 1; attempt <= WEBOS_LUNA_TRACK_ATTEMPTS; attempt += 1) {
+  const maxAttempts = /simulator/i.test(String(globalThis.navigator?.userAgent || ""))
+    ? 1
+    : WEBOS_LUNA_TRACK_ATTEMPTS;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
       const tracks = await requestTracksViaLuna(mediaUrl);
-      if (tracks.length > 0 || attempt >= WEBOS_LUNA_TRACK_ATTEMPTS) {
+      if (tracks.length > 0 || attempt >= maxAttempts) {
         return tracks;
       }
     } catch (error) {
       lastError = error;
     }
 
-    await delay(WEBOS_LUNA_TRACK_RETRY_DELAY_MS);
+    if (attempt < maxAttempts) {
+      await delay(WEBOS_LUNA_TRACK_RETRY_DELAY_MS);
+    }
   }
 
   if (lastError) {
@@ -145,19 +150,16 @@ export const localMediaTracksRepository = {
       if (Platform.isWebOS() && isWebOsCompanionServiceAvailable()) {
         try {
           const lunaTracks = await requestTracksViaLunaWithRetry(targetUrl);
-          tracksCache.set(targetUrl, {
-            tracks: Array.isArray(lunaTracks) ? lunaTracks : [],
-            expiresAt:
-              Date.now() +
-              (lunaTracks.length > 0 ? TRACK_CACHE_TTL_MS : WEBOS_EMPTY_TRACK_CACHE_TTL_MS)
-          });
-          return Array.isArray(lunaTracks) ? lunaTracks : [];
+          if (lunaTracks.length > 0) {
+            tracksCache.set(targetUrl, {
+              tracks: lunaTracks,
+              expiresAt: Date.now() + TRACK_CACHE_TTL_MS
+            });
+            return lunaTracks;
+          }
         } catch (_) {
-          tracksCache.set(targetUrl, {
-            tracks: [],
-            expiresAt: Date.now() + WEBOS_EMPTY_TRACK_CACHE_TTL_MS
-          });
-          return [];
+          // The simulator can expose Luna without installing the companion
+          // service. Try its local media server before reporting no tracks.
         }
       }
 
@@ -203,6 +205,9 @@ export const localMediaTracksRepository = {
         try {
           const payload = await fetchJson(buildTracksUrl(port, targetUrl));
           const tracks = Array.isArray(payload) ? payload : [];
+          if (!tracks.length && Platform.isWebOS()) {
+            continue;
+          }
           cachedLocalMediaServerPort = port;
           tracksCache.set(targetUrl, {
             tracks,
@@ -216,7 +221,9 @@ export const localMediaTracksRepository = {
 
       tracksCache.set(targetUrl, {
         tracks: [],
-        expiresAt: Date.now() + Math.min(TRACK_CACHE_TTL_MS, 5000)
+        expiresAt:
+          Date.now() +
+          (Platform.isWebOS() ? WEBOS_EMPTY_TRACK_CACHE_TTL_MS : Math.min(TRACK_CACHE_TTL_MS, 5000))
       });
       return [];
     })();

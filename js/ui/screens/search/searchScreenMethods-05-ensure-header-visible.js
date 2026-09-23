@@ -54,7 +54,7 @@ export function createSearchScreenMethods05() {
         const col = Number(current.dataset.navCol || 0);
         if (direction === "left") {
           if (col > 0) return this.focusNode(current, nav.header?.[col - 1] || current) || true;
-          return "sidebar";
+          return this.container?.querySelector(".nuvio-top-navigation") ? true : "sidebar";
         }
         if (direction === "right") {
           if (col < (nav.header?.length || 0) - 1) {
@@ -88,7 +88,7 @@ export function createSearchScreenMethods05() {
           if (col > 0) {
             return this.focusNode(current, rowNodes[col - 1] || current) || true;
           }
-          return "sidebar";
+          return this.container?.querySelector(".nuvio-top-navigation") ? true : "sidebar";
         }
         if (direction === "right") {
           const target = rowNodes[col + 1] || null;

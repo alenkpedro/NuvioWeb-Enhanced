@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Film</string>
     <string name="type_series">Serija</string>
     <string name="type_unknown">Nepoznato</string>
@@ -353,8 +353,8 @@
     <string name="playback_resolution_matching_sub">Dozvoli promjene načina prikaza kako bi odgovaralo rezoluciji videa.</string>
     <string name="playback_player_external_desc">Uvijek otvaraj streamove u vanjskoj aplikaciji</string>
     <string name="playback_player_ask_desc">Odaberi player svaki put</string>
-    <string name="playback_engine_exoplayer_desc">Najbolja kompatibilnost sa trenutnim Nuvio funkcijama.</string>
-    <string name="playback_engine_mvplayer_desc">Koristi libmpv sa Nuvio OSD kontrolama. Eksperimentalno.</string>
+    <string name="playback_engine_exoplayer_desc">Najbolja kompatibilnost sa trenutnim Nuvio Enhanced funkcijama.</string>
+    <string name="playback_engine_mvplayer_desc">Koristi libmpv sa Nuvio Enhanced OSD kontrolama. Eksperimentalno.</string>
     <string name="audio_trailer_section">Trailer</string>
     <string name="audio_autoplay_trailers">Automatski Pusti Trailere</string>
     <string name="audio_autoplay_trailers_sub">Automatski pusti trailere na ekranu sa detaljima nakon perioda neaktivnosti</string>
@@ -829,7 +829,7 @@
     <string name="stream_type_torrent">Torrent</string>
     <string name="stream_type_youtube">YouTube</string>
     <string name="p2p_consent_title">P2P Streaming</string>
-    <string name="p2p_consent_body">Ovaj stream koristi peer-to-peer (P2P) tehnologiju. Omogućavanjem P2P-a, slažete se sa sljedećim:\n\n• Vaša IP adresa će biti vidljiva drugim učesnicima u mreži\n• Vi ste isključivo odgovorni za sadržaj kojem pristupate\n• Potvrđujete da imate zakonsko pravo streamati ovaj sadržaj u vašoj državi\n• Nuvio ne hosta, ne distribuira i ne kontroliše bilo kakav P2P sadržaj\n• Nuvio ne snosi odgovornost za bilo kakve pravne posljedice koje proizilaze iz vašeg korištenja P2P streaminga\n\nOvu funkciju koristite u potpunosti na vlastiti rizik. P2P možete isključiti bilo kada u Postavkama.</string>
+    <string name="p2p_consent_body">Ovaj stream koristi peer-to-peer (P2P) tehnologiju. Omogućavanjem P2P-a, slažete se sa sljedećim:\n\n• Vaša IP adresa će biti vidljiva drugim učesnicima u mreži\n• Vi ste isključivo odgovorni za sadržaj kojem pristupate\n• Potvrđujete da imate zakonsko pravo streamati ovaj sadržaj u vašoj državi\n• Nuvio Enhanced ne hosta, ne distribuira i ne kontroliše bilo kakav P2P sadržaj\n• Nuvio Enhanced ne snosi odgovornost za bilo kakve pravne posljedice koje proizilaze iz vašeg korištenja P2P streaminga\n\nOvu funkciju koristite u potpunosti na vlastiti rizik. P2P možete isključiti bilo kada u Postavkama.</string>
     <string name="p2p_consent_enable">Omogući P2P</string>
     <string name="p2p_consent_cancel">Otkaži</string>
     <string name="settings_p2p_title">P2P Streaming</string>
@@ -1144,11 +1144,11 @@
     <string name="catalog_see_all_from">od %1$s</string>
     <string name="catalog_see_all_empty_title">Nema dostupnih stavki</string>
     <string name="catalog_see_all_empty_subtitle">Pokušaj sa drugim katalogom ili provjeri kasnije</string>
-    <string name="layout_selection_welcome">Dobrodošli u Nuvio</string>
+    <string name="layout_selection_welcome">Dobrodošli u Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Odaberi raspored početnog ekrana</string>
     <string name="layout_selection_continue">Nastavi</string>
     <string name="update_title">Ažuriranje Aplikacije</string>
-    <string name="update_installer_required">Koristite Nuvio TV Installer za ažuriranje aplikacije na TV-u.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Šta je novo</string>
     <string name="update_release_notes_unavailable">Opis izdanja nije dostupan.</string>
     <string name="update_downloading">Preuzimanje ažuriranja</string>
@@ -1280,7 +1280,7 @@
     <string name="cd_preview">Pregled</string>
     <string name="cd_test">Testiraj</string>
     <string name="cd_unlink">Odspoji</string>
-    <string name="cd_nuvio_logo">NuvioTV</string>
+    <string name="cd_nuvio_logo">Nuvio Enhanced</string>
     <string name="cd_trakt_logo">Trakt Logo</string>
     <string name="cd_trakt_qr">Trakt QR za aktivaciju</string>
     <string name="cd_imdb">IMDb</string>
@@ -1291,7 +1291,7 @@
     <string name="cd_expand">Proširi %1$s</string>
     <string name="cd_collapse">Skupi %1$s</string>
     <string name="cd_qr_login">QR kod za prijavu</string>
-    <string name="cd_nuvio">Nuvio</string>
+    <string name="cd_nuvio">Nuvio Enhanced</string>
     <string name="debug_signin_success">Uspješno prijavljeno</string>
     <string name="debug_generate_description">Debug generisana stavka %1$s broj %2$d</string>
     <string name="debug_generate_result_failed">Nije uspjelo: %1$s</string>
@@ -1381,7 +1381,7 @@
     <string name="autoplay_reuse_binge_group">Ponovo koristi Binge grupu</string>
     <string name="autoplay_reuse_binge_group_sub">Zapamti i ponovo koristi zadnju Binge grupu između sesija (Nastavi gledati, Detalji itd.).</string>
     <string name="unsupported_device_title">TV nije podržan</string>
-    <string name="unsupported_device_message">Ovaj TV ne ispunjava minimalne zahtjeve za ovu verziju aplikacije Nuvio TV.</string>
+    <string name="unsupported_device_message">Ovaj TV ne ispunjava minimalne zahtjeve za ovu verziju aplikacije Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Trenutna platforma</string>
     <string name="unsupported_device_current_firmware">Trenutni firmver</string>
     <string name="unsupported_device_required_platform">Potrebna platforma</string>
@@ -1411,7 +1411,7 @@
     <string name="debrid_device_auth_expired">Ovaj kod je istekao. Pokušajte ponovo.</string>
     <string name="debrid_device_auth_failed">Nije moguće pokrenuti prijavu.</string>
     <string name="debrid_device_auth_connected">%1$s je povezan na ovom uređaju.</string>
-    <string name="debrid_device_auth_instructions">Skenirajte QR kod i unesite ovaj kod da odobrite Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Skenirajte QR kod i unesite ovaj kod da odobrite Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Ovaj način prijave nije konfiguriran u ovoj verziji.</string>
     <string name="debrid_disconnect">Prekini vezu</string>
     <string name="debrid_connected">Povezano</string>
@@ -1754,6 +1754,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Možete pokušati pokrenuti Nuvio TV, ali aplikacija možda neće ispravno raditi na ovom televizoru. Ova konfiguracija nije zvanično podržana.</string>
+    <string name="unsupported_device_warning">Možete pokušati pokrenuti Nuvio Enhanced, ali aplikacija možda neće ispravno raditi na ovom televizoru. Ova konfiguracija nije zvanično podržana.</string>
     <string name="unsupported_device_try_anyway">Pokušaj ipak</string>
 </resources>

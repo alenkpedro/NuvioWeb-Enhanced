@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Película</string>
     <string name="type_series">Series</string>
     <string name="type_unknown">Desconocido</string>
@@ -457,7 +457,7 @@
     <string name="trakt_stat_watched_hours">Horas vistas</string>
     <string name="trakt_disconnect">Desconectar</string>
     <string name="trakt_disconnect_title">¿Desconectar Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Esto desconectará tu cuenta de Trakt de Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Esto desconectará tu cuenta de Trakt de Nuvio Enhanced.</string>
     <string name="trakt_login">Iniciar sesión</string>
     <string name="trakt_retry">Reintentar</string>
     <string name="trakt_back">Atrás</string>
@@ -737,11 +737,11 @@
     <string name="catalog_see_all_from">de %1$s</string>
     <string name="catalog_see_all_empty_title">No hay elementos disponibles</string>
     <string name="catalog_see_all_empty_subtitle">Intenta un catálogo diferente o vuelve más tarde</string>
-    <string name="layout_selection_welcome">Bienvenido a Nuvio</string>
+    <string name="layout_selection_welcome">Bienvenido a Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Elige tu diseño de pantalla de inicio</string>
     <string name="layout_selection_continue">Continuar</string>
     <string name="update_title">Actualización de la aplicación</string>
-    <string name="update_installer_required">Usa Nuvio TV Installer para actualizar la aplicación en tu televisor.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Novedades</string>
     <string name="update_release_notes_unavailable">No hay ninguna descripción de la versión disponible.</string>
     <string name="update_downloading">Descargando actualización</string>
@@ -1102,7 +1102,7 @@
     <string name="autoplay_timeout_instant">Instantáneo</string>
     <string name="autoplay_timeout_unlimited">Ilimitado</string>
     <string name="unsupported_device_title">TV no compatible</string>
-    <string name="unsupported_device_message">Este televisor no cumple los requisitos mínimos para esta versión de Nuvio TV.</string>
+    <string name="unsupported_device_message">Este televisor no cumple los requisitos mínimos para esta versión de Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Plataforma actual</string>
     <string name="unsupported_device_current_firmware">Firmware actual</string>
     <string name="unsupported_device_required_platform">Plataforma requerida</string>
@@ -1132,7 +1132,7 @@
     <string name="debrid_device_auth_expired">Este código ha caducado. Inténtalo de nuevo.</string>
     <string name="debrid_device_auth_failed">No se pudo iniciar sesión.</string>
     <string name="debrid_device_auth_connected">%1$s está conectado en este dispositivo.</string>
-    <string name="debrid_device_auth_instructions">Escanea el código QR e introduce este código para autorizar Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Escanea el código QR e introduce este código para autorizar Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Este método de inicio de sesión no está configurado en esta versión.</string>
     <string name="debrid_disconnect">Desconectar</string>
     <string name="debrid_connected">Conectado</string>
@@ -1479,6 +1479,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Puedes intentar iniciar Nuvio TV de todos modos, pero es posible que la aplicación no funcione correctamente en este televisor. Esta configuración no cuenta con soporte oficial.</string>
+    <string name="unsupported_device_warning">Puedes intentar iniciar Nuvio Enhanced de todos modos, pero es posible que la aplicación no funcione correctamente en este televisor. Esta configuración no cuenta con soporte oficial.</string>
     <string name="unsupported_device_try_anyway">Intentar de todos modos</string>
 </resources>

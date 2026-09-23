@@ -2,7 +2,7 @@
 import * as internals from "./settingsScreenContext.js";
 
 export function renderLayoutMarkup(model) {
-  const { isModernSidebarBlurAvailable, HOME_LAYOUT_OPTIONS, SECTION_META, t } = internals;
+  const { isModernSidebarBlurAvailable, HOME_LAYOUT_OPTIONS, SECTION_META, Platform, t } = internals;
   const expanded = this.expandedSections.layout;
   const selectedLayout = String(model.layout.homeLayout || "").toLowerCase();
   const isModernLayout = selectedLayout === "modern";
@@ -17,6 +17,16 @@ export function renderLayoutMarkup(model) {
         ? t("settings.layout.continueWatchingSort.streamingStyle", {}, "Streaming Style")
         : t("settings.layout.continueWatchingSort.default", {}, "Default");
   const homeRatingsShown = model.layout.homeImdbRatingsVisibility !== "HIDE_ALL";
+  const isWebOs = Platform.isWebOS();
+  const showSidebarControls = !isWebOs || model.layout.webOsNavigationMode === "sidebar";
+  const webOsNavigationModeRow = isWebOs
+    ? this.renderToggleRow({
+        focusKey: "layout:webOsNavigationMode",
+        title: t("layout_webos_top_navigation"),
+        subtitle: t("layout_webos_top_navigation_sub"),
+        checked: model.layout.webOsNavigationMode !== "sidebar"
+      })
+    : "";
 
   const homeLayoutBody = `
           <div class="settings-stack">
@@ -76,13 +86,25 @@ export function renderLayoutMarkup(model) {
                     })
                   : ""
               }
-            </div></div>`;
+            </div></div>
+            ${
+              isWebOs
+                ? `<div class="settings-group-card">${this.renderCollapsibleRow({
+                    focusKey: "layout:toggle:homeContent",
+                    title: t("settings.layout.groups.homeContent.title"),
+                    subtitle: t("settings.layout.groups.homeContent.subtitle"),
+                    expanded: Boolean(expanded.homeContent),
+                    bodyHtml: `<div class="settings-stack">${webOsNavigationModeRow}</div>`
+                  })}</div>`
+                : ""
+            }`;
   }
 
   const homeContentBody = `
           <div class="settings-stack">
+            ${webOsNavigationModeRow}
             ${
-              !model.layout.modernSidebar
+              showSidebarControls && !model.layout.modernSidebar
                 ? this.renderToggleRow({
                     focusKey: "layout:collapseSidebar",
                     title: t("settings.layout.collapseSidebar.title"),
@@ -91,14 +113,18 @@ export function renderLayoutMarkup(model) {
                   })
                 : ""
             }
-            ${this.renderToggleRow({
-              focusKey: "layout:modernSidebar",
-              title: t("settings.layout.modernSidebar.title"),
-              subtitle: t("settings.layout.modernSidebar.subtitle"),
-              checked: Boolean(model.layout.modernSidebar)
-            })}
             ${
-              model.layout.modernSidebar && isModernSidebarBlurAvailable()
+              showSidebarControls
+                ? this.renderToggleRow({
+                    focusKey: "layout:modernSidebar",
+                    title: t("settings.layout.modernSidebar.title"),
+                    subtitle: t("settings.layout.modernSidebar.subtitle"),
+                    checked: Boolean(model.layout.modernSidebar)
+                  })
+                : ""
+            }
+            ${
+              showSidebarControls && model.layout.modernSidebar && isModernSidebarBlurAvailable()
                 ? this.renderToggleRow({
                     focusKey: "layout:modernSidebarBlur",
                     title: t("settings.layout.modernSidebarBlur.title"),

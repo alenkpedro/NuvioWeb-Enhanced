@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve Nuvio TV.
+Thanks for helping improve Nuvio Enhanced.
 
 ## Strict rules - read before opening anything
 
@@ -40,7 +40,7 @@ Pull requests are accepted only when they fit one of these categories:
 ## UI changes
 
 Do not open a pull request for a UI change just because it looks better, cleaner, more modern, or more consistent to you.
-Nuvio TV is optimized for TV-first usage, so UI changes are especially sensitive. A small visual change can affect remote-control navigation, focus behavior, readability, overscan, performance, or compatibility on older Smart TV browsers.
+Nuvio Enhanced is optimized for TV-first usage, so UI changes are especially sensitive. A small visual change can affect remote-control navigation, focus behavior, readability, overscan, performance, or compatibility on older Smart TV browsers.
 UI PRs are accepted only when they fix a specific, documented glitch or bug, such as:
 
 - Broken layout
@@ -83,7 +83,7 @@ Do not open a PR that changes behavior unless one of these is true:
 
 ## Platform-specific changes
 
-Nuvio TV supports multiple Smart TV targets from a shared codebase.
+Nuvio Enhanced supports multiple Smart TV targets from a shared codebase.
 Platform-specific changes must be handled carefully because a fix for one target can easily break another.
 Platform-specific PRs must include:
 

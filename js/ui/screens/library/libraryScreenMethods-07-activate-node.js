@@ -227,6 +227,13 @@ export function createLibraryScreenMethods07() {
       const current = this.container?.querySelector(".focusable.focused") || activeNode || null;
       const sidebarLocked =
         state.listEditorState || state.showDeleteConfirm || state.showManageDialog || state.cloudFilePickerItem || state.expandedPicker;
+      const stopAtLeftEdge = Boolean(
+        !sidebarLocked &&
+        code === 37 &&
+        current &&
+        this.container?.querySelector(".nuvio-top-navigation") &&
+        this.shouldTransferToSidebar(current)
+      );
 
       if (!sidebarLocked && code === 13 && this.isPosterHoldTarget(current)) {
         event?.preventDefault?.();
@@ -236,7 +243,7 @@ export function createLibraryScreenMethods07() {
         return;
       }
 
-      if (!sidebarLocked && code === 37 && current && this.shouldTransferToSidebar(current)) {
+      if (!stopAtLeftEdge && !sidebarLocked && code === 37 && current && this.shouldTransferToSidebar(current)) {
         event?.preventDefault?.();
         await this.focusSidebarNode();
         return;
@@ -288,6 +295,11 @@ export function createLibraryScreenMethods07() {
       }
 
       if (this.handlePrivacyMemoryNavigation(event, current)) {
+        return;
+      }
+
+      if (stopAtLeftEdge) {
+        event?.preventDefault?.();
         return;
       }
 

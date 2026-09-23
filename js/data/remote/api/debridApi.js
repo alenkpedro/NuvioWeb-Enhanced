@@ -89,8 +89,8 @@ function formBody(values = {}) {
 }
 
 export const DebridApi = {
-  async startTorboxDeviceAuthorization(appName = "Nuvio") {
-    const query = new URLSearchParams({ app: String(appName || "Nuvio") });
+  async startTorboxDeviceAuthorization(appName = "Nuvio Enhanced") {
+    const query = new URLSearchParams({ app: String(appName || "Nuvio Enhanced") });
     return requestDebridAuthJson(
       TORBOX_BASE_URL,
       `v1/api/user/auth/device/start?${query.toString()}`

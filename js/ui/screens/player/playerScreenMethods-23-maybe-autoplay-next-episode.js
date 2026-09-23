@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as internals from "./playerScreenContext.js";
+import { DebridSettingsStore } from "../../../data/local/debridSettingsStore.js";
+import { rankStreamsForAutoPlay } from "../../../core/streams/streamQualityRanking.js";
 
 export function createPlayerScreenMethods23() {
   const {
@@ -7,6 +9,7 @@ export function createPlayerScreenMethods23() {
     streamRepository,
     addonRepository,
     PlayerSettingsStore,
+    I18n,
     selectAutoPlayStream,
     orderStreamsByAddonOrder,
     DebridStreamPresentation,
@@ -176,13 +179,11 @@ export function createPlayerScreenMethods23() {
       }
 
       const mode = String(settings.streamAutoPlayMode || "MANUAL").toUpperCase();
-      const preferBingeGroup = Boolean(settings.streamAutoPlayPreferBingeGroupForNextEpisode);
-      const shouldAutoSelectInManualMode = mode === "MANUAL" && (Boolean(settings.autoplayNextEpisode) || preferBingeGroup);
-      const preferredBingeGroup = preferBingeGroup ? this.getCurrentStreamBingeGroup() : "";
-      const bingeGroupOnlyManualMode = shouldAutoSelectInManualMode && preferBingeGroup;
-      if (bingeGroupOnlyManualMode && !preferredBingeGroup) {
+      if (mode === "MANUAL") {
         return null;
       }
+      const preferBingeGroup = mode !== "BEST_STREAM" && Boolean(settings.streamAutoPlayPreferBingeGroupForNextEpisode);
+      const preferredBingeGroup = preferBingeGroup ? this.getCurrentStreamBingeGroup() : "";
       const installedAddonNames =
         options.installedAddonNames instanceof Set
           ? options.installedAddonNames
@@ -191,16 +192,24 @@ export function createPlayerScreenMethods23() {
                 .map((addon) => String(addon?.displayName || addon?.name || "").trim())
                 .filter(Boolean)
             );
-      return selectAutoPlayStream(streamItems, {
-        mode: shouldAutoSelectInManualMode ? "FIRST_STREAM" : mode,
-        source: shouldAutoSelectInManualMode ? "ALL_SOURCES" : String(settings.streamAutoPlaySource || "ALL_SOURCES"),
-        regexPattern: shouldAutoSelectInManualMode ? "" : String(settings.streamAutoPlayRegex || ""),
+      const selectionStreams =
+        mode === "BEST_STREAM"
+          ? rankStreamsForAutoPlay(streamItems, DebridSettingsStore.get().streamPreferences, {
+              ...settings,
+              systemLanguage: I18n.getLocale(),
+              contentLanguage: this.contentLanguage
+            })
+          : streamItems;
+      return selectAutoPlayStream(selectionStreams, {
+        mode,
+        source: String(settings.streamAutoPlaySource || "ALL_SOURCES"),
+        regexPattern: String(settings.streamAutoPlayRegex || ""),
         installedAddonNames,
-        selectedAddons: shouldAutoSelectInManualMode ? [] : settings.streamAutoPlaySelectedAddons,
-        selectedPlugins: shouldAutoSelectInManualMode ? [] : settings.streamAutoPlaySelectedPlugins,
+        selectedAddons: settings.streamAutoPlaySelectedAddons,
+        selectedPlugins: settings.streamAutoPlaySelectedPlugins,
         preferredBingeGroup,
         preferBingeGroupInSelection: preferBingeGroup,
-        bingeGroupOnly: Boolean(options.bingeGroupOnly || bingeGroupOnlyManualMode)
+        bingeGroupOnly: Boolean(options.bingeGroupOnly)
       });
     },
     async resolveNextEpisodeStreamByAutoPlayPolicy(nextEpisode, itemType, settings) {
@@ -212,7 +221,11 @@ export function createPlayerScreenMethods23() {
       );
       let latestStreams = [];
       let timeoutElapsed = Number(settings.streamAutoPlayTimeoutSeconds || 0) === 0;
-      const hasPreferredBingeGroup = Boolean(settings.streamAutoPlayPreferBingeGroupForNextEpisode && this.getCurrentStreamBingeGroup());
+      const hasPreferredBingeGroup = Boolean(
+        String(settings.streamAutoPlayMode || "MANUAL").toUpperCase() !== "BEST_STREAM" &&
+        settings.streamAutoPlayPreferBingeGroupForNextEpisode &&
+        this.getCurrentStreamBingeGroup()
+      );
       let settled = false;
       let resolveSelection;
       let selectionTimer = null;

@@ -13,13 +13,14 @@ const distDir = path.join(rootDir, "dist");
 
 const cacheDir = path.join(rootDir, ".cache");
 const stagingDir = path.join(cacheDir, "webos-package");
+const simulatorDir = path.join(rootDir, "webos-simulator");
 const appStageDir = path.join(stagingDir, "app");
-const serviceStageDir = path.join(stagingDir, "space.nuvio.webos.service");
-const pluginServiceStageDir = path.join(stagingDir, "space.nuvio.webos.plugin.service");
+const serviceStageDir = path.join(stagingDir, "space.nuvio.enhanced.service");
+const pluginServiceStageDir = path.join(stagingDir, "space.nuvio.enhanced.plugin.service");
 
-const appName = "Nuvio TV";
-const webOsServiceId = "space.nuvio.webos.service";
-const webOsPluginServiceId = "space.nuvio.webos.plugin.service";
+const appName = "Nuvio Enhanced";
+const webOsServiceId = "space.nuvio.enhanced.service";
+const webOsPluginServiceId = "space.nuvio.enhanced.plugin.service";
 const webOsServiceSourceDir = path.join(rootDir, "services", "webos");
 const webOsPluginServiceSourceDir = path.join(rootDir, "services", "webos", "plugin");
 const webOsRuntimeScriptPath = "assets/libs/webOSTV.js";
@@ -301,7 +302,7 @@ async function stagePluginService() {
   });
 }
 
-async function packageWebOs() {
+async function packageWebOs({ simulatorOnly = false } = {}) {
   await syncVersionFiles();
   await assertDistExists();
 
@@ -309,6 +310,19 @@ async function packageWebOs() {
   await rm(stagingDir, { recursive: true, force: true });
   await mkdir(stagingDir, { recursive: true });
   await Promise.all([stageApp(), stageService(), stagePluginService()]);
+
+  await rm(simulatorDir, { recursive: true, force: true });
+  await mkdir(simulatorDir, { recursive: true });
+  await Promise.all([
+    cp(appStageDir, path.join(simulatorDir, "app"), { recursive: true }),
+    cp(serviceStageDir, path.join(simulatorDir, "companion-service"), { recursive: true }),
+    cp(pluginServiceStageDir, path.join(simulatorDir, "plugin-service"), { recursive: true })
+  ]);
+  console.log(`webOS Simulator app ready: ${path.join(simulatorDir, "app")}`);
+
+  if (simulatorOnly) {
+    return;
+  }
 
   console.log("creating webOS IPK...");
   try {
@@ -321,7 +335,7 @@ async function packageWebOs() {
     ]);
   } catch (error) {
     const { version } = await readAppMetadata();
-    const expectedIpk = path.join(rootDir, `space.nuvio.webos_${version}_all.ipk`);
+    const expectedIpk = path.join(rootDir, `space.nuvio.enhanced_${version}_all.ipk`);
     if (await pathExists(expectedIpk)) {
       console.warn(
         `ares-package exited with an error, but ${expectedIpk} was created successfully. Continuing.`
@@ -333,7 +347,7 @@ async function packageWebOs() {
 }
 
 try {
-  await packageWebOs();
+  await packageWebOs({ simulatorOnly: process.argv.includes("--simulator") });
 } catch (error) {
   console.error("\nwebOS packaging failed:");
   console.error(error);

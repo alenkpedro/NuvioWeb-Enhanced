@@ -42,6 +42,7 @@ export function initializePlayerMountState(params, initialStreamUrl) {
   this.subtitleStyleRailIndex = 0;
   this.subtitleStyleControlSide = "minus";
   this.subtitleFocusedRail = "language";
+  this.subtitleSettingsPage = false;
   this.subtitleFocusedLanguageKey = SUBTITLE_LANGUAGE_OFF_KEY;
   this.subtitleDialogScrollMode = "nearest";
   this.subtitleDialogScrollTimer = null;
@@ -103,6 +104,7 @@ export function initializePlayerMountState(params, initialStreamUrl) {
   this.webOsEmbeddedCueRefreshApplied = false;
 
   this.audioDialogVisible = false;
+  this.audioSettingsPage = false;
   this.audioDialogIndex = 0;
   this.audioMixFocusIndex = 0;
   this.audioFocusedColumn = "tracks";

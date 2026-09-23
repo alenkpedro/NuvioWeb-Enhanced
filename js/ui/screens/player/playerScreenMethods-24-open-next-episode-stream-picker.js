@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as internals from "./playerScreenContext.js";
+import { buildSubtitleDropShadow } from "../../../core/player/subtitleDropShadow.js";
 
 export function createPlayerScreenMethods24() {
   const {
@@ -81,9 +82,7 @@ export function createPlayerScreenMethods24() {
 
       const settings = PlayerSettingsStore.get();
       const mode = String(settings.streamAutoPlayMode || "MANUAL").toUpperCase();
-      const shouldAutoSelectInManualMode =
-        mode === "MANUAL" && (Boolean(settings.autoplayNextEpisode) || Boolean(settings.streamAutoPlayPreferBingeGroupForNextEpisode));
-      if (mode === "MANUAL" && !shouldAutoSelectInManualMode) {
+      if (mode === "MANUAL") {
         return this.openNextEpisodeStreamPicker(nextEpisode, { forceReload: true });
       }
 
@@ -98,7 +97,7 @@ export function createPlayerScreenMethods24() {
         this.consecutiveAutoPlayCount = 0;
       }
       this.nextEpisodeTransitionMeta = {
-        title: this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio",
+        title: this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio Enhanced",
         subtitle: nextEpisode.episodeTitle || nextEpisode.episodeLabel || "",
         logoUrl: this.params?.playerLogoUrl || this.params?.logo || "",
         backdropUrl: this.params?.playerBackdropUrl || this.params?.backdrop || this.params?.poster || ""
@@ -269,16 +268,8 @@ export function createPlayerScreenMethods24() {
       const subtitleTextColor = String(style.textColor || "#FFFFFF");
       const subtitleColor = subtitleTextColorWithOpacity(subtitleTextColor, subtitleTextOpacity);
       const outlineColor = String(style.outlineColor || "#000000");
-      const subtitleFontWeight = style.bold ? "800" : Environment.isWebOS() ? "400" : "500";
-      const boldShadow = style.bold
-        ? `0.45px 0 0 ${subtitleColor}, -0.45px 0 0 ${subtitleColor}, 0 0.45px 0 ${subtitleColor}, 0 -0.45px 0 ${subtitleColor}`
-        : "";
-      const outlineShadow = style.outlineEnabled
-        ? Environment.isWebOS()
-          ? `-2px -2px 0 ${outlineColor}, 0 -2px 0 ${outlineColor}, 2px -2px 0 ${outlineColor}, -2px 0 0 ${outlineColor}, 2px 0 0 ${outlineColor}, -2px 2px 0 ${outlineColor}, 0 2px 0 ${outlineColor}, 2px 2px 0 ${outlineColor}`
-          : `0 0 2px ${outlineColor}, 0 0 4px ${outlineColor}`
-        : "";
-      const subtitleShadow = [outlineShadow, boldShadow].filter(Boolean).join(", ") || "none";
+      const subtitleFontWeight = style.bold ? "500" : "400";
+      const subtitleShadow = buildSubtitleDropShadow(style.outlineEnabled, outlineColor);
       const subtitleFontSize = normalizeSubtitleFontSize(style.fontSize);
       const htmlSubtitleFontSize = formatHtmlSubtitleFontSize(subtitleFontSize);
       PlayerController.setWebOsSubtitleFontSize?.(subtitleFontSize);

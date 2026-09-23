@@ -263,6 +263,9 @@ export function createSettingsScreenMethods14() {
             return;
           }
           if (code === 37) {
+            if (this.container?.querySelector(".nuvio-top-navigation")) {
+              return;
+            }
             const sidebarNodes = getRootSidebarNodes(this.container, this.layoutPrefs);
             const selectedSidebarNode = getRootSidebarSelectedNode(this.container, this.layoutPrefs);
             this.sidebarFocusIndex = Math.max(0, sidebarNodes.indexOf(selectedSidebarNode));

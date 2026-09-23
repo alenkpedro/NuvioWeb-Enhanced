@@ -18,6 +18,17 @@ export function createHomeScreenMethods28() {
 
   return {
     onKeyDown(event) {
+      const topNavigationTarget =
+        event?.target?.closest?.(".nuvio-top-navigation .focusable") ||
+        globalThis.document?.activeElement?.closest?.(".nuvio-top-navigation .focusable");
+      if (topNavigationTarget && this.container?.contains(topNavigationTarget)) {
+        const previous = this.getCurrentFocusedNode();
+        if (previous && previous !== topNavigationTarget) {
+          previous.classList.remove("focused");
+        }
+        topNavigationTarget.classList.add("focused");
+        this.setCurrentFocusedNode(topNavigationTarget);
+      }
       const currentFocusedNode = this.getCurrentFocusedNode() || this.container?.querySelector(".focusable") || null;
       const code = Number(event?.keyCode || 0);
       if (code === 13 || isDirectionalKeyCode(code)) {
@@ -89,6 +100,10 @@ export function createHomeScreenMethods28() {
       }
       const action = current.dataset.action;
       if (String(current.dataset.navZone || "") === "sidebar") {
+        event.preventDefault?.();
+        if (current.closest(".nuvio-top-navigation")) {
+          event.stopImmediatePropagation?.();
+        }
         activateLegacySidebarAction(action, "home");
         return;
       }

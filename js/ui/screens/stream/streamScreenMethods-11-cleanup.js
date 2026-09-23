@@ -6,6 +6,11 @@ export function createStreamScreenMethods11() {
 
   return {
     cleanup() {
+      if (this.focusedStreamPreparationTimer) clearTimeout(this.focusedStreamPreparationTimer);
+      this.focusedStreamPreparationTimer = null;
+      this.focusedStreamPreconnect?.remove?.();
+      this.focusedStreamPreconnect = null;
+      this.focusedStreamPreparationKeys?.clear?.();
       this.streamLoadAbortController?.abort?.();
       this.streamLoadAbortController = null;
       streamRepository.setLocalPluginSearchPaused(true);

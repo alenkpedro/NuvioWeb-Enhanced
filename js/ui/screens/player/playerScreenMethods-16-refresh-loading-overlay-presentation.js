@@ -38,11 +38,26 @@ export function createPlayerScreenMethods16() {
         }
       }
       if (title) {
-        title.textContent = loadingMeta.title || this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio";
+        title.textContent =
+          loadingMeta.title || this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio Enhanced";
       }
       if (subtitle) {
         subtitle.textContent = loadingMeta.subtitle || "";
         subtitle.classList.toggle("hidden", !loadingMeta.subtitle);
+      }
+      const source = this.getCurrentStreamCandidate();
+      const sourceLabel = [source?.addonName, source?.name || source?.label]
+        .map((part) =>
+          String(part || "")
+            .replace(/\s+/g, " ")
+            .trim()
+        )
+        .filter(Boolean)
+        .filter((part, index, parts) => index === 0 || part !== parts[0])
+        .join(" · ");
+      if (this.uiRefs?.loadingSource) {
+        this.uiRefs.loadingSource.textContent = sourceLabel;
+        this.uiRefs.loadingSource.classList.toggle("hidden", !sourceLabel);
       }
       const backdrop = overlay.querySelector(".player-loading-backdrop");
       if (backdrop instanceof HTMLElement) {

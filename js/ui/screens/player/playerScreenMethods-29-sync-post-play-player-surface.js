@@ -160,7 +160,9 @@ export function createPlayerScreenMethods29() {
     },
     setControlsVisible(visible, { focus = false } = {}) {
       const wasControlsVisible = this.controlsVisible;
-      this.controlsVisible = Boolean(visible);
+      this.controlsVisible = Boolean(
+        visible && (!this.container?.classList.contains("player-platform-webos") || this.hasPresentedPlaybackFrame)
+      );
       this.syncPlayerStreamSource?.();
       if (this.isExternalFrameMode()) {
         return;

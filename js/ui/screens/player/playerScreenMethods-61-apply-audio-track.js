@@ -11,7 +11,8 @@ export function createPlayerScreenMethods61() {
     t,
     isUnsupportedWebOsAudioTrack,
     clamp,
-    escapeHtml
+    escapeHtml,
+    escapeAttribute
   } = internals;
 
   return {
@@ -264,6 +265,57 @@ export function createPlayerScreenMethods61() {
         }
       ];
       this.audioMixFocusIndex = clamp(this.audioMixFocusIndex, 0, audioControls.length - 1);
+      this.audioDialogIndex = entries.length ? clamp(this.audioDialogIndex, 0, entries.length - 1) : 0;
+      const tracksMarkup = entries
+        .map((entry, index) => {
+          const selected = entry.selected;
+          const focused = this.audioFocusedColumn === "tracks" && index === this.audioDialogIndex;
+          const disabled = entry.supported === false;
+          const pending = this.isAudioEntryPending(entry);
+          const unsupportedText =
+            entry.unsupportedReason === "tizen-dash-audio"
+              ? t("player_audio_tizen_dash_unsupported", {}, "Changing DASH audio tracks is not supported on this TV.")
+              : t("player.audio.unsupportedCodec", {}, "Codec not supported by this device");
+          const label = disabled ? `${entry.label || ""} · ${t("player.audio.unsupported", {}, "Unsupported")}` : entry.label || "";
+          const secondary = disabled ? [entry.secondary, unsupportedText].filter(Boolean).join(" · ") : entry.secondary || "";
+          return `
+            <div class="player-dialog-item focusable${selected ? " selected" : ""}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${pending ? " pending" : ""}" data-audio-column="tracks" data-audio-index="${index}" aria-disabled="${disabled ? "true" : "false"}" aria-busy="${pending ? "true" : "false"}">
+              <div class="player-dialog-item-main">${escapeHtml(label)}</div>
+              <div class="player-dialog-item-sub">${escapeHtml(secondary)}</div>
+              <div class="player-dialog-item-check">${pending ? "&#8230;" : selected ? "&#10003;" : ""}</div>
+            </div>
+          `;
+        })
+        .join("");
+      const settingsPage = Environment.isWebOS() && Boolean(this.audioSettingsPage);
+      dialog.classList.toggle("settings-page", settingsPage);
+      if (Environment.isWebOS()) {
+        if (!settingsPage && !entries.length) {
+          this.audioFocusedColumn = "header";
+        }
+        const buttonLabel = settingsPage ? t("audio_dialog_tab_tracks", {}, "Audio") : t("audio_settings_button", {}, "Settings");
+        const loading =
+          this.embeddedAudioLoading || (this.isCurrentSourceAdaptiveManifest() && (this.manifestLoading || this.trackDiscoveryInProgress));
+        dialog.innerHTML = `
+            <div class="player-audio-header">
+              <div class="player-dialog-title">${escapeHtml(settingsPage ? t("audio_dialog_tab_mix", {}, "Mix") : t("audio_dialog_title", {}, "Audio"))}</div>
+              <button type="button" class="player-audio-page-button focusable${this.audioFocusedColumn === "header" ? " focused" : ""}" data-audio-column="header" aria-label="${escapeAttribute(buttonLabel)}">${escapeHtml(buttonLabel)}</button>
+            </div>
+            ${!settingsPage && supportNotice ? `<div class="player-dialog-support-message" role="status">${escapeHtml(supportNotice)}</div>` : ""}
+            ${!settingsPage && entries.length && !hasSupportedEntries ? `<div class="player-audio-support-message" role="status">${escapeHtml(t("player.audio.noSupportedTracks", {}, "No supported audio tracks available"))}</div>` : ""}
+            <div class="player-audio-overlay-grid">
+              ${
+                settingsPage
+                  ? `<div class="player-audio-controls-list">${audioControls.map((control, index) => this.renderAudioControlItem(control, index)).join("")}</div>`
+                  : entries.length
+                    ? `<div class="player-dialog-list player-audio-track-list">${tracksMarkup}</div>`
+                    : `<div class="player-dialog-empty${loading ? " player-dialog-loading" : ""}">${loading ? renderLoadingIndicator() : ""}<span>${escapeHtml(loading ? "Loading audio tracks..." : this.getUnavailableTrackMessage("audio"))}</span></div>`
+              }
+            </div>
+          `;
+        this.scrollAudioDialogIntoView();
+        return;
+      }
       if (!entries.length) {
         this.audioFocusedColumn = "controls";
         const loading =
@@ -283,34 +335,13 @@ export function createPlayerScreenMethods61() {
         return;
       }
 
-      this.audioDialogIndex = clamp(this.audioDialogIndex, 0, entries.length - 1);
       dialog.innerHTML = `
           <div class="player-dialog-title">${escapeHtml(t("audio_dialog_title", {}, "Audio"))}</div>
           ${supportNotice ? `<div class="player-dialog-support-message" role="status">${escapeHtml(supportNotice)}</div>` : ""}
           ${hasSupportedEntries ? "" : `<div class="player-audio-support-message" role="status">${escapeHtml(t("player.audio.noSupportedTracks", {}, "No supported audio tracks available"))}</div>`}
           <div class="player-audio-overlay-grid">
             <div class="player-dialog-list player-audio-track-list">
-              ${entries
-                .map((entry, index) => {
-                  const selected = entry.selected;
-                  const focused = this.audioFocusedColumn === "tracks" && index === this.audioDialogIndex;
-                  const disabled = entry.supported === false;
-                  const pending = this.isAudioEntryPending(entry);
-                  const unsupportedText =
-                    entry.unsupportedReason === "tizen-dash-audio"
-                      ? t("player_audio_tizen_dash_unsupported", {}, "Changing DASH audio tracks is not supported on this TV.")
-                      : t("player.audio.unsupportedCodec", {}, "Codec not supported by this device");
-                  const label = disabled ? `${entry.label || ""} · ${t("player.audio.unsupported", {}, "Unsupported")}` : entry.label || "";
-                  const secondary = disabled ? [entry.secondary, unsupportedText].filter(Boolean).join(" · ") : entry.secondary || "";
-                  return `
-                  <div class="player-dialog-item focusable${selected ? " selected" : ""}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${pending ? " pending" : ""}" data-audio-column="tracks" data-audio-index="${index}" aria-disabled="${disabled ? "true" : "false"}" aria-busy="${pending ? "true" : "false"}">
-                    <div class="player-dialog-item-main">${escapeHtml(label)}</div>
-                    <div class="player-dialog-item-sub">${escapeHtml(secondary)}</div>
-                    <div class="player-dialog-item-check">${pending ? "&#8230;" : selected ? "&#10003;" : ""}</div>
-                  </div>
-                `;
-                })
-                .join("")}
+              ${tracksMarkup}
             </div>
             <div class="player-audio-controls-list">
               ${audioControls.map((control, index) => this.renderAudioControlItem(control, index)).join("")}

@@ -95,7 +95,7 @@ export const DebridDeviceAuthService = {
   async start(providerId) {
     const provider = DebridProviders.byId(providerId);
     if (provider?.id === "torbox") {
-      const response = await DebridApi.startTorboxDeviceAuthorization("Nuvio");
+      const response = await DebridApi.startTorboxDeviceAuthorization("Nuvio Enhanced");
       const data = response?.data?.data;
       if (!response?.ok || response?.data?.success === false || !data) {
         throw new Error(failureMessage(response) || "Could not start Torbox sign-in.");

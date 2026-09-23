@@ -71,11 +71,15 @@ export function createPlayerScreenMethods15() {
     renderPlayerUi() {
       this.uiRefs = null;
       this.lastUiTickState = null;
+      this.playerStreamMetadataSignature = null;
+      this.playerStreamMetadataSourceKey = null;
+      this.playerStreamMetadataCheckedAt = 0;
       this.container.querySelector("#playerUiRoot")?.remove();
 
       const root = document.createElement("div");
       root.id = "playerUiRoot";
       root.className = "player-ui-root";
+      root.classList.toggle("player-awaiting-first-frame", !this.hasPresentedPlaybackFrame);
       root.tabIndex = -1;
 
       if (this.isExternalFrameMode()) {
@@ -97,27 +101,34 @@ export function createPlayerScreenMethods15() {
         const loadingMeta = this.getLoadingOverlayMeta();
         const osdClockEnabled = Boolean(PlayerSettingsStore.get().osdClockEnabled);
         root.innerHTML = `
-            <div id="playerLoadingOverlay" class="player-loading-overlay">
+            <div id="playerLoadingOverlay" class="player-loading-overlay" role="status" aria-label="${escapeAttribute(t("player_loading_starting"))}">
               <div class="player-loading-backdrop"${loadingMeta.backdropUrl ? ` style="background-image:url('${loadingMeta.backdropUrl}')"` : ""}></div>
               <div class="player-loading-gradient"></div>
               <div class="player-loading-center">
-                <div class="player-loading-identity${loadingMeta.logoUrl ? " has-logo" : ""}">
-                  ${
-                    loadingMeta.logoUrl
-                      ? `
-                    <div class="player-loading-logo-stack">
-                      <img class="player-loading-logo player-loading-logo-base" src="${escapeAttribute(loadingMeta.logoUrl)}" alt="${escapeAttribute(loadingMeta.title || "logo")}" />
-                      <div class="player-loading-logo-fill-clip hidden">
-                        <img class="player-loading-logo player-loading-logo-fill" src="${escapeAttribute(loadingMeta.logoUrl)}" alt="" aria-hidden="true" />
+                <div class="player-loading-identity-anchor">
+                  <div class="player-loading-identity${loadingMeta.logoUrl ? " has-logo" : ""}">
+                    ${
+                      loadingMeta.logoUrl
+                        ? `
+                      <div class="player-loading-logo-stack">
+                        <img class="player-loading-logo player-loading-logo-base" src="${escapeAttribute(loadingMeta.logoUrl)}" alt="${escapeAttribute(loadingMeta.title || "logo")}" />
+                        <div class="player-loading-logo-fill-clip hidden">
+                          <img class="player-loading-logo player-loading-logo-fill" src="${escapeAttribute(loadingMeta.logoUrl)}" alt="" aria-hidden="true" />
+                        </div>
                       </div>
-                    </div>
-                  `
-                      : ""
-                  }
-                  <div class="player-loading-title">${escapeHtml(loadingMeta.title || this.params.playerTitle || this.params.itemId || "Nuvio")}</div>
+                    `
+                        : ""
+                    }
+                    <div class="player-loading-title">${escapeHtml(loadingMeta.title || this.params.playerTitle || this.params.itemId || "Nuvio Enhanced")}</div>
+                  </div>
                 </div>
-                <div class="player-loading-subtitle${loadingMeta.subtitle ? "" : " hidden"}">${escapeHtml(loadingMeta.subtitle || "")}</div>
-                <div class="player-loading-status hidden"></div>
+                <div class="player-loading-details">
+                  <div class="player-loading-subtitle${loadingMeta.subtitle ? "" : " hidden"}">${escapeHtml(loadingMeta.subtitle || "")}</div>
+                  <div class="player-loading-message">${escapeHtml(t("player_loading_starting"))}</div>
+                  <div class="player-loading-source"></div>
+                  ${renderLoadingIndicator({ className: "player-loading-startup-ring" })}
+                  <div class="player-loading-status hidden"></div>
+                </div>
               </div>
             </div>
 
@@ -135,6 +146,8 @@ export function createPlayerScreenMethods15() {
               </div>
               <div class="player-torrent-overlay-detail"></div>
             </div>
+
+            <div id="playerStatsOverlay" class="player-stats-overlay hidden" aria-live="off"></div>
 
             <div id="playerParentalGuide" class="player-parental-guide hidden"></div>
             <div id="playerSkipIntro" class="player-skip-intro hidden"></div>
@@ -171,6 +184,8 @@ export function createPlayerScreenMethods15() {
               <div class="player-controls-gradient player-controls-gradient-top"></div>
               <div class="player-controls-gradient player-controls-gradient-bottom"></div>
 
+              <div id="playerStreamMetadata" class="player-stream-metadata hidden" aria-label="${escapeAttribute(t("player_stream_metadata", {}, "Stream details"))}"></div>
+
               <div class="player-controls-top${osdClockEnabled ? "" : " hidden"}">
                 <div id="playerClock" class="player-clock">--:--</div>
                 <div id="playerEndsAt" class="player-ends-at">${escapeHtml(t("player_ends_at", ["--:--"], "Ends at %1$s"))}</div>
@@ -178,7 +193,10 @@ export function createPlayerScreenMethods15() {
 
               <div class="player-controls-bottom">
                 <div class="player-meta">
-                  <div class="player-title">${escapeHtml(header.title)}</div>
+                  <div class="player-artwork${header.logoUrl ? " has-logo" : ""}">
+                    <img class="player-title-logo"${header.logoUrl ? ` src="${escapeAttribute(header.logoUrl)}"` : ""} alt="${escapeAttribute(header.title)}"${header.logoUrl ? "" : " hidden"} />
+                    <div class="player-title">${escapeHtml(header.title)}</div>
+                  </div>
                   ${header.subtitle ? `<div class="player-subtitle">${escapeHtml(header.subtitle)}</div>` : ""}
                   ${header.meta ? `<div class="player-meta-secondary">${escapeHtml(header.meta)}</div>` : ""}
                   <div id="playerStreamSource" class="player-meta-secondary player-stream-source hidden" aria-hidden="true"></div>
@@ -190,6 +208,11 @@ export function createPlayerScreenMethods15() {
                       <div id="playerProgressBuffered" class="player-progress-buffered"></div>
                       <div id="playerProgressFill" class="player-progress-fill"></div>
                     </div>
+                  </div>
+
+                  <div class="player-time-row" aria-hidden="true">
+                    <span id="playerTimeElapsed">0:00</span>
+                    <span id="playerTimeRemaining">-0:00</span>
                   </div>
 
                   <div class="player-controls-row">
@@ -204,6 +227,7 @@ export function createPlayerScreenMethods15() {
 
       this.container.appendChild(root);
       this.cachePlayerUiRefs(root);
+      this.bindPlayerHeaderArtworkFallback();
       this.syncPlayerStreamSource();
       this.syncPlayerOverlayLayoutState();
       this.bindLoadingLogoFallback();
@@ -233,6 +257,7 @@ export function createPlayerScreenMethods15() {
             torrentOverlay: uiRoot.querySelector("#playerTorrentOverlay"),
             torrentOverlaySpeed: uiRoot.querySelector("#playerTorrentOverlay .player-torrent-overlay-speed"),
             torrentOverlayDetail: uiRoot.querySelector("#playerTorrentOverlay .player-torrent-overlay-detail"),
+            statsOverlay: uiRoot.querySelector("#playerStatsOverlay"),
             loadingIdentity: uiRoot.querySelector(".player-loading-identity"),
             loadingLogoStack: uiRoot.querySelector(".player-loading-logo-stack"),
             loadingLogoBase: uiRoot.querySelector(".player-loading-logo-base"),
@@ -240,6 +265,7 @@ export function createPlayerScreenMethods15() {
             loadingLogoFill: uiRoot.querySelector(".player-loading-logo-fill"),
             loadingTitle: uiRoot.querySelector(".player-loading-title"),
             loadingSubtitle: uiRoot.querySelector(".player-loading-subtitle"),
+            loadingSource: uiRoot.querySelector(".player-loading-source"),
             loadingStatus: uiRoot.querySelector("#playerLoadingOverlay .player-loading-status"),
             bufferingStatus: uiRoot.querySelector("#playerBufferingSpinner .player-loading-status"),
             parentalGuide: uiRoot.querySelector("#playerParentalGuide"),
@@ -264,6 +290,9 @@ export function createPlayerScreenMethods15() {
             sourcesPanel: uiRoot.querySelector("#playerSourcesPanel"),
             controlsOverlay: uiRoot.querySelector("#playerControlsOverlay"),
             controlsBottom: uiRoot.querySelector(".player-controls-bottom"),
+            streamMetadata: uiRoot.querySelector("#playerStreamMetadata"),
+            headerArtwork: uiRoot.querySelector(".player-artwork"),
+            titleLogo: uiRoot.querySelector(".player-title-logo"),
             streamSource: uiRoot.querySelector("#playerStreamSource"),
             progressShell: uiRoot.querySelector("#playerProgressShell"),
             clock: uiRoot.querySelector("#playerClock"),
@@ -272,6 +301,8 @@ export function createPlayerScreenMethods15() {
             progressFill: uiRoot.querySelector("#playerProgressFill"),
             controlButtons: uiRoot.querySelector("#playerControlButtons"),
             timeLabel: uiRoot.querySelector("#playerTimeLabel"),
+            timeElapsed: uiRoot.querySelector("#playerTimeElapsed"),
+            timeRemaining: uiRoot.querySelector("#playerTimeRemaining"),
             startupErrorButton: uiRoot.querySelector("#playerStartupErrorOverlay .player-startup-error-button")
           }
         : null;
@@ -292,10 +323,47 @@ export function createPlayerScreenMethods15() {
       this.refreshLoadingOverlayPresentation();
       this.renderStartupErrorOverlay();
     },
+    bindPlayerHeaderArtworkFallback() {
+      const artwork = this.uiRefs?.headerArtwork;
+      const logo = this.uiRefs?.titleLogo;
+      if (!artwork || !logo) {
+        return;
+      }
+      logo.addEventListener("error", () => artwork.classList.add("logo-failed"));
+      this.syncPlayerHeaderArtwork();
+    },
+    syncPlayerHeaderArtwork() {
+      const artwork = this.uiRefs?.headerArtwork;
+      const logo = this.uiRefs?.titleLogo;
+      if (!artwork || !logo) {
+        return;
+      }
+      const logoUrl =
+        [this.pauseOverlayMeta?.logoUrl, this.params?.playerLogoUrl, this.params?.logo]
+          .map((candidate) => String(candidate || "").trim())
+          .find((candidate) => /^https?:\/\//i.test(candidate)) || "";
+      const hasLogo = Boolean(logoUrl);
+      artwork.classList.toggle("has-logo", hasLogo);
+      if (!hasLogo) {
+        logo.removeAttribute("src");
+        logo.hidden = true;
+        return;
+      }
+      if (logo.getAttribute("src") !== logoUrl) {
+        artwork.classList.remove("logo-failed");
+        logo.setAttribute("src", logoUrl);
+      }
+      logo.hidden = false;
+      if (logo.complete && !logo.naturalWidth) {
+        artwork.classList.add("logo-failed");
+      }
+    },
     getLoadingOverlayMeta() {
       const transition = this.nextEpisodeTransitionMeta || null;
       return {
-        title: String(transition?.title || this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio").trim(),
+        title: String(
+          transition?.title || this.params?.playerTitle || this.params?.itemTitle || this.params?.itemId || "Nuvio Enhanced"
+        ).trim(),
         subtitle: String(transition?.subtitle || this.params?.playerSubtitle || "").trim(),
         logoUrl: String(transition?.logoUrl || this.params?.playerLogoUrl || "").trim(),
         backdropUrl: String(transition?.backdropUrl || this.params?.playerBackdropUrl || "").trim()

@@ -9,7 +9,7 @@ const palettes = {
     "--text-color": "#ffffff",
     "--text-secondary": "#b3b3b3",
     "--text-tertiary": "#808080",
-    "--border-color": "#333333",
+    "--border-color": "#302a1d",
     "--focus-color": "#ffd45c",
     "--focus-bg": "#3d2d1a",
     "--accent-gradient":
@@ -25,7 +25,7 @@ const palettes = {
     "--text-color": "#ffffff",
     "--text-secondary": "#b3b3b3",
     "--text-tertiary": "#808080",
-    "--border-color": "#333333",
+    "--border-color": "#203128",
     "--focus-color": "#7bf08d",
     "--focus-bg": "#153a2c",
     "--accent-gradient": "linear-gradient(90deg, #7bf08d 0%, #22d37c 50%, #0bbf9a 100%)"
@@ -40,7 +40,7 @@ const palettes = {
     "--text-color": "#ffffff",
     "--text-secondary": "#b3b3b3",
     "--text-tertiary": "#808080",
-    "--border-color": "#333333",
+    "--border-color": "#34242f",
     "--focus-color": "#ffb37a",
     "--focus-bg": "#442037",
     "--accent-gradient": "linear-gradient(90deg, #b75aff 0%, #ec70a9 50%, #ffb37a 100%)"
@@ -55,7 +55,7 @@ const palettes = {
     "--text-color": "#ffffff",
     "--text-secondary": "#b3b3b3",
     "--text-tertiary": "#808080",
-    "--border-color": "#333333",
+    "--border-color": "#202b3b",
     "--focus-color": "#4de3ff",
     "--focus-bg": "#172844",
     "--accent-gradient": "linear-gradient(90deg, #4de3ff 0%, #3185f5 50%, #4d55e8 100%)"
@@ -70,7 +70,7 @@ const palettes = {
     "--text-color": "#ffffff",
     "--text-secondary": "#b3b3b3",
     "--text-tertiary": "#808080",
-    "--border-color": "#333333",
+    "--border-color": "#292e35",
     "--focus-color": "#f3f5f7",
     "--focus-bg": "#30343a",
     "--accent-gradient": "linear-gradient(90deg, #f3f5f7 0%, #aab2be 50%, #687381 100%)"

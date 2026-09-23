@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">Film</string>
     <string name="type_series">Serial</string>
     <string name="home_no_addons">Nu sunt instalate extensii. Adaugă una pentru a începe.</string>
@@ -414,7 +414,7 @@
     <string name="trakt_stat_watched_hours">Ore vizionate</string>
     <string name="trakt_disconnect">Deconectare</string>
     <string name="trakt_disconnect_title">Deconectare Trakt?</string>
-    <string name="trakt_disconnect_subtitle">Aceasta va deconecta contul tău Trakt de Nuvio.</string>
+    <string name="trakt_disconnect_subtitle">Aceasta va deconecta contul tău Trakt de Nuvio Enhanced.</string>
     <string name="trakt_login">Autentificare</string>
     <string name="trakt_retry">Reîncercare</string>
     <string name="trakt_back">Înapoi</string>
@@ -694,11 +694,11 @@
     <string name="catalog_see_all_from">din %1$s</string>
     <string name="catalog_see_all_empty_title">Niciun element disponibil</string>
     <string name="catalog_see_all_empty_subtitle">Încearcă un catalog diferit sau revino mai târziu</string>
-    <string name="layout_selection_welcome">Bine ai venit la Nuvio</string>
+    <string name="layout_selection_welcome">Bine ai venit la Nuvio Enhanced</string>
     <string name="layout_selection_subtitle">Alege aspectul ecranului de pornire</string>
     <string name="layout_selection_continue">Continuă</string>
     <string name="update_title">Actualizare aplicație</string>
-    <string name="update_installer_required">Folosește Nuvio TV Installer pentru a actualiza aplicația pe televizor.</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">Noutăți</string>
     <string name="update_release_notes_unavailable">Descrierea versiunii nu este disponibilă.</string>
     <string name="update_downloading">Se descarcă actualizarea</string>
@@ -773,7 +773,7 @@
     <string name="autoplay_timeout_instant">Instantaneu</string>
     <string name="autoplay_timeout_unlimited">Nelimitat</string>
     <string name="unsupported_device_title">Televizor neacceptat</string>
-    <string name="unsupported_device_message">Acest televizor nu îndeplinește cerințele minime pentru această versiune Nuvio TV.</string>
+    <string name="unsupported_device_message">Acest televizor nu îndeplinește cerințele minime pentru această versiune Nuvio Enhanced.</string>
     <string name="unsupported_device_current_platform">Platformă actuală</string>
     <string name="unsupported_device_current_firmware">Firmware actual</string>
     <string name="unsupported_device_required_platform">Platformă necesară</string>
@@ -803,7 +803,7 @@
     <string name="debrid_device_auth_expired">Acest cod a expirat. Încearcă din nou.</string>
     <string name="debrid_device_auth_failed">Autentificarea nu a putut fi pornită.</string>
     <string name="debrid_device_auth_connected">%1$s este conectat pe acest dispozitiv.</string>
-    <string name="debrid_device_auth_instructions">Scanează codul QR și introdu acest cod pentru a autoriza Nuvio.</string>
+    <string name="debrid_device_auth_instructions">Scanează codul QR și introdu acest cod pentru a autoriza Nuvio Enhanced.</string>
     <string name="debrid_device_auth_missing_configuration">Această metodă de autentificare nu este configurată în această versiune.</string>
     <string name="debrid_disconnect">Deconectează</string>
     <string name="debrid_connected">Conectat</string>
@@ -1152,6 +1152,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">Puteți încerca totuși să porniți Nuvio TV, dar este posibil ca aplicația să nu funcționeze corect pe acest televizor. Această configurație nu este acceptată oficial.</string>
+    <string name="unsupported_device_warning">Puteți încerca totuși să porniți Nuvio Enhanced, dar este posibil ca aplicația să nu funcționeze corect pe acest televizor. Această configurație nu este acceptată oficial.</string>
     <string name="unsupported_device_try_anyway">Încearcă oricum</string>
 </resources>

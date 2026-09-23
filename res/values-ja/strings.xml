@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvio</string>
+    <string name="app_name">Nuvio Enhanced</string>
     <string name="type_movie">映画</string>
     <string name="type_series">シリーズ</string>
     <string name="type_unknown">不明</string>
@@ -1021,11 +1021,11 @@
     <string name="catalog_see_all_from">%1$s より</string>
     <string name="catalog_see_all_empty_title">利用可能なアイテムがありません</string>
     <string name="catalog_see_all_empty_subtitle">別のカタログを試すか、後でもう一度ご確認ください</string>
-    <string name="layout_selection_welcome">Nuvioへようこそ</string>
+    <string name="layout_selection_welcome">Nuvio Enhancedへようこそ</string>
     <string name="layout_selection_subtitle">ホーム画面のレイアウトを選択</string>
     <string name="layout_selection_continue">続ける</string>
     <string name="update_title">アプリのアップデート</string>
-    <string name="update_installer_required">テレビのアプリを更新するには Nuvio TV Installer を使用してください。</string>
+    <string name="update_installer_required">Install the latest Nuvio Enhanced package on your TV.</string>
     <string name="update_release_notes">新着情報</string>
     <string name="update_release_notes_unavailable">リリースの説明はありません。</string>
     <string name="update_downloading">アップデートをダウンロード中</string>
@@ -1233,7 +1233,7 @@
     <string name="autoplay_reuse_binge_group">一気見グループを再利用</string>
     <string name="autoplay_reuse_binge_group_sub">セッション間で最後の一気見グループを記憶・再利用します（視聴を続ける、詳細など）。</string>
     <string name="unsupported_device_title">このテレビはサポートされていません</string>
-    <string name="unsupported_device_message">このテレビは、このバージョンの Nuvio TV の最小要件を満たしていません。</string>
+    <string name="unsupported_device_message">このテレビは、このバージョンの Nuvio Enhanced の最小要件を満たしていません。</string>
     <string name="unsupported_device_current_platform">現在のプラットフォーム</string>
     <string name="unsupported_device_current_firmware">現在のファームウェア</string>
     <string name="unsupported_device_required_platform">必要なプラットフォーム</string>
@@ -1285,7 +1285,7 @@
     <string name="settings_content_discovery_plugins_subtitle">リポジトリとストリームプロバイダーを管理</string>
     <string name="experience_mode_essential">基本</string>
     <string name="experience_mode_advanced">詳細</string>
-    <string name="experience_mode_choose_title">Nuvioのエクスペリエンスを選択</string>
+    <string name="experience_mode_choose_title">Nuvio Enhancedのエクスペリエンスを選択</string>
     <string name="experience_mode_choose_subtitle">シンプルに始めるか、すべてのカスタマイズを解除。いつでも切り替え可能です。</string>
     <string name="experience_mode_essential_card_subtitle">基本設定、アドオン、再生の基本、Trakt、アカウント設定に焦点。</string>
     <string name="experience_mode_advanced_card_subtitle">すべての設定、レイアウト制御、カタログ順序、コレクション、プラグイン、診断。</string>
@@ -1327,7 +1327,7 @@
     <string name="playback_afr_capability_disable_resolution_button">解像度マッチングを無効化</string>
     <string name="playback_afr_capability_disable_both_button">両方を無効化</string>
     <string name="playback_engine_exoplayer_desc">現在のNuvio機能との互換性が最も高い。</string>
-    <string name="playback_engine_mvplayer_desc">Nuvio OSDコントロール付きのlibmpvを使用。実験的。</string>
+    <string name="playback_engine_mvplayer_desc">Nuvio Enhanced OSDコントロール付きのlibmpvを使用。実験的。</string>
     <string name="sub_mode_overlay_canvas_sub">HDRサポートとCanvasレンダリング。UIスレッドをブロックする可能性があります。</string>
     <string name="layout_classic_focus_gradient">フォーカスアイテムのグラデーション</string>
     <string name="layout_classic_focus_gradient_sub">クラシックホームの右側にアートワークの色をブレンドします。</string>
@@ -1558,7 +1558,7 @@
     <string name="trakt_error_failed_start">Trakt認証の開始に失敗しました</string>
     <string name="tmdb_entity_error_load_named">%1$s を読み込めませんでした</string>
     <string name="tmdb_entity_error_load">TMDBエンティティを読み込めませんでした</string>
-    <string name="playback_player_internal_desc">NuvioTVの内蔵プレーヤーを使用</string>
+    <string name="playback_player_internal_desc">Nuvio Enhancedの内蔵プレーヤーを使用</string>
     <string name="trakt_error_auth_required">Trakt認証が必要です</string>
     <string name="trakt_library_error_request_failed">Traktリクエストに失敗しました</string>
     <string name="trakt_library_error_create_list_failed">リストの作成に失敗しました</string>
@@ -1686,11 +1686,11 @@
     <string name="about_licenses_attributions">ライセンス &amp; 帰属</string>
     <string name="about_licenses_attributions_subtitle">データソース、謝辞、Androidライセンス</string>
     <string name="licenses_attributions_title">ライセンス &amp; 帰属</string>
-    <string name="licenses_attributions_subtitle">Nuvio TVが使用するデータプロバイダー、サービス、Android再生ライセンス</string>
+    <string name="licenses_attributions_subtitle">Nuvio Enhancedが使用するデータプロバイダー、サービス、Android再生ライセンス</string>
     <string name="licenses_attributions_section_app">アプリライセンス</string>
     <string name="licenses_attributions_section_data">データ &amp; サービス</string>
     <string name="licenses_attributions_section_playback">Android再生ライセンス</string>
-    <string name="licenses_attributions_nuvio_title">Nuvio TV</string>
+    <string name="licenses_attributions_nuvio_title">Nuvio TV (original project)</string>
     <string name="licenses_attributions_nuvio_body">ソースコードとライセンス条項はプロジェクトリポジトリで入手可能です。GNU General Public License v3.0 の下でライセンスされています。</string>
     <string name="licenses_attributions_tmdb_title">The Movie Database (TMDB)</string>
     <string name="licenses_attributions_tmdb_body">Nuvioは映画・TVのメタデータ、アートワーク、予告編、キャスト、制作詳細、コレクション、レコメンドにTMDB APIを使用しています。この製品はTMDB APIを使用していますが、TMDBによって承認または認定されていません。</string>
@@ -1902,6 +1902,6 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
     <string name="auth_qr_manual_instruction">Or go to %1$s and enter</string>
-    <string name="unsupported_device_warning">それでも Nuvio TV の起動を試すことはできますが、このテレビではアプリが正しく動作しない可能性があります。この構成は公式にはサポートされていません。</string>
+    <string name="unsupported_device_warning">それでも Nuvio Enhanced の起動を試すことはできますが、このテレビではアプリが正しく動作しない可能性があります。この構成は公式にはサポートされていません。</string>
     <string name="unsupported_device_try_anyway">それでも起動</string>
 </resources>

@@ -1,5 +1,9 @@
 const runtimeEnv = globalThis.__NUVIO_ENV__ || {};
 
+export const NUVIO_ENHANCED_RELEASE_REPO = String(
+  runtimeEnv.NUVIO_ENHANCED_RELEASE_REPO || ""
+).trim();
+
 export const SUPABASE_URL = String(runtimeEnv.NUVIO_SUPABASE_URL || "").trim();
 export const SUPABASE_ANON_KEY = String(runtimeEnv.NUVIO_SUPABASE_ANON_KEY || "").trim();
 export const SUPABASE_FALLBACK_URL = String(runtimeEnv.NUVIO_SUPABASE_FALLBACK_URL || "").trim();

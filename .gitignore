@@ -8,6 +8,7 @@ local.example.properties
 node_modules/
 tests/
 *.ipk
+!webosbrew/*.ipk
 *.wgt
 dist/
 .cache/
@@ -17,3 +18,4 @@ app.bundle.js
 ecosystem.config.cjs
 scripts/commit-build-poller.mjs
 .DS_Store
+webos-simulator/

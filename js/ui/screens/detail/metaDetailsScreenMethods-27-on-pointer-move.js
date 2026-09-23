@@ -85,6 +85,15 @@ export function createMetaDetailsScreenMethods27() {
     },
     cleanup() {
       this.detailLoadToken = (this.detailLoadToken || 0) + 1;
+      if (this.streamSearchPrewarmTimer) clearTimeout(this.streamSearchPrewarmTimer);
+      this.streamSearchPrewarmTimer = null;
+      // Give the stream route a brief window to attach to the shared search.
+      // If the user went elsewhere, its last prewarm subscriber then cancels it.
+      if (this.streamSearchPrewarmController) {
+        const controller = this.streamSearchPrewarmController;
+        setTimeout(() => controller.abort(), 1200);
+      }
+      this.streamSearchPrewarmController = null;
       this.cancelPendingEpisodeHold();
       this.cancelPendingSeasonHold();
       this.cancelPendingPosterHold();

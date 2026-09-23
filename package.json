@@ -2,11 +2,10 @@
   "name": "nuvio-enhanced",
   "private": true,
   "type": "module",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "scripts": {
     "build": "node ./scripts/build.mjs",
-    "test": "npm run test:plugins",
-    "test:plugins": "npm run build && node ./tests/test-plugin-system.mjs && node ./tests/test-plugin-localization.mjs",
+    "test": "npm run build && node --test test/*.mjs",
     "prepare": "husky || true",
     "build:on-release": "node ./scripts/release-build-poller.mjs",
     "install:webos": "node ./scripts/ares-install-webos.mjs",

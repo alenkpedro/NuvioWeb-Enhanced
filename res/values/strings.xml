@@ -460,6 +460,8 @@
     <string name="network_connection_ethernet">Ethernet</string>
     <string name="network_connection_offline">Offline</string>
     <string name="advanced_section_performance">Performance &amp; navigation</string>
+    <string name="advanced_optimized_mode">Optimized mode</string>
+    <string name="advanced_optimized_mode_subtitle">Reduce animations, artwork loading and automatic trailer previews on this TV.</string>
     <string name="advanced_section_diagnostics">Diagnostics</string>
     <string name="advanced_section_cache">Cache</string>
     <string name="advanced_section_dv_diagnostics">DV Diagnostics</string>

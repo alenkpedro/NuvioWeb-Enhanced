@@ -47,6 +47,8 @@ export { WebOsAudioCompatibilityStore } from "../../../data/local/webOsAudioComp
 export { LayoutPreferences } from "../../../data/local/layoutPreferences.js";
 
 export { ExperienceModeStore } from "../../../data/local/experienceModeStore.js";
+export { OptimizedModeStore } from "../../../data/local/optimizedModeStore.js";
+export { getTvRuntimePerformanceProfile } from "../../../platform/tvRuntimePerformance.js";
 
 export { MdbListSettingsStore } from "../../../data/local/mdbListSettingsStore.js";
 

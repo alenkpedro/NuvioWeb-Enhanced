@@ -1,5 +1,6 @@
 import { Platform } from "./index.js";
 import { TizenCapabilities } from "./tizen/tizenCapabilities.js";
+import { OptimizedModeStore } from "../data/local/optimizedModeStore.js";
 
 // The first common TV generation with a modern Chromium baseline is Samsung
 // Tizen 6.5 / Chromium M85 (2022) and LG webOS TV 22 / Chromium M87 (2022).
@@ -18,6 +19,22 @@ const WEBOS_RELEASE_YEARS = Object.freeze({
   6: 2021
 });
 let cachedProfile = null;
+let cachedOptimizedProfile = null;
+
+function withOptimizedMode(profile) {
+  if (!profile?.isTvRuntime || !OptimizedModeStore.isEnabled()) return profile;
+  if (!cachedOptimizedProfile || cachedOptimizedProfile.base !== profile) {
+    cachedOptimizedProfile = {
+      base: profile,
+      value: Object.freeze({
+        ...profile,
+        isPerformanceConstrained: true,
+        optimizedModeEnabled: true
+      })
+    };
+  }
+  return cachedOptimizedProfile.value;
+}
 
 function parseVersionParts(value) {
   const match = String(value || "")
@@ -112,7 +129,7 @@ function getTizenReleaseYear(tizenVersion) {
 
 export function getTvRuntimePerformanceProfile({ forceRefresh = false } = {}) {
   if (cachedProfile && !forceRefresh) {
-    return cachedProfile;
+    return withOptimizedMode(cachedProfile);
   }
 
   const isWebOS = Platform.isWebOS();
@@ -128,7 +145,8 @@ export function getTvRuntimePerformanceProfile({ forceRefresh = false } = {}) {
       tvYearKnown: false,
       chromiumVersionKnown: chromiumMajorVersion > 0,
       isLegacyTvRuntime: false,
-      isPerformanceConstrained: false
+      isPerformanceConstrained: false,
+      optimizedModeEnabled: false
     });
     return cachedProfile;
   }
@@ -159,13 +177,15 @@ export function getTvRuntimePerformanceProfile({ forceRefresh = false } = {}) {
     tvYearKnown,
     chromiumVersionKnown,
     isLegacyTvRuntime,
-    isPerformanceConstrained: isLegacyTvRuntime
+    isPerformanceConstrained: isLegacyTvRuntime,
+    optimizedModeEnabled: false
   });
-  return cachedProfile;
+  return withOptimizedMode(cachedProfile);
 }
 
 export function resetTvRuntimePerformanceProfile() {
   cachedProfile = null;
+  cachedOptimizedProfile = null;
 }
 
 // Android keeps the current hero scene alive while the next artwork is being

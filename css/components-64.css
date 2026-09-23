@@ -1,0 +1,23 @@
+/* Explicit TV optimization keeps the content and focus state while removing
+   expensive compositing effects that constrained mode still preserves. */
+.optimized-mode .home-screen-shell .home-hero-backdrop,
+.optimized-mode .home-screen-shell .home-hero-logo,
+.optimized-mode .home-screen-shell.home-layout-modern .home-poster-card,
+.optimized-mode .home-screen-shell.home-layout-modern .home-poster-card .content-poster,
+.optimized-mode .home-screen-shell.home-layout-modern .home-poster-expanded-backdrop,
+.optimized-mode .series-detail-backdrop,
+.optimized-mode .series-detail-vignette,
+.optimized-mode .series-detail-logo,
+.optimized-mode .series-detail-title {
+  transition: none !important;
+}
+
+.optimized-mode .modern-sidebar-panel,
+.optimized-mode .modern-sidebar-pill-chip,
+.optimized-mode .player-pause-overlay,
+.optimized-mode .detail-trailer-control-bar,
+.optimized-mode .settings-trakt-card,
+.optimized-mode .settings-layout-badge {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

@@ -9,6 +9,8 @@ export function createSettingsScreenMethods05() {
     availableThemeIds,
     LayoutPreferences,
     ExperienceModeStore,
+    OptimizedModeStore,
+    getTvRuntimePerformanceProfile,
     ProfileManager,
     isFastHorizontalNavigationEnabled,
     CW_DISPLAY_SNAPSHOT_KEY,
@@ -31,6 +33,9 @@ export function createSettingsScreenMethods05() {
         LayoutPreferences.set({
           fastHorizontalNavigationEnabled: !isFastHorizontalNavigationEnabled()
         });
+      });
+      this.actionMap.set("advanced:optimizedMode", () => {
+        OptimizedModeStore.setEnabled(!OptimizedModeStore.isEnabled());
       });
       this.actionMap.set("advanced:rememberLastProfile", () => {
         ProfileManager.setRememberLastProfileEnabled(!ProfileManager.isRememberLastProfileEnabled());
@@ -106,6 +111,20 @@ export function createSettingsScreenMethods05() {
           </div>
           <div class="settings-group-card">
             <div class="settings-stack">
+              ${
+                getTvRuntimePerformanceProfile().isTvRuntime
+                  ? this.renderToggleRow({
+                      focusKey: "advanced:optimizedMode",
+                      title: t("advanced_optimized_mode", {}, "Optimized mode"),
+                      subtitle: t(
+                        "advanced_optimized_mode_subtitle",
+                        {},
+                        "Reduce animations, artwork loading and automatic trailer previews on this TV."
+                      ),
+                      checked: OptimizedModeStore.isEnabled()
+                    })
+                  : ""
+              }
               ${this.renderToggleRow({
                 focusKey: "advanced:fastHorizontalNavigation",
                 title: t("advanced_fast_horizontal_navigation", {}, "Fast Horizontal Navigation"),

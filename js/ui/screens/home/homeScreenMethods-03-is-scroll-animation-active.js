@@ -156,7 +156,7 @@ export function createHomeScreenMethods03() {
       return Boolean(getTvRuntimePerformanceProfile().isLegacyTvRuntime);
     },
     shouldSuppressAutomaticTrailerPlayback() {
-      return this.isLegacyTvRuntime() && !Platform.isTizen();
+      return getTvRuntimePerformanceProfile().optimizedModeEnabled || (this.isLegacyTvRuntime() && !Platform.isTizen());
     },
     getFocusedPosterTrailerDelayMs(trailerTarget = "hero_media") {
       const normalizedTrailerTarget = String(trailerTarget || "hero_media").toLowerCase();

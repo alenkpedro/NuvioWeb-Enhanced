@@ -1,7 +1,7 @@
 import * as internals from "./homeScreenContext.js";
 
 export function createHomeScreenMethods10() {
-  const { MODERN_HOME_CONSTANTS, shouldEnrichModernHero, preloadHeroAssets, buildHeroIdentity } = internals;
+  const { MODERN_HOME_CONSTANTS, shouldEnrichModernHero, preloadHeroAssets, buildHeroIdentity, getTvRuntimePerformanceProfile } = internals;
 
   return {
     scheduleModernHeroUpdate(node, { deferUntilVerticalSettle = false, immediate = false } = {}) {
@@ -42,23 +42,25 @@ export function createHomeScreenMethods10() {
         callback();
       };
       const preloadDelay = Math.max(0, Math.min(120, delay - 80));
-      this.heroBackdropPreloadTimer = setTimeout(() => {
-        this.heroBackdropPreloadTimer = null;
-        waitForVerticalSettle(() => {
-          if (Number(this.heroFocusToken || 0) !== focusToken) {
-            return;
-          }
-          const focusedNode = this.getCurrentFocusedNode();
-          if (focusedNode !== node || !node?.isConnected || !node.classList.contains("focused")) {
-            return;
-          }
-          const focusedHero = this.getNodeHeroSource(node);
-          if (buildHeroIdentity(focusedHero) !== scheduledHeroIdentity) {
-            return;
-          }
-          void preloadHeroAssets(focusedHero, "modern");
-        });
-      }, preloadDelay);
+      if (!getTvRuntimePerformanceProfile().optimizedModeEnabled) {
+        this.heroBackdropPreloadTimer = setTimeout(() => {
+          this.heroBackdropPreloadTimer = null;
+          waitForVerticalSettle(() => {
+            if (Number(this.heroFocusToken || 0) !== focusToken) {
+              return;
+            }
+            const focusedNode = this.getCurrentFocusedNode();
+            if (focusedNode !== node || !node?.isConnected || !node.classList.contains("focused")) {
+              return;
+            }
+            const focusedHero = this.getNodeHeroSource(node);
+            if (buildHeroIdentity(focusedHero) !== scheduledHeroIdentity) {
+              return;
+            }
+            void preloadHeroAssets(focusedHero, "modern");
+          });
+        }, preloadDelay);
+      }
       const commitHeroWhenSettled = () => {
         if (deferUntilVerticalSettle && this.isModernVerticalScrollActive()) {
           this.heroFocusDelayTimer = setTimeout(commitHeroWhenSettled, MODERN_HOME_CONSTANTS.verticalScrollSettlePollMs);
@@ -110,7 +112,9 @@ export function createHomeScreenMethods10() {
 
           // Each media layer starts/reuses its own guarded preload before
           // swapping, matching Android's independent AsyncImage loading path.
-          void preloadHeroAssets(focusedHero, "modern");
+          if (!getTvRuntimePerformanceProfile().optimizedModeEnabled) {
+            void preloadHeroAssets(focusedHero, "modern");
+          }
           if (Number(this.heroFocusToken || 0) !== focusToken) {
             return;
           }

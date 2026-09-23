@@ -456,6 +456,8 @@
     <string name="network_connection_ethernet">Ethernet</string>
     <string name="network_connection_offline">Offline</string>
     <string name="advanced_section_performance">Desempenho e navegação</string>
+    <string name="advanced_optimized_mode">Modo otimizado</string>
+    <string name="advanced_optimized_mode_subtitle">Reduz animações, carregamento de imagens e prévias automáticas de trailers nesta TV.</string>
     <string name="advanced_section_diagnostics">Diagnóstico</string>
     <string name="advanced_section_cache">Cache</string>
     <string name="advanced_section_dv_diagnostics">Diagnóstico de Dolby Vision</string>

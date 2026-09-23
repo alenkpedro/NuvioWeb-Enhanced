@@ -24,6 +24,7 @@ import { TizenCapabilities } from "./platform/tizen/tizenCapabilities.js";
 import { PluginServiceClient } from "./platform/pluginServiceClient.js";
 import { getTvRuntimePerformanceProfile } from "./platform/tvRuntimePerformance.js";
 import { LocalStore } from "./core/storage/localStore.js";
+import { OptimizedModeStore } from "./data/local/optimizedModeStore.js";
 import { I18n } from "./i18n/index.js";
 import {
   APP_UPDATE_AVAILABLE,
@@ -186,6 +187,11 @@ function applyPerformanceMode() {
   const modernSidebarBlurCapable = !rootClasses.contains("no-backdrop-filter") && !constrained;
   document.documentElement.classList.toggle("performance-constrained", constrained);
   document.body.classList.toggle("performance-constrained", constrained);
+  document.documentElement.classList.toggle(
+    "optimized-mode",
+    Boolean(tvRuntime.optimizedModeEnabled)
+  );
+  document.body.classList.toggle("optimized-mode", Boolean(tvRuntime.optimizedModeEnabled));
   document.documentElement.classList.toggle(
     "modern-sidebar-blur-capable",
     modernSidebarBlurCapable
@@ -577,6 +583,7 @@ async function bootstrapApp() {
     });
   }
   applyPerformanceMode();
+  OptimizedModeStore.subscribe(applyPerformanceMode);
   markBootStage("Loading language resources");
   await I18n.init();
 

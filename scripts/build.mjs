@@ -680,6 +680,14 @@ async function runBuild() {
         "Configured runtime env is required for this build. Provide local.properties."
       );
     }
+    if (
+      requireConfiguredRuntimeEnv &&
+      (!envResult.env.NUVIO_SUPABASE_URL?.trim() || !envResult.env.NUVIO_SUPABASE_ANON_KEY?.trim())
+    ) {
+      throw new Error(
+        "TV login requires NUVIO_SUPABASE_URL and NUVIO_SUPABASE_ANON_KEY in local.properties."
+      );
+    }
     if (!envResult.sourcePath) {
       console.warn("WARNING: generated default runtime env (unconfigured).");
     } else if (envSourceBaseName === "local.example.properties") {
